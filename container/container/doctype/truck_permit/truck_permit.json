@@ -1,0 +1,106 @@
+{
+  "doctype": "DocType",
+  "name": "Truck Permit",
+  "module": "Container",
+  "autoname": "format:TP-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "truck",
+      "fieldtype": "Link",
+      "label": "Truck",
+      "reqd": 1,
+      "options": "Vehicle"
+    },
+    {
+      "fieldname": "permit_type",
+      "fieldtype": "Data",
+      "label": "Permit Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "permit_number",
+      "fieldtype": "Data",
+      "label": "Permit Number",
+      "reqd": 1
+    },
+    {
+      "fieldname": "issue_date",
+      "fieldtype": "Date",
+      "label": "Issue Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "expiry_date",
+      "fieldtype": "Date",
+      "label": "Expiry Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "read_only": 1,
+      "options": "Valid\nExpiring\nExpired"
+    },
+    {
+      "fieldname": "attachment",
+      "fieldtype": "Attach",
+      "label": "Attachment"
+    }
+  ],
+  "field_order": [
+    "truck",
+    "permit_type",
+    "permit_number",
+    "issue_date",
+    "expiry_date",
+    "status",
+    "attachment"
+  ],
+  "track_changes": 1,
+  "is_submittable": 0,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 0,
+      "cancel": 0
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 0,
+      "cancel": 0
+    },
+    {
+      "role": "Fleet Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 0,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

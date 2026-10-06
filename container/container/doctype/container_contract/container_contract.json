@@ -1,0 +1,389 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "prompt",
+  "creation": "2026-10-06 12:12:37.393671",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "section_break_b2nb",
+    "amended_from",
+    "contract_type",
+    "customer",
+    "location",
+    "plot_number",
+    "plan_number",
+    "column_break_guxj",
+    "status",
+    "contract_date",
+    "notes",
+    "section_break_yxkt",
+    "contract_from",
+    "contract_duration",
+    "column_break_qjgw",
+    "contract_to",
+    "section_break_kwqe",
+    "column_break_essh",
+    "classification",
+    "container_size",
+    "no_of_trips",
+    "price",
+    "total",
+    "contract_cost",
+    "column_break_czgu",
+    "start_date",
+    "end_date",
+    "duration",
+    "tax_details_section",
+    "tax_treatment",
+    "tax_template",
+    "column_break_plzb",
+    "trip_duration",
+    "company",
+    "currency",
+    "rental_item",
+    "containers",
+    "used_trips",
+    "remaining_trips",
+    "allow_extra_trips",
+    "override_reason",
+    "sales_tax_template",
+    "unlimited_billing_amount"
+  ],
+  "fields": [
+    {
+      "fieldname": "section_break_b2nb",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "no_copy": 1,
+      "options": "Container Contract",
+      "print_hide": 1,
+      "read_only": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "contract_type",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Contract Type",
+      "options": "Contract Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Customer",
+      "options": "Customer",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_guxj",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nActive\nCompleted\nCancelled",
+      "default": "Draft",
+      "read_only": 1
+    },
+    {
+      "fieldname": "contract_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Contract Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "location",
+      "fieldtype": "Data",
+      "label": "Location"
+    },
+    {
+      "fieldname": "plot_number",
+      "fieldtype": "Data",
+      "label": "Plot Number"
+    },
+    {
+      "fieldname": "plan_number",
+      "fieldtype": "Data",
+      "label": "Plan Number"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    },
+    {
+      "fieldname": "section_break_yxkt",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "contract_from",
+      "fieldtype": "Date",
+      "label": "Contract from",
+      "reqd": 1
+    },
+    {
+      "fieldname": "contract_duration",
+      "fieldtype": "Duration",
+      "label": "Contract Duration"
+    },
+    {
+      "fieldname": "column_break_qjgw",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "contract_to",
+      "fieldtype": "Date",
+      "label": "Contract To"
+    },
+    {
+      "fieldname": "section_break_kwqe",
+      "fieldtype": "Section Break"
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
+      "fieldname": "classification",
+      "fieldtype": "Link",
+      "label": "Classification",
+      "options": "Container Type"
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
+      "fieldname": "no_of_trips",
+      "fieldtype": "Int",
+      "label": "No. of Trips"
+    },
+    {
+      "fieldname": "column_break_czgu",
+      "fieldtype": "Column Break"
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
+      "fieldname": "container_size",
+      "fieldtype": "Data",
+      "label": "Container Size"
+    },
+    {
+      "fieldname": "start_date",
+      "fieldtype": "Datetime",
+      "label": "Start Date"
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Datetime",
+      "label": "End Date"
+    },
+    {
+      "fieldname": "duration",
+      "fieldtype": "Duration",
+      "label": "Duration"
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
+      "fieldname": "price",
+      "fieldtype": "Currency",
+      "label": "Price"
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\"",
+      "fieldname": "total",
+      "fieldtype": "Currency",
+      "label": "Total",
+      "read_only": 1
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\"",
+      "fieldname": "contract_cost",
+      "fieldtype": "Currency",
+      "label": "Contract Cost",
+      "read_only": 1
+    },
+    {
+      "fieldname": "tax_details_section",
+      "fieldtype": "Section Break",
+      "label": "Tax Details"
+    },
+    {
+      "fieldname": "tax_treatment",
+      "fieldtype": "Select",
+      "label": "Tax Treatment",
+      "options": "Price Includes Tax\nPrice Excludes Tax\nExempt\nPrice include tax\nPrice not include tax\nExempt from tax",
+      "default": "Exempt"
+    },
+    {
+      "fieldname": "tax_template",
+      "fieldtype": "Link",
+      "label": "Tax Template",
+      "options": "Item Tax Template"
+    },
+    {
+      "fieldname": "column_break_plzb",
+      "fieldtype": "Column Break"
+    },
+    {
+      "depends_on": "eval:doc.contract_type != \"Unlimited Contract\";",
+      "fieldname": "trip_duration",
+      "fieldtype": "Data",
+      "label": "Trip Duration"
+    },
+    {
+      "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
+      "fieldname": "column_break_essh",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "label": "Company",
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "label": "Currency",
+      "reqd": 1,
+      "options": "Currency"
+    },
+    {
+      "fieldname": "rental_item",
+      "fieldtype": "Link",
+      "label": "Rental Item",
+      "options": "Item"
+    },
+    {
+      "fieldname": "containers",
+      "fieldtype": "Table",
+      "label": "Containers",
+      "options": "Contract Container"
+    },
+    {
+      "fieldname": "used_trips",
+      "fieldtype": "Int",
+      "label": "Used Trips",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remaining_trips",
+      "fieldtype": "Int",
+      "label": "Remaining Trips",
+      "read_only": 1
+    },
+    {
+      "fieldname": "allow_extra_trips",
+      "fieldtype": "Check",
+      "label": "Allow Extra Trips",
+      "permlevel": 1
+    },
+    {
+      "fieldname": "override_reason",
+      "fieldtype": "Small Text",
+      "label": "Override Reason",
+      "permlevel": 1
+    },
+    {
+      "fieldname": "sales_tax_template",
+      "fieldtype": "Link",
+      "label": "Sales Tax Template",
+      "options": "Sales Taxes and Charges Template"
+    },
+    {
+      "fieldname": "unlimited_billing_amount",
+      "fieldtype": "Currency",
+      "label": "Unlimited Billing Amount",
+      "depends_on": "eval:doc.contract_type === \"Unlimited Contract\"",
+      "description": "Explicit amount for this invoice; unlimited contracts do not derive billing from trips."
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "is_submittable": 1,
+  "links": [],
+  "modified": "2026-10-06 13:13:45.134832",
+  "modified_by": "Administrator",
+  "module": "Container",
+  "name": "Container Contract",
+  "naming_rule": "Set by user",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    },
+    {
+      "role": "Container Manager",
+      "permlevel": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "System Manager",
+      "permlevel": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounts User",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    }
+  ],
+  "row_format": "Dynamic",
+  "rows_threshold_for_grid_search": 20,
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 1,
+  "istable": 0
+}

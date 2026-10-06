@@ -1,0 +1,24 @@
+{
+  "doctype": "Report",
+  "name": "Truck KM Report",
+  "report_name": "Truck KM Report",
+  "ref_doctype": "Truck KM Reading",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Fleet Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Truck KM Reading\"], [\"truck\", \"Truck KM Reading\"], [\"reading_date\", \"Truck KM Reading\"], [\"current_km\", \"Truck KM Reading\"], [\"driver\", \"Truck KM Reading\"], [\"docstatus\", \"Truck KM Reading\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

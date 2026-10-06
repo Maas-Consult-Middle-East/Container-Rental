@@ -1,0 +1,1 @@
+frappe.query_reports["Contract Outstanding Report"] = {filters: [{fieldname:"customer", label:__("Customer"), fieldtype:"Link", options:"Customer"}, {fieldname:"contract", label:__("Contract"), fieldtype:"Link", options:"Container Contract"}]};

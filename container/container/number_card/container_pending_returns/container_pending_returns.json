@@ -1,0 +1,14 @@
+{
+  "doctype": "Number Card",
+  "name": "Container Pending Returns",
+  "label": "Pending Returns",
+  "module": "Container",
+  "is_standard": 1,
+  "type": "Document Type",
+  "document_type": "Container",
+  "function": "Count",
+  "aggregate_function_based_on": null,
+  "is_public": 1,
+  "show_percentage_stats": 0,
+  "filters_json": "[[\"Container\", \"status\", \"in\", [\"Pull\", \"Pulling\"]]]"
+}

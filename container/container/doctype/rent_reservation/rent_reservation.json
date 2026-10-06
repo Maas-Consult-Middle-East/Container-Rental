@@ -1,0 +1,140 @@
+{
+  "doctype": "DocType",
+  "name": "Rent Reservation",
+  "module": "Container",
+  "autoname": "format:RR-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "reqd": 1,
+      "options": "Customer"
+    },
+    {
+      "fieldname": "reservation_date",
+      "fieldtype": "Date",
+      "label": "Reservation Date",
+      "default": "Today",
+      "reqd": 1
+    },
+    {
+      "fieldname": "from_date",
+      "fieldtype": "Date",
+      "label": "From Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "to_date",
+      "fieldtype": "Date",
+      "label": "To Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "container_type",
+      "fieldtype": "Link",
+      "label": "Container Type",
+      "reqd": 1,
+      "options": "Container Type"
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Int",
+      "label": "Quantity",
+      "default": "1",
+      "reqd": 1
+    },
+    {
+      "fieldname": "container",
+      "fieldtype": "Link",
+      "label": "Container",
+      "description": "Optional specific container; quantity must be one.",
+      "options": "Container"
+    },
+    {
+      "fieldname": "rental_rate",
+      "fieldtype": "Currency",
+      "label": "Rental Rate"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "default": "Draft",
+      "read_only": 1,
+      "options": "Draft\nReserved\nConfirmed\nCancelled\nCompleted"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Rent Reservation"
+    }
+  ],
+  "field_order": [
+    "customer",
+    "reservation_date",
+    "from_date",
+    "to_date",
+    "container_type",
+    "quantity",
+    "container",
+    "rental_rate",
+    "status",
+    "remarks",
+    "amended_from"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

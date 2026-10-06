@@ -1,0 +1,109 @@
+{
+  "doctype": "DocType",
+  "name": "Truck KM Reading",
+  "module": "Container",
+  "autoname": "format:TKR-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "truck",
+      "fieldtype": "Link",
+      "label": "Truck",
+      "reqd": 1,
+      "options": "Vehicle"
+    },
+    {
+      "fieldname": "driver",
+      "fieldtype": "Link",
+      "label": "Driver",
+      "options": "Driver"
+    },
+    {
+      "fieldname": "reading_date",
+      "fieldtype": "Date",
+      "label": "Reading Date",
+      "default": "Today",
+      "reqd": 1
+    },
+    {
+      "fieldname": "current_km",
+      "fieldtype": "Int",
+      "label": "Current Km",
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_km",
+      "fieldtype": "Int",
+      "label": "Previous Km",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Truck KM Reading"
+    }
+  ],
+  "field_order": [
+    "truck",
+    "driver",
+    "reading_date",
+    "current_km",
+    "previous_km",
+    "remarks",
+    "amended_from"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Fleet Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "doctype": "Report",
+  "name": "General Contract Report",
+  "report_name": "General Contract Report",
+  "ref_doctype": "Container Contract",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Container Operator"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Container Contract\"], [\"customer\", \"Container Contract\"], [\"contract_type\", \"Container Contract\"], [\"status\", \"Container Contract\"], [\"contract_from\", \"Container Contract\"], [\"contract_to\", \"Container Contract\"], [\"no_of_trips\", \"Container Contract\"], [\"used_trips\", \"Container Contract\"], [\"remaining_trips\", \"Container Contract\"], [\"contract_cost\", \"Container Contract\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

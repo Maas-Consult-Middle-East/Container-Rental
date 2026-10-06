@@ -1,0 +1,111 @@
+{
+  "doctype": "DocType",
+  "name": "Commission Rule",
+  "module": "Container",
+  "autoname": "format:CR-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "sales_person",
+      "fieldtype": "Link",
+      "label": "Sales Person",
+      "reqd": 1,
+      "options": "Sales Person"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "options": "Customer"
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "label": "Contract",
+      "options": "Container Contract"
+    },
+    {
+      "fieldname": "commission_type",
+      "fieldtype": "Select",
+      "label": "Commission Type",
+      "reqd": 1,
+      "options": "Percentage\nFixed Amount"
+    },
+    {
+      "fieldname": "percentage",
+      "fieldtype": "Percent",
+      "label": "Percentage"
+    },
+    {
+      "fieldname": "fixed_amount",
+      "fieldtype": "Currency",
+      "label": "Fixed Amount"
+    },
+    {
+      "fieldname": "effective_from",
+      "fieldtype": "Date",
+      "label": "Effective From",
+      "reqd": 1
+    },
+    {
+      "fieldname": "effective_to",
+      "fieldtype": "Date",
+      "label": "Effective To"
+    },
+    {
+      "fieldname": "active",
+      "fieldtype": "Check",
+      "label": "Active",
+      "default": "1"
+    }
+  ],
+  "field_order": [
+    "sales_person",
+    "customer",
+    "contract",
+    "commission_type",
+    "percentage",
+    "fixed_amount",
+    "effective_from",
+    "effective_to",
+    "active"
+  ],
+  "track_changes": 1,
+  "is_submittable": 0,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 0,
+      "cancel": 0
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 0,
+      "cancel": 0
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 0,
+      "cancel": 0
+    }
+  ]
+}

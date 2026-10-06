@@ -1,0 +1,24 @@
+{
+  "doctype": "Report",
+  "name": "Truck Permit Report",
+  "report_name": "Truck Permit Report",
+  "ref_doctype": "Truck Permit",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Fleet Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Truck Permit\"], [\"truck\", \"Truck Permit\"], [\"permit_type\", \"Truck Permit\"], [\"permit_number\", \"Truck Permit\"], [\"issue_date\", \"Truck Permit\"], [\"expiry_date\", \"Truck Permit\"], [\"status\", \"Truck Permit\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

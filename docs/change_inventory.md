@@ -1,0 +1,181 @@
+# Change inventory
+
+## DocTypes
+- Client Withdrawal
+- Commission Entry
+- Commission Rule
+- Container
+- Container Contract
+- Container Emptying
+- Container Movement
+- Container Replacement
+- Container Trip
+- Container Type
+- Contract Container
+- Contract Type
+- Rent Reservation
+- Truck KM Reading
+- Truck Oil Change
+- Truck Permit
+
+Truck reuses ERPNext Vehicle. Existing Container, Container Contract, Container Type and Contract Type were extended; the other twelve schemas are new.
+
+## Reports created
+- Client Withdrawal Report
+- Commission Report
+- Container Movement Report
+- Container Replacement Report
+- Container Status Report
+- Contract Outstanding Report
+- Contract Payment Report
+- Contract Trip Report
+- Customer Rental Report
+- Delayed Containers Report
+- Empty Containers Report
+- Emptying Report
+- Fleet Maintenance Due Report
+- General Contract Report
+- Pull Containers Report
+- Rented Containers Report
+- Trip Returns Tracking Report
+- Truck KM Report
+- Truck Oil Change Report
+- Truck Permit Report
+- Truck Report
+- Truck Spending Report
+
+## App source files
+- `README.md`
+- `container/__init__.py`
+- `container/billing.py`
+- `container/config/__init__.py`
+- `container/container/__init__.py`
+- `container/container/doctype/__init__.py`
+- `container/container/doctype/client_withdrawal/__init__.py`
+- `container/container/doctype/client_withdrawal/client_withdrawal.json`
+- `container/container/doctype/client_withdrawal/client_withdrawal.py`
+- `container/container/doctype/commission_entry/__init__.py`
+- `container/container/doctype/commission_entry/commission_entry.json`
+- `container/container/doctype/commission_entry/commission_entry.py`
+- `container/container/doctype/commission_rule/__init__.py`
+- `container/container/doctype/commission_rule/commission_rule.json`
+- `container/container/doctype/commission_rule/commission_rule.py`
+- `container/container/doctype/container/__init__.py`
+- `container/container/doctype/container/container.js`
+- `container/container/doctype/container/container.json`
+- `container/container/doctype/container/container.py`
+- `container/container/doctype/container/test_container.py`
+- `container/container/doctype/container_contract/__init__.py`
+- `container/container/doctype/container_contract/container_contract.js`
+- `container/container/doctype/container_contract/container_contract.json`
+- `container/container/doctype/container_contract/container_contract.py`
+- `container/container/doctype/container_contract/test_container_contract.py`
+- `container/container/doctype/container_emptying/__init__.py`
+- `container/container/doctype/container_emptying/container_emptying.json`
+- `container/container/doctype/container_emptying/container_emptying.py`
+- `container/container/doctype/container_movement/__init__.py`
+- `container/container/doctype/container_movement/container_movement.json`
+- `container/container/doctype/container_movement/container_movement.py`
+- `container/container/doctype/container_replacement/__init__.py`
+- `container/container/doctype/container_replacement/container_replacement.json`
+- `container/container/doctype/container_replacement/container_replacement.py`
+- `container/container/doctype/container_trip/__init__.py`
+- `container/container/doctype/container_trip/container_trip.json`
+- `container/container/doctype/container_trip/container_trip.py`
+- `container/container/doctype/container_type/__init__.py`
+- `container/container/doctype/container_type/container_type.js`
+- `container/container/doctype/container_type/container_type.json`
+- `container/container/doctype/container_type/container_type.py`
+- `container/container/doctype/container_type/test_container_type.py`
+- `container/container/doctype/contract_container/__init__.py`
+- `container/container/doctype/contract_container/contract_container.json`
+- `container/container/doctype/contract_container/contract_container.py`
+- `container/container/doctype/contract_type/__init__.py`
+- `container/container/doctype/contract_type/contract_type.js`
+- `container/container/doctype/contract_type/contract_type.json`
+- `container/container/doctype/contract_type/contract_type.py`
+- `container/container/doctype/contract_type/test_contract_type.py`
+- `container/container/doctype/rent_reservation/__init__.py`
+- `container/container/doctype/rent_reservation/rent_reservation.js`
+- `container/container/doctype/rent_reservation/rent_reservation.json`
+- `container/container/doctype/rent_reservation/rent_reservation.py`
+- `container/container/doctype/truck_km_reading/__init__.py`
+- `container/container/doctype/truck_km_reading/truck_km_reading.json`
+- `container/container/doctype/truck_km_reading/truck_km_reading.py`
+- `container/container/doctype/truck_oil_change/__init__.py`
+- `container/container/doctype/truck_oil_change/truck_oil_change.json`
+- `container/container/doctype/truck_oil_change/truck_oil_change.py`
+- `container/container/doctype/truck_permit/__init__.py`
+- `container/container/doctype/truck_permit/truck_permit.json`
+- `container/container/doctype/truck_permit/truck_permit.py`
+- `container/container/number_card/container_active_contracts/container_active_contracts.json`
+- `container/container/number_card/container_empty_containers/container_empty_containers.json`
+- `container/container/number_card/container_late_containers/container_late_containers.json`
+- `container/container/number_card/container_outstanding_payments/container_outstanding_payments.json`
+- `container/container/number_card/container_pending_returns/container_pending_returns.json`
+- `container/container/number_card/container_pull_containers/container_pull_containers.json`
+- `container/container/number_card/container_rented_containers/container_rented_containers.json`
+- `container/container/number_card/container_todays_trips/container_todays_trips.json`
+- `container/container/number_card/container_total_containers/container_total_containers.json`
+- `container/container/report/client_withdrawal_report/__init__.py`
+- `container/container/report/client_withdrawal_report/client_withdrawal_report.json`
+- `container/container/report/commission_report/__init__.py`
+- `container/container/report/commission_report/commission_report.json`
+- `container/container/report/container_movement_report/__init__.py`
+- `container/container/report/container_movement_report/container_movement_report.json`
+- `container/container/report/container_replacement_report/__init__.py`
+- `container/container/report/container_replacement_report/container_replacement_report.json`
+- `container/container/report/container_status_report/__init__.py`
+- `container/container/report/container_status_report/container_status_report.json`
+- `container/container/report/contract_outstanding_report/__init__.py`
+- `container/container/report/contract_outstanding_report/contract_outstanding_report.js`
+- `container/container/report/contract_outstanding_report/contract_outstanding_report.json`
+- `container/container/report/contract_outstanding_report/contract_outstanding_report.py`
+- `container/container/report/contract_payment_report/__init__.py`
+- `container/container/report/contract_payment_report/contract_payment_report.js`
+- `container/container/report/contract_payment_report/contract_payment_report.json`
+- `container/container/report/contract_payment_report/contract_payment_report.py`
+- `container/container/report/contract_trip_report/__init__.py`
+- `container/container/report/contract_trip_report/contract_trip_report.json`
+- `container/container/report/customer_rental_report/__init__.py`
+- `container/container/report/customer_rental_report/customer_rental_report.json`
+- `container/container/report/delayed_containers_report/__init__.py`
+- `container/container/report/delayed_containers_report/delayed_containers_report.json`
+- `container/container/report/empty_containers_report/__init__.py`
+- `container/container/report/empty_containers_report/empty_containers_report.json`
+- `container/container/report/emptying_report/__init__.py`
+- `container/container/report/emptying_report/emptying_report.json`
+- `container/container/report/fleet_maintenance_due_report/__init__.py`
+- `container/container/report/fleet_maintenance_due_report/fleet_maintenance_due_report.js`
+- `container/container/report/fleet_maintenance_due_report/fleet_maintenance_due_report.json`
+- `container/container/report/fleet_maintenance_due_report/fleet_maintenance_due_report.py`
+- `container/container/report/general_contract_report/__init__.py`
+- `container/container/report/general_contract_report/general_contract_report.json`
+- `container/container/report/pull_containers_report/__init__.py`
+- `container/container/report/pull_containers_report/pull_containers_report.json`
+- `container/container/report/rented_containers_report/__init__.py`
+- `container/container/report/rented_containers_report/rented_containers_report.json`
+- `container/container/report/trip_returns_tracking_report/__init__.py`
+- `container/container/report/trip_returns_tracking_report/trip_returns_tracking_report.json`
+- `container/container/report/truck_km_report/__init__.py`
+- `container/container/report/truck_km_report/truck_km_report.json`
+- `container/container/report/truck_oil_change_report/__init__.py`
+- `container/container/report/truck_oil_change_report/truck_oil_change_report.json`
+- `container/container/report/truck_permit_report/__init__.py`
+- `container/container/report/truck_permit_report/truck_permit_report.json`
+- `container/container/report/truck_report/__init__.py`
+- `container/container/report/truck_report/truck_report.json`
+- `container/container/report/truck_spending_report/__init__.py`
+- `container/container/report/truck_spending_report/truck_spending_report.json`
+- `container/container/workspace/container_management/container_management.json`
+- `container/hooks.py`
+- `container/operations.py`
+- `container/patches/__init__.py`
+- `container/reporting.py`
+- `container/setup.py`
+- `container/tasks.py`
+- `container/templates/__init__.py`
+- `container/templates/pages/__init__.py`
+- `container/tests/__init__.py`
+- `container/tests/test_workflows.py`
+- `docs/implementation.md`

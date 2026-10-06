@@ -1,0 +1,159 @@
+{
+  "doctype": "DocType",
+  "name": "Container Movement",
+  "module": "Container",
+  "autoname": "format:CM-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "container",
+      "fieldtype": "Link",
+      "label": "Container",
+      "reqd": 1,
+      "options": "Container"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "reqd": 1,
+      "options": "Customer"
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "label": "Contract",
+      "reqd": 1,
+      "options": "Container Contract"
+    },
+    {
+      "fieldname": "movement_type",
+      "fieldtype": "Select",
+      "label": "Movement Type",
+      "reqd": 1,
+      "options": "Pull\nReturn\nTransfer\nDelivery\nPickup\nEmptying\nReplacement"
+    },
+    {
+      "fieldname": "truck",
+      "fieldtype": "Link",
+      "label": "Truck",
+      "options": "Vehicle"
+    },
+    {
+      "fieldname": "driver",
+      "fieldtype": "Link",
+      "label": "Driver",
+      "options": "Driver"
+    },
+    {
+      "fieldname": "movement_date",
+      "fieldtype": "Datetime",
+      "label": "Movement Date",
+      "default": "Now",
+      "reqd": 1
+    },
+    {
+      "fieldname": "from_location",
+      "fieldtype": "Data",
+      "label": "From Location"
+    },
+    {
+      "fieldname": "to_location",
+      "fieldtype": "Data",
+      "label": "To Location"
+    },
+    {
+      "fieldname": "source_doctype",
+      "fieldtype": "Data",
+      "label": "Source Doctype",
+      "read_only": 1
+    },
+    {
+      "fieldname": "source_name",
+      "fieldtype": "Data",
+      "label": "Source Name",
+      "read_only": 1
+    },
+    {
+      "fieldname": "previous_state",
+      "fieldtype": "Long Text",
+      "label": "Previous State",
+      "hidden": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Container Movement"
+    }
+  ],
+  "field_order": [
+    "container",
+    "customer",
+    "contract",
+    "movement_type",
+    "truck",
+    "driver",
+    "movement_date",
+    "from_location",
+    "to_location",
+    "source_doctype",
+    "source_name",
+    "previous_state",
+    "remarks",
+    "amended_from"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

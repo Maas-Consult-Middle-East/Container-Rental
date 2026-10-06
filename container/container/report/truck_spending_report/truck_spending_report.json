@@ -1,0 +1,18 @@
+{
+  "doctype": "Report",
+  "name": "Truck Spending Report",
+  "report_name": "Truck Spending Report",
+  "ref_doctype": "Purchase Invoice",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "Accounts User"
+    },
+    {
+      "role": "Accounts Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Purchase Invoice\"], [\"supplier\", \"Purchase Invoice\"], [\"posting_date\", \"Purchase Invoice\"], [\"container_truck\", \"Purchase Invoice\"], [\"currency\", \"Purchase Invoice\"], [\"grand_total\", \"Purchase Invoice\"], [\"outstanding_amount\", \"Purchase Invoice\"]], \"filters\": [[\"Purchase Invoice\", \"docstatus\", \"=\", 1], [\"Purchase Invoice\", \"container_truck\", \"is\", \"set\"]], \"order_by\": \"posting_date desc\"}"
+}

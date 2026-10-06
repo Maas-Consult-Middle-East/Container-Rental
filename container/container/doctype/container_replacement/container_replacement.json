@@ -1,0 +1,136 @@
+{
+  "doctype": "DocType",
+  "name": "Container Replacement",
+  "module": "Container",
+  "autoname": "format:CR-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "reqd": 1,
+      "options": "Customer"
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "label": "Contract",
+      "reqd": 1,
+      "options": "Container Contract"
+    },
+    {
+      "fieldname": "old_container",
+      "fieldtype": "Link",
+      "label": "Old Container",
+      "reqd": 1,
+      "options": "Container"
+    },
+    {
+      "fieldname": "new_container",
+      "fieldtype": "Link",
+      "label": "New Container",
+      "reqd": 1,
+      "options": "Container"
+    },
+    {
+      "fieldname": "replacement_date",
+      "fieldtype": "Datetime",
+      "label": "Replacement Date",
+      "default": "Now",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "fieldtype": "Small Text",
+      "label": "Reason",
+      "reqd": 1
+    },
+    {
+      "fieldname": "old_container_condition",
+      "fieldtype": "Data",
+      "label": "Old Container Condition"
+    },
+    {
+      "fieldname": "new_container_condition",
+      "fieldtype": "Data",
+      "label": "New Container Condition"
+    },
+    {
+      "fieldname": "charges",
+      "fieldtype": "Currency",
+      "label": "Charges"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Container Replacement"
+    }
+  ],
+  "field_order": [
+    "customer",
+    "contract",
+    "old_container",
+    "new_container",
+    "replacement_date",
+    "reason",
+    "old_container_condition",
+    "new_container_condition",
+    "charges",
+    "remarks",
+    "amended_from"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

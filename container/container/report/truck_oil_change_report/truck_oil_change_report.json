@@ -1,0 +1,24 @@
+{
+  "doctype": "Report",
+  "name": "Truck Oil Change Report",
+  "report_name": "Truck Oil Change Report",
+  "ref_doctype": "Truck Oil Change",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Fleet Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Truck Oil Change\"], [\"truck\", \"Truck Oil Change\"], [\"oil_change_date\", \"Truck Oil Change\"], [\"current_km\", \"Truck Oil Change\"], [\"next_oil_change_date\", \"Truck Oil Change\"], [\"next_oil_change_km\", \"Truck Oil Change\"], [\"cost\", \"Truck Oil Change\"], [\"supplier\", \"Truck Oil Change\"], [\"docstatus\", \"Truck Oil Change\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

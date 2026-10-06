@@ -1,0 +1,21 @@
+{
+  "doctype": "Report",
+  "name": "Commission Report",
+  "report_name": "Commission Report",
+  "ref_doctype": "Commission Entry",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Accounts User"
+    },
+    {
+      "role": "Accounts Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Commission Entry\"], [\"customer\", \"Commission Entry\"], [\"contract\", \"Commission Entry\"], [\"invoice\", \"Commission Entry\"], [\"sales_person\", \"Commission Entry\"], [\"commission_rule\", \"Commission Entry\"], [\"base_amount\", \"Commission Entry\"], [\"commission_amount\", \"Commission Entry\"], [\"status\", \"Commission Entry\"], [\"docstatus\", \"Commission Entry\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

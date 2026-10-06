@@ -1,0 +1,24 @@
+{
+  "doctype": "Report",
+  "name": "Truck Report",
+  "report_name": "Truck Report",
+  "ref_doctype": "Vehicle",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Fleet Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Vehicle\"], [\"license_plate\", \"Vehicle\"], [\"model\", \"Vehicle\"], [\"last_odometer\", \"Vehicle\"], [\"container_driver\", \"Vehicle\"], [\"container_status\", \"Vehicle\"], [\"container_registration_expiry\", \"Vehicle\"], [\"end_date\", \"Vehicle\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

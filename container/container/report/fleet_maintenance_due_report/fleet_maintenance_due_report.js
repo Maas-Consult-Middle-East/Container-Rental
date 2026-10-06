@@ -1,0 +1,1 @@
+frappe.query_reports["Fleet Maintenance Due Report"] = {filters: [{fieldname:"customer", label:__("Customer"), fieldtype:"Link", options:"Customer"}, {fieldname:"contract", label:__("Contract"), fieldtype:"Link", options:"Container Contract"}]};

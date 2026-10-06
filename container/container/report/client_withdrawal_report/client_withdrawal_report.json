@@ -1,0 +1,21 @@
+{
+  "doctype": "Report",
+  "name": "Client Withdrawal Report",
+  "report_name": "Client Withdrawal Report",
+  "ref_doctype": "Client Withdrawal",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Accounts User"
+    },
+    {
+      "role": "Accounts Manager"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Client Withdrawal\"], [\"customer\", \"Client Withdrawal\"], [\"contract\", \"Client Withdrawal\"], [\"date\", \"Client Withdrawal\"], [\"amount\", \"Client Withdrawal\"], [\"payment_entry\", \"Client Withdrawal\"], [\"docstatus\", \"Client Withdrawal\"]], \"filters\": [], \"order_by\": \"modified desc\"}"
+}

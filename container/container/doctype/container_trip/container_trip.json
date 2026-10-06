@@ -1,0 +1,149 @@
+{
+  "doctype": "DocType",
+  "name": "Container Trip",
+  "module": "Container",
+  "autoname": "format:CT-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "container",
+      "fieldtype": "Link",
+      "label": "Container",
+      "reqd": 1,
+      "options": "Container"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "reqd": 1,
+      "options": "Customer"
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "label": "Contract",
+      "reqd": 1,
+      "options": "Container Contract"
+    },
+    {
+      "fieldname": "truck",
+      "fieldtype": "Link",
+      "label": "Truck",
+      "reqd": 1,
+      "options": "Vehicle"
+    },
+    {
+      "fieldname": "driver",
+      "fieldtype": "Link",
+      "label": "Driver",
+      "options": "Driver"
+    },
+    {
+      "fieldname": "pickup_date",
+      "fieldtype": "Datetime",
+      "label": "Pickup Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "delivery_date",
+      "fieldtype": "Datetime",
+      "label": "Delivery Date"
+    },
+    {
+      "fieldname": "pickup_location",
+      "fieldtype": "Data",
+      "label": "Pickup Location"
+    },
+    {
+      "fieldname": "delivery_location",
+      "fieldtype": "Data",
+      "label": "Delivery Location"
+    },
+    {
+      "fieldname": "trip_status",
+      "fieldtype": "Select",
+      "label": "Trip Status",
+      "default": "Planned",
+      "options": "Planned\nAssigned\nIn Transit\nDelivered\nReturned\nCancelled"
+    },
+    {
+      "fieldname": "trip_cost",
+      "fieldtype": "Currency",
+      "label": "Trip Cost"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Container Trip"
+    }
+  ],
+  "field_order": [
+    "container",
+    "customer",
+    "contract",
+    "truck",
+    "driver",
+    "pickup_date",
+    "delivery_date",
+    "pickup_location",
+    "delivery_location",
+    "trip_status",
+    "trip_cost",
+    "remarks",
+    "amended_from"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "doctype": "Report",
+  "name": "Fleet Maintenance Due Report",
+  "report_name": "Fleet Maintenance Due Report",
+  "ref_doctype": "Vehicle",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Script Report",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Fleet Manager"
+    }
+  ]
+}

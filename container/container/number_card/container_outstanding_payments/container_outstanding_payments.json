@@ -1,0 +1,15 @@
+{
+  "doctype": "Number Card",
+  "name": "Container Outstanding Payments",
+  "label": "Outstanding Payments",
+  "module": "Container",
+  "is_standard": 1,
+  "type": "Custom",
+  "document_type": "Sales Invoice",
+  "function": "Sum",
+  "aggregate_function_based_on": "outstanding_amount",
+  "is_public": 1,
+  "show_percentage_stats": 0,
+  "filters_json": "[[\"Sales Invoice\", \"docstatus\", \"=\", 1], [\"Sales Invoice\", \"outstanding_amount\", \">\", 0]]",
+  "method": "container.reporting.outstanding_card"
+}

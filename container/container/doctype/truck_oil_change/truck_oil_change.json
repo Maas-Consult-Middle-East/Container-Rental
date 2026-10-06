@@ -1,0 +1,133 @@
+{
+  "doctype": "DocType",
+  "name": "Truck Oil Change",
+  "module": "Container",
+  "autoname": "format:TOC-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "truck",
+      "fieldtype": "Link",
+      "label": "Truck",
+      "reqd": 1,
+      "options": "Vehicle"
+    },
+    {
+      "fieldname": "oil_type",
+      "fieldtype": "Data",
+      "label": "Oil Type"
+    },
+    {
+      "fieldname": "oil_change_date",
+      "fieldtype": "Date",
+      "label": "Oil Change Date",
+      "default": "Today",
+      "reqd": 1
+    },
+    {
+      "fieldname": "current_km",
+      "fieldtype": "Int",
+      "label": "Current Km",
+      "reqd": 1
+    },
+    {
+      "fieldname": "next_oil_change_date",
+      "fieldtype": "Date",
+      "label": "Next Oil Change Date"
+    },
+    {
+      "fieldname": "next_oil_change_km",
+      "fieldtype": "Int",
+      "label": "Next Oil Change Km"
+    },
+    {
+      "fieldname": "cost",
+      "fieldtype": "Currency",
+      "label": "Cost"
+    },
+    {
+      "fieldname": "supplier",
+      "fieldtype": "Link",
+      "label": "Supplier",
+      "options": "Supplier"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Truck Oil Change"
+    },
+    {
+      "fieldname": "purchase_invoice",
+      "fieldtype": "Link",
+      "options": "Purchase Invoice",
+      "label": "Purchase Invoice",
+      "description": "Posted supplier bill for this service; cost here is informational."
+    }
+  ],
+  "field_order": [
+    "truck",
+    "oil_type",
+    "oil_change_date",
+    "current_km",
+    "next_oil_change_date",
+    "next_oil_change_km",
+    "cost",
+    "supplier",
+    "remarks",
+    "amended_from",
+    "purchase_invoice"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Fleet Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

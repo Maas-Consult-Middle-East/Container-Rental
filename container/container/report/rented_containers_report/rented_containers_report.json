@@ -1,0 +1,24 @@
+{
+  "doctype": "Report",
+  "name": "Rented Containers Report",
+  "report_name": "Rented Containers Report",
+  "ref_doctype": "Container",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Report Builder",
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Container Operator"
+    }
+  ],
+  "json": "{\"fields\": [[\"name\", \"Container\"], [\"container_type\", \"Container\"], [\"status\", \"Container\"], [\"current_customer\", \"Container\"], [\"current_contract\", \"Container\"], [\"current_location\", \"Container\"], [\"condition\", \"Container\"]], \"filters\": [[\"Container\", \"status\", \"=\", \"Rented\"]], \"order_by\": \"modified desc\"}"
+}

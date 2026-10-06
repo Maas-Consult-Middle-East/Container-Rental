@@ -1,0 +1,127 @@
+{
+  "doctype": "DocType",
+  "name": "Container Emptying",
+  "module": "Container",
+  "autoname": "format:CE-{#####}",
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "container",
+      "fieldtype": "Link",
+      "label": "Container",
+      "reqd": 1,
+      "options": "Container"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "reqd": 1,
+      "options": "Customer"
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "label": "Contract",
+      "reqd": 1,
+      "options": "Container Contract"
+    },
+    {
+      "fieldname": "emptying_date",
+      "fieldtype": "Datetime",
+      "label": "Emptying Date",
+      "default": "Now",
+      "reqd": 1
+    },
+    {
+      "fieldname": "location",
+      "fieldtype": "Data",
+      "label": "Location"
+    },
+    {
+      "fieldname": "condition_before",
+      "fieldtype": "Data",
+      "label": "Condition Before"
+    },
+    {
+      "fieldname": "condition_after",
+      "fieldtype": "Data",
+      "label": "Condition After"
+    },
+    {
+      "fieldname": "charges",
+      "fieldtype": "Currency",
+      "label": "Charges"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "read_only": 1,
+      "no_copy": 1,
+      "options": "Container Emptying"
+    }
+  ],
+  "field_order": [
+    "container",
+    "customer",
+    "contract",
+    "emptying_date",
+    "location",
+    "condition_before",
+    "condition_after",
+    "charges",
+    "remarks",
+    "amended_from"
+  ],
+  "track_changes": 1,
+  "is_submittable": 1,
+  "istable": 0,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Container Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1,
+      "submit": 1,
+      "cancel": 0
+    },
+    {
+      "role": "Container Reports User",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}
