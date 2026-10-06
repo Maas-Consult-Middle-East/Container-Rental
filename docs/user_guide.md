@@ -1,8 +1,8 @@
 # BADR Container Management
 
-## Simple User Guide
+## Detailed User and Workflow Guide
 
-This application manages BADR Container's containers, rental contracts, trips, movements, reservations, trucks, payments, refunds, and commissions.
+This manual explains how operators, managers, accounts staff, fleet staff, report users, and administrators use BADR Container Management. It covers setup, the complete rental lifecycle, field behavior, approvals, accounting integration, reports, validation, cancellations, and troubleshooting.
 
 Open the application from **Desk > Container Management**.
 
@@ -336,3 +336,358 @@ At the end of the day:
 ## Important operating rule
 
 The **Container** record shows the current physical state. Submitted **Container Movement** and related transactions provide the history. Always record the business event through its transaction form so the current state and history remain consistent.
+
+## Detailed reference
+
+### Contract status lifecycle
+
+The Contract Status field is intentionally read-only. The system changes it through document actions so the status always agrees with the Frappe document state and the physical container assignments.
+
+| User action | Document state | Contract status | Result |
+| --- | --- | --- | --- |
+| Save a new contract | Draft | Draft | The contract can still be edited and assigns no container |
+| Submit the contract | Submitted | Active | Listed containers become Rented and receive the customer, contract, and location |
+| Click Complete Contract | Submitted | Completed | The agreement is closed after all assigned containers have returned |
+| Cancel the submitted contract | Cancelled | Cancelled | The submitted transaction is reversed subject to dependency checks |
+
+Users should not type a status manually. Otherwise, an unsubmitted contract could appear Active, a cancelled document could still appear operational, or a contract could be completed while containers remain assigned.
+
+The **Complete Contract** button is shown only when the contract is submitted and Active and the user has the **Container Manager** role. Completion is blocked while any Container still references the contract.
+
+### Container Contract field reference
+
+#### Common fields
+
+| Field | Required | Purpose |
+| --- | --- | --- |
+| Contract Type | Yes | Select Rubble, Trash, or Unlimited Contract |
+| Customer | Yes | ERPNext Customer signing the agreement |
+| Status | System | Current lifecycle state |
+| Contract Date | Yes | Date the agreement was created |
+| Location | No | Main delivery or service location |
+| Plot Number | No | Customer site reference |
+| Plan Number | No | Customer plan or permit reference |
+| Contract From | Yes | Start of the rental period |
+| Contract To | Conditional | End of the rental period; cannot precede Contract From |
+| Company | Yes | ERPNext company that will issue invoices |
+| Currency | Yes | Contract and invoice currency |
+| Rental Item | For billing | ERPNext Item placed on the Sales Invoice |
+| Notes | No | Commercial or operational notes |
+
+#### Rubble and Trash fields
+
+| Field | Purpose |
+| --- | --- |
+| Classification | Links the contract classification to a Container Type |
+| No. of Trips | Total allowed trips when the child table is not used |
+| Container Size | Descriptive legacy size field |
+| Price | Rate used in the basic calculation |
+| Total | Read-only result of trips multiplied by price |
+| Contract Cost | Read-only final contract amount before ERPNext posts the invoice |
+| Trip Duration | Expected operational duration |
+| Containers | One or more physical container assignments and row-level rates or limits |
+| Used Trips | Read-only count of submitted Delivered or Returned trips |
+| Remaining Trips | Read-only allowed trips minus used trips |
+| Allow Extra Trips | Manager-controlled exception to the limit |
+| Override Reason | Required explanation when extra trips are allowed |
+
+The basic limited-contract calculation is:
+
+`Number of Trips × Price = Total`
+
+When rows exist in the Contract Containers table, the application totals the row quantities and values. Negative prices, quantities, and amounts are rejected.
+
+#### Contract Containers child table
+
+| Field | Purpose |
+| --- | --- |
+| Container | Physical unit assigned to the agreement |
+| Container Type | Read-only type copied from the selected container |
+| No Of Trips | Allowed trips for the row |
+| Trip Duration | Expected duration for the row |
+| Rate | Row rate |
+| Total | Read-only row calculation |
+| Start Date and End Date | Optional assignment-specific period |
+
+The same container cannot be entered twice in a contract or assigned to conflicting active contracts.
+
+#### Unlimited Contract fields
+
+Unlimited Contract hides the limited trip and trip-price fields. Enter the customer, location, plot and plan numbers, dates, company, currency, Rental Item, tax information, notes, containers, and **Unlimited Billing Amount**.
+
+Accounts users may create repeated draft invoices for the agreed billing periods. The application does not automatically decide a monthly billing date or submit a recurring invoice.
+
+### Tax and invoice behavior
+
+| Tax treatment | Contract and invoice behavior |
+| --- | --- |
+| Price Includes Tax | The entered amount includes VAT; ERPNext calculates the included portion with the selected Sales Tax Template |
+| Price Excludes Tax | ERPNext adds tax from the selected Sales Tax Template |
+| Exempt | The contract invoice action applies no sales tax rows |
+
+The **Sales Tax Template** supplies ERPNext Sales Invoice tax rows. The retained **Tax Template** field supports Item Tax Template configuration where the company uses it. Always review the generated draft invoice because ERPNext, not the contract record, is the accounting authority.
+
+To create an invoice:
+
+1. Open a submitted Active contract.
+2. Click **Create Sales Invoice**.
+3. Review the draft customer, company, currency, item, rate, income account, cost center, due date, and taxes.
+4. Submit the invoice only after Accounts approval.
+5. Record the receipt with a standard ERPNext Payment Entry and allocate it to the invoice.
+
+Limited contracts prevent unintended duplicate contract invoices. Unlimited contracts support repeated invoices using the current Unlimited Billing Amount.
+
+### Reservation field reference and capacity rules
+
+| Field | Purpose |
+| --- | --- |
+| Customer | Customer requesting capacity |
+| Reservation Date | Date the request was received |
+| From Date and To Date | Inclusive period being reserved |
+| Container Type | Required size or category |
+| Quantity | Positive number of units required |
+| Container | Optional exact physical container; quantity must be one |
+| Rental Rate | Proposed rate for reference |
+| Status | System-managed Draft, Reserved, Confirmed, Cancelled, or Completed |
+| Remarks | Customer or operating instructions |
+
+The availability check counts overlapping active reservations and the currently Empty fleet of the selected type. A cancelled or completed reservation releases its capacity. The application does not assume a currently rented unit will return by a future reservation date.
+
+### Movement validation and cancellation
+
+Movement documents require the Container, Customer, Contract, Movement Type, and Movement Date. Truck, Driver, origin, destination, and remarks provide operational detail.
+
+| Movement | Required starting condition | Result after submission |
+| --- | --- | --- |
+| Delivery | Empty container and Active contract | Rented; customer, contract, and destination are stored |
+| Transfer | Container assigned to the selected customer and contract | Assignment stays active; location changes |
+| Pull or Pickup | Container assigned to the selected customer and contract | Status becomes Pull; assignment remains linked |
+| Return | Container assigned to the selected customer and contract | Status becomes Empty; customer and contract clear |
+| Emptying | Container assigned to the selected customer and contract | Rental remains active and history is recorded |
+| Replacement | Created through Container Replacement | Old unit returns and new unit is delivered |
+
+The system stores a Previous State snapshot on each submitted movement. Cancelling the latest movement restores that state. When a later movement depends on it, cancel records from newest to oldest.
+
+### Trip status and counting rules
+
+| Trip status | Meaning | May be submitted as completed work |
+| --- | --- | --- |
+| Planned | Work is being planned | No |
+| Assigned | Truck or team has been assigned | No |
+| In Transit | Work is underway | No |
+| Delivered | Delivery work is complete | Yes |
+| Returned | Trip activity is complete and returned | Yes |
+| Cancelled | Work will not be performed | No |
+
+Each submitted Delivered or Returned trip uses one trip from a limited contract. Cancelling it removes that usage. Unlimited contracts are not restricted by the count.
+
+`Remaining Trips = Allowed Trips − Submitted Delivered or Returned Trips`
+
+The customer, contract, and container on a trip must agree with the current assignment. A Returned trip closes the trip activity only; submit a **Return movement** to end the physical rental.
+
+### Emptying and replacement controls
+
+Container Emptying requires the assigned Container, Customer, Contract, and Emptying Date. Location, condition before and after, charges, and remarks add operational detail. Submission preserves the same rental assignment. Charges are informational until Accounts creates the appropriate ERPNext sales transaction.
+
+Container Replacement requires the same customer and Active contract as the old assignment. The old and new containers must be different, and the new unit must be Empty. Submission creates traceable Return and Delivery movements, makes the old unit Empty, and assigns the new unit as Rented.
+
+### Accounting boundary
+
+The application records rental operations and links them to ERPNext accounting. It does not maintain a second ledger.
+
+| Business event | Record to use |
+| --- | --- |
+| Customer billing | Sales Invoice |
+| Customer receipt | Payment Entry with Payment Type Receive |
+| Customer refund | Payment Entry with Payment Type Pay, then Client Withdrawal for traceability |
+| Sales return or credit note | ERPNext Sales Invoice return |
+| Supplier expense | Purchase Invoice |
+| Truck expense allocation | Submitted Purchase Invoice linked to the Vehicle where configured |
+| Customer statement | General Ledger filtered by Customer |
+| Customer outstanding | Accounts Receivable |
+
+Client Withdrawal must reference a submitted refund Payment Entry for the same customer. It documents the reason and contract relationship but does not post money again.
+
+### Commission calculation and traceability
+
+A Commission Rule defines the Sales Person, optional customer or contract restriction, effective dates, and either a percentage or fixed amount. The rule must be active and valid on the invoice date.
+
+A Commission Entry links the submitted Sales Invoice, contract, customer, sales person, and rule. For a percentage rule, the invoice net amount becomes the Base Amount and the system calculates the Commission Amount. For a fixed rule, it applies the configured amount. The system prevents a duplicate entry for the same invoice and sales person.
+
+Submitting the entry changes its status to Accrued. Paying the commission remains a standard ERPNext accounting operation.
+
+### Fleet field reference
+
+The Truck links in the application use ERPNext **Vehicle**. Drivers use ERPNext **Driver**.
+
+| Record | Key fields | Important behavior |
+| --- | --- | --- |
+| Truck KM Reading | Vehicle, reading date, current KM, driver, remarks | Shows previous KM and normally rejects a decrease |
+| Truck Oil Change | Vehicle, oil type, date, current KM, next date, next KM, supplier, cost, Purchase Invoice | Stores maintenance history; Purchase Invoice posts the cost |
+| Truck Permit | Vehicle, permit type, number, issue date, expiry date, attachment | Status is read-only Valid, Expiring, or Expired |
+
+Fleet Maintenance Due uses planning thresholds of 30 days for expiry dates and 1,000 KM for oil service. It reports due work but does not create maintenance orders.
+
+### Dashboard indicator definitions
+
+| Indicator | What it counts or shows |
+| --- | --- |
+| Total Containers | All Container master records |
+| Empty Containers | Units currently available |
+| Rented Containers | Units with Rented status |
+| Late Containers | Assigned units past the applicable end date |
+| Pull Containers | Units in the return process |
+| Active Contracts | Submitted contracts with Active status |
+| Outstanding Payments | Outstanding submitted Sales Invoice value in the company context |
+| Today's Trips | Today’s non-cancelled trip records |
+| Pending Returns | Return-related work that is not yet complete |
+
+Dashboard values depend on submitted records, company defaults, linked data, and the current user’s permissions.
+
+### Complete report directory
+
+#### Container and operations
+
+| Report | Use |
+| --- | --- |
+| Container Status Report | Search containers by status, type, customer, contract, or location |
+| Rented Containers Report | Review current rentals |
+| Empty Containers Report | Review available capacity |
+| Delayed Containers Report | Review Late containers |
+| Pull Containers Report | Review units waiting for completed return |
+| Container Movement Report | Review chronological physical history |
+| Container Replacement Report | Review exchanged units |
+| Emptying Report | Review emptying dates, conditions, and charges |
+| Trip Returns Tracking Report | Track trip completion and return activity |
+
+#### Contracts and finance
+
+| Report | Use |
+| --- | --- |
+| General Contract Report | Contract customer, type, dates, status, and value |
+| Customer Rental Report | Customer rental assignments |
+| Contract Trip Report | Allowed, used, and remaining trips |
+| Contract Payment Report | Invoiced and settled contract amounts |
+| Contract Outstanding Report | Outstanding contract-linked invoice balances |
+| Client Withdrawal Report | Customer refund traceability |
+| Commission Report | Commission base, rule, and accrued amount |
+
+#### Fleet
+
+| Report | Use |
+| --- | --- |
+| Truck Report | ERPNext Vehicles used as trucks |
+| Truck Oil Change Report | Service history and next service targets |
+| Truck Permit Report | Permit validity and expiry |
+| Truck KM Report | Historical odometer readings |
+| Truck Spending Report | Submitted Purchase Invoices linked to trucks |
+| Fleet Maintenance Due Report | Upcoming and overdue service or expiry items |
+
+Standard ERPNext reports are reused for General Ledger, Accounts Receivable, Sales Register, Payment Entry, Purchase Register, Accounts Payable, Stock Balance, Stock Ledger, and deferred revenue. Salary and employee loan reports require the applicable HRMS or lending application.
+
+### Server-side control summary
+
+The application enforces these rules even when data comes from an API or import:
+
+1. A rented container must have a customer and active contract.
+2. One container cannot belong to conflicting active contracts.
+3. A Delivery requires an Empty container and Active submitted contract.
+4. Movement customer and contract must match the current assignment.
+5. Contract and reservation end dates cannot precede their start dates.
+6. Prices, trip counts, quantities, charges, commissions, and KM readings cannot be negative.
+7. Limited contracts cannot exceed their trip allowance without manager override and a reason.
+8. Unlimited contracts have no trip-count restriction.
+9. Replacement requires different old and new containers.
+10. Truck KM normally cannot decrease.
+11. Contract completion requires all assigned containers to be returned.
+12. Submitted history must be reversed through cancellation rather than manual state editing.
+
+### Common end-to-end scenarios
+
+#### Start a new rental
+
+1. Create or verify the ERPNext Customer.
+2. Create a reservation when capacity must be held.
+3. Create the Container Contract and add one or more Empty containers.
+4. Review pricing, tax treatment, dates, company, currency, and Rental Item.
+5. Submit the contract.
+6. Verify the contract is Active and its containers are Rented.
+7. Record delivery or later movements as they happen.
+8. Create the Sales Invoice and have Accounts review and submit it.
+9. Record the customer receipt using Payment Entry.
+
+#### End a rental
+
+1. Submit a Pull or Pickup movement when the return begins.
+2. Submit the Return movement when the unit reaches its final returned location.
+3. Confirm the container is Empty and no longer has a customer or contract.
+4. Repeat for every container on the contract.
+5. Click Complete Contract.
+6. Resolve remaining invoices, credits, or balances through ERPNext.
+
+#### Exchange a container
+
+1. Confirm the replacement unit is Empty.
+2. Create Container Replacement under the current Active contract.
+3. Enter the reason, condition details, and any charge.
+4. Submit and verify the old unit is Empty and the new unit is Rented.
+
+### Additional troubleshooting
+
+#### Complete Contract button is missing
+
+Confirm the contract is submitted, its status is Active, and the user has the Container Manager role.
+
+#### Contract status cannot be edited
+
+This is correct behavior. Save, Submit, Complete Contract, and Cancel control the field.
+
+#### Dashboard value looks incorrect
+
+Check the underlying report, document status, company defaults, linked contract or invoice, report filters, and user permissions. Draft and cancelled records are normally excluded.
+
+#### Permit status looks outdated
+
+The daily scheduler updates expiry states. An administrator can confirm that scheduler workers are running and execute the daily task during controlled troubleshooting.
+
+### Data quality and audit practices
+
+1. Use one permanent Container record for each physical unit.
+2. Record physical events on the day they occur and in chronological order.
+3. Use cancellation and amendment procedures for submitted records.
+4. Avoid direct database changes or imports that bypass validation.
+5. Reconcile Container Status Report with the physical yard regularly.
+6. Reconcile Contract Outstanding Report with Accounts Receivable.
+7. Review users and roles periodically.
+8. Maintain current Customer, Item, Vehicle, Driver, Supplier, company, and tax records.
+9. Back up the site before migrations or large data imports.
+
+### Administrator notes
+
+All custom operational features belong to the `container` app. ERPNext continues to own customers, items, vehicles, drivers, suppliers, invoices, payments, purchasing, stock, and the general ledger.
+
+The daily scheduled task marks eligible assigned containers Late when the contract end date passes and updates permit expiry status. Contract completion, recurring unlimited billing, commission payment, and maintenance work orders remain explicit actions.
+
+After an application update, run the normal site migration and app asset build. Verify DocType loading, roles, workspace links, report access, and the critical reservation, contract, trip, pull, return, invoice, and payment workflow in a test environment before production use.
+
+### Quick transaction reference
+
+| Business event | Record | Main result |
+| --- | --- | --- |
+| Hold capacity | Rent Reservation | Capacity reserved for a period |
+| Start rental | Submit Container Contract | Contract Active; container Rented |
+| Deliver another unit | Container Movement Delivery | Empty unit becomes assigned and Rented |
+| Move assigned unit | Container Movement Transfer | Location changes |
+| Empty contents | Container Emptying | History recorded; assignment remains active |
+| Count completed transport | Submit Delivered or Returned Container Trip | Used Trips increases |
+| Begin return | Pull or Pickup movement | Container becomes Pull |
+| Finish return | Return movement | Container becomes Empty and assignment clears |
+| Exchange unit | Container Replacement | Old unit Empty; new unit Rented |
+| Close agreement | Complete Contract | Active contract becomes Completed |
+| Bill customer | Sales Invoice from contract | Draft ERPNext invoice created |
+| Receive money | ERPNext Payment Entry | Receipt posted after submission |
+| Document refund | Client Withdrawal | Refund linked to Payment Entry |
+| Accrue commission | Commission Entry | Traceable commission recorded |
+| Record oil service | Truck Oil Change | Maintenance history and next target stored |
+| Record odometer | Truck KM Reading | KM history and latest reading updated |
+| Track permit | Truck Permit | Validity and expiry reported |
