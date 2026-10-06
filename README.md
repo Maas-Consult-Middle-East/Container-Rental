@@ -39,3 +39,17 @@ This app can use GitHub Actions for CI. The following workflows are configured:
 ### License
 
 mit
+
+### BADR Container Management
+
+Open **Container Management** in Desk. Reuses ERPNext Vehicle for trucks and Sales Invoice / Payment Entry for accounting.
+
+- [Simple user guide and daily workflow](docs/user_guide.md)
+- [Technical implementation and operating notes](docs/implementation.md)
+
+```sh
+bench --site container.com migrate
+bench build --app container
+bench --site container.com execute container.tests.test_workflows.run
+```
+# Container-Rental
