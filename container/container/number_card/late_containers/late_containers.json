@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "",
+ "background_color": "#CB2929",
  "creation": "2026-10-07 14:52:28.937481",
  "currency": "SAR",
  "docstatus": 0,
@@ -12,7 +13,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Late Containers",
- "modified": "2026-10-07 14:53:09.955353",
+ "modified": "2026-10-07 15:38:58.510054",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Late Containers",

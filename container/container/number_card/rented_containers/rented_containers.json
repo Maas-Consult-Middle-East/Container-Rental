@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "",
+ "background_color": "#EC864B",
  "creation": "2026-10-07 14:54:05.822862",
  "currency": "SAR",
  "docstatus": 0,
@@ -12,7 +13,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Rented Containers",
- "modified": "2026-10-07 14:54:32.888916",
+ "modified": "2026-10-07 15:38:32.419075",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Rented Containers",

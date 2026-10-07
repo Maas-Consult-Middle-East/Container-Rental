@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "",
+ "background_color": "#a1a1a1",
  "creation": "2026-10-07 14:53:39.602634",
  "currency": "SAR",
  "docstatus": 0,
@@ -12,7 +13,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Pull Containers",
- "modified": "2026-10-07 14:53:39.602634",
+ "modified": "2026-10-07 15:38:52.465287",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Pull Containers",

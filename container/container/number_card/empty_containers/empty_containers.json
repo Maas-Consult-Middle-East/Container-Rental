@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "",
+ "background_color": "#29CD42",
  "creation": "2026-10-07 14:48:44.621510",
  "currency": "SAR",
  "docstatus": 0,
@@ -12,7 +13,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Empty Containers",
- "modified": "2026-10-07 14:48:50.304915",
+ "modified": "2026-10-07 15:39:10.520291",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Empty Containers",
