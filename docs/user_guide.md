@@ -146,7 +146,7 @@ Example:
 - Completed trips: 3
 - Remaining trips: 7
 
-The system stops additional trips when the limit is reached. A Container Manager can permit extra trips by selecting the override option and entering a reason. Unlimited contracts do not have a trip limit.
+The system stops additional trips when the limit is reached. A user with a related container app role can permit extra trips by selecting the override option and entering a reason. Unlimited contracts do not have a trip limit.
 
 A trip with status Returned means the trip is finished. It does not end the customer's rental. Use a **Return** movement to make the physical container Empty.
 
@@ -179,7 +179,7 @@ This separation shows which containers are still in the return process.
 
 ## Completing a contract
 
-A Container Manager can use **Complete Contract** after every assigned container has been returned.
+A user with a related container app role can use **Complete Contract** after every assigned container has been returned.
 
 The system will not complete a contract while it still has assigned containers. Submitted invoices remain in ERPNext and must be handled according to normal accounting procedures.
 
@@ -275,13 +275,13 @@ Use report filters to narrow results by customer, contract, container, date, or 
 
 | Role | Main responsibility |
 | --- | --- |
-| Container Operator | Daily contracts, reservations, movements, trips, emptying, and replacement work |
-| Container Manager | Operational control, cancellations, contract completion, and trip-limit overrides |
-| Container Reports User | Read operational records and reports |
-| Accounts User / Accounts Manager | Invoices, payments, refunds, commissions, and financial reports |
-| Fleet Manager | Vehicles, oil changes, permits, kilometre readings, and fleet reports |
+| Container Operator | Full access to container app DocTypes; normally performs daily operations |
+| Container Manager | Full access to container app DocTypes; normally supervises operations |
+| Container Reports User | Full access to container app DocTypes in the current permission model |
+| Accounts User / Accounts Manager | Full access to container app DocTypes, plus their standard ERPNext accounting access |
+| Fleet Manager | Full access to container app DocTypes, plus standard fleet access |
 
-Users may also need access to linked ERPNext records such as Customer, Item, Company, Vehicle, and Driver.
+All roles listed above can create, read, update, delete, submit, cancel, amend, report, import, export, share, print, and email container app records where the DocType supports that action. Reports that read linked ERPNext records still require access to their source, and permissions for Customer, Item, Company, Vehicle, Driver, Sales Invoice, and Payment Entry remain controlled by ERPNext.
 
 ## Common problems
 
@@ -352,7 +352,7 @@ The Contract Status field is intentionally read-only. The system changes it thro
 
 Users should not type a status manually. Otherwise, an unsubmitted contract could appear Active, a cancelled document could still appear operational, or a contract could be completed while containers remain assigned.
 
-The **Complete Contract** button is shown only when the contract is submitted and Active and the user has the **Container Manager** role. Completion is blocked while any Container still references the contract.
+The **Complete Contract** button is shown when the contract is submitted and Active and the user has any related container app role. Completion is blocked while any Container still references the contract.
 
 ### Container Contract field reference
 
@@ -636,7 +636,7 @@ The application enforces these rules even when data comes from an API or import:
 
 #### Complete Contract button is missing
 
-Confirm the contract is submitted, its status is Active, and the user has the Container Manager role.
+Confirm the contract is submitted, its status is Active, and the user has one of the related container app roles.
 
 #### Contract status cannot be edited
 

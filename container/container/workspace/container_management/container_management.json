@@ -1,6 +1,11 @@
 {
- "charts": [],
- "content": "[{\"id\":\"container-10\",\"type\":\"header\",\"data\":{\"text\":\"<b>Quick Actions</b>\",\"col\":12}},{\"id\":\"container-11\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Container\",\"col\":3}},{\"id\":\"container-12\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Contract\",\"col\":3}},{\"id\":\"container-13\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Reservation\",\"col\":3}},{\"id\":\"container-14\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Container Movement\",\"col\":3}},{\"id\":\"container-15\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Trip\",\"col\":3}},{\"id\":\"container-16\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Payment\",\"col\":3}},{\"id\":\"action-return\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Return Container\",\"col\":3}},{\"id\":\"action-pull\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pull Container\",\"col\":3}},{\"id\":\"container-17\",\"type\":\"card\",\"data\":{\"card_name\":\"Container\",\"col\":4}},{\"id\":\"container-18\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental\",\"col\":4}},{\"id\":\"container-19\",\"type\":\"card\",\"data\":{\"card_name\":\"Finance\",\"col\":4}},{\"id\":\"container-20\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet\",\"col\":4}},{\"id\":\"container-21\",\"type\":\"card\",\"data\":{\"card_name\":\"Operational Reports\",\"col\":4}},{\"id\":\"container-22\",\"type\":\"card\",\"data\":{\"card_name\":\"ERPNext Reports\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "Containers",
+   "label": "Container Details"
+  }
+ ],
+ "content": "[{\"id\":\"container-10\",\"type\":\"header\",\"data\":{\"text\":\"<b>Quick Actions</b>\",\"col\":12}},{\"id\":\"CF2b3wS1dp\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Container Details\",\"col\":12}},{\"id\":\"container-11\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Container\",\"col\":3}},{\"id\":\"container-12\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Contract\",\"col\":3}},{\"id\":\"container-13\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Reservation\",\"col\":3}},{\"id\":\"container-14\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Container Movement\",\"col\":3}},{\"id\":\"container-15\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Trip\",\"col\":3}},{\"id\":\"container-16\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Payment\",\"col\":3}},{\"id\":\"action-return\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Return Container\",\"col\":3}},{\"id\":\"action-pull\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pull Container\",\"col\":3}},{\"id\":\"container-17\",\"type\":\"card\",\"data\":{\"card_name\":\"Container\",\"col\":4}},{\"id\":\"container-18\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental\",\"col\":4}},{\"id\":\"container-19\",\"type\":\"card\",\"data\":{\"card_name\":\"Finance\",\"col\":4}},{\"id\":\"container-20\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet\",\"col\":4}},{\"id\":\"container-21\",\"type\":\"card\",\"data\":{\"card_name\":\"Operational Reports\",\"col\":4}},{\"id\":\"container-22\",\"type\":\"card\",\"data\":{\"card_name\":\"ERPNext Reports\",\"col\":4}}]",
  "creation": "2026-10-06 14:08:05.638809",
  "custom_blocks": [],
  "docstatus": 0,
@@ -569,7 +574,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-06 14:52:23.399002",
+ "modified": "2026-10-07 11:12:01.534333",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Management",

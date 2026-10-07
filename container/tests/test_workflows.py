@@ -378,11 +378,47 @@ class TestWorkflows(unittest.TestCase):
 		)
 		frappe.set_user(user.name)
 		self.assertTrue(frappe.has_permission("Container Movement", "create"))
-		self.assertFalse(frappe.has_permission("Container Contract", "cancel"))
+		self.assertTrue(frappe.has_permission("Container Contract", "cancel"))
 		self.assertFalse(frappe.has_permission("Sales Invoice", "create"))
-		self.assertFalse(frappe.has_permission("Commission Entry", "read"))
+		self.assertTrue(frappe.has_permission("Commission Entry", "read"))
 		with self.assertRaises(frappe.PermissionError):
 			execute_report("Contract Outstanding Report")
+
+	def test_related_roles_have_full_container_permissions(self):
+		roles = {
+			"System Manager",
+			"Container Manager",
+			"Container Operator",
+			"Container Reports User",
+			"Accounts User",
+			"Accounts Manager",
+			"Fleet Manager",
+		}
+		actions = {
+			"read",
+			"write",
+			"create",
+			"delete",
+			"report",
+			"export",
+			"import",
+			"share",
+			"print",
+			"email",
+			"select",
+		}
+		for doctype in frappe.get_all(
+			"DocType", filters={"module": "Container", "istable": 0}, pluck="name"
+		):
+			meta = frappe.get_meta(doctype)
+			permissions = {row.role: row for row in meta.permissions if not row.permlevel}
+			self.assertTrue(roles.issubset(permissions), doctype)
+			for role in roles:
+				for action in actions:
+					self.assertEqual(permissions[role].get(action), 1, f"{doctype}: {role}: {action}")
+				if meta.is_submittable:
+					for action in ("submit", "cancel", "amend"):
+						self.assertEqual(permissions[role].get(action), 1, f"{doctype}: {role}: {action}")
 
 	def test_reservation_completion_releases_capacity(self):
 		args = dict(

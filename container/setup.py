@@ -60,3 +60,7 @@ def after_migrate():
 	}
 	# Existing equivalent standard insurance end date and license plate are reused.
 	create_custom_fields(fields, update=False)
+
+	from container.permissions import sync_full_access_permissions
+
+	sync_full_access_permissions()

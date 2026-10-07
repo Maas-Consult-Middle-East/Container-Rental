@@ -1,128 +1,229 @@
 {
-  "doctype": "DocType",
-  "name": "Commission Entry",
-  "module": "Container",
-  "autoname": "format:CE-{#####}",
-  "engine": "InnoDB",
-  "fields": [
-    {
-      "fieldname": "customer",
-      "fieldtype": "Link",
-      "label": "Customer",
-      "reqd": 1,
-      "options": "Customer"
-    },
-    {
-      "fieldname": "contract",
-      "fieldtype": "Link",
-      "label": "Contract",
-      "reqd": 1,
-      "options": "Container Contract"
-    },
-    {
-      "fieldname": "sales_person",
-      "fieldtype": "Link",
-      "label": "Sales Person",
-      "reqd": 1,
-      "options": "Sales Person"
-    },
-    {
-      "fieldname": "invoice",
-      "fieldtype": "Link",
-      "label": "Invoice",
-      "reqd": 1,
-      "options": "Sales Invoice"
-    },
-    {
-      "fieldname": "commission_rule",
-      "fieldtype": "Link",
-      "label": "Commission Rule",
-      "reqd": 1,
-      "options": "Commission Rule"
-    },
-    {
-      "fieldname": "base_amount",
-      "fieldtype": "Currency",
-      "label": "Base Amount",
-      "read_only": 1
-    },
-    {
-      "fieldname": "commission_percentage",
-      "fieldtype": "Percent",
-      "label": "Commission Percentage",
-      "read_only": 1
-    },
-    {
-      "fieldname": "commission_amount",
-      "fieldtype": "Currency",
-      "label": "Commission Amount",
-      "read_only": 1
-    },
-    {
-      "fieldname": "status",
-      "fieldtype": "Select",
-      "label": "Status",
-      "read_only": 1,
-      "default": "Draft",
-      "options": "Draft\nAccrued\nCancelled"
-    },
-    {
-      "fieldname": "amended_from",
-      "fieldtype": "Link",
-      "label": "Amended From",
-      "read_only": 1,
-      "no_copy": 1,
-      "options": "Commission Entry"
-    }
-  ],
-  "field_order": [
-    "customer",
-    "contract",
-    "sales_person",
-    "invoice",
-    "commission_rule",
-    "base_amount",
-    "commission_percentage",
-    "commission_amount",
-    "status",
-    "amended_from"
-  ],
-  "track_changes": 1,
-  "is_submittable": 1,
-  "istable": 0,
-  "permissions": [
-    {
-      "role": "System Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Accounts User",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 0
-    }
-  ]
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:CE-{#####}",
+ "creation": "2026-10-07 10:52:50.772148",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "contract",
+  "sales_person",
+  "invoice",
+  "commission_rule",
+  "base_amount",
+  "commission_percentage",
+  "commission_amount",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Contract",
+   "options": "Container Contract",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sales_person",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Person",
+   "options": "Sales Person",
+   "reqd": 1
+  },
+  {
+   "fieldname": "invoice",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Invoice",
+   "options": "Sales Invoice",
+   "reqd": 1
+  },
+  {
+   "fieldname": "commission_rule",
+   "fieldtype": "Link",
+   "label": "Commission Rule",
+   "options": "Commission Rule",
+   "reqd": 1
+  },
+  {
+   "fieldname": "base_amount",
+   "fieldtype": "Currency",
+   "label": "Base Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "commission_percentage",
+   "fieldtype": "Percent",
+   "label": "Commission Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "commission_amount",
+   "fieldtype": "Currency",
+   "label": "Commission Amount",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nAccrued\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Commission Entry",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-07 11:37:38.109264",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Commission Entry",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Operator",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Reports User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
 }

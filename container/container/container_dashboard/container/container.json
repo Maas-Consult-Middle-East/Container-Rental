@@ -1,0 +1,21 @@
+{
+ "cards": [],
+ "charts": [
+  {
+   "chart": "Containers",
+   "width": "Half"
+  }
+ ],
+ "creation": "2026-10-07 11:11:19.054872",
+ "dashboard_name": "Container",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 1,
+ "is_standard": 1,
+ "modified": "2026-10-07 11:11:19.054872",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Container",
+ "owner": "Administrator"
+}

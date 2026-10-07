@@ -7,6 +7,8 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import cint, flt, get_datetime, getdate, nowdate
 
+from container.permissions import has_container_full_access
+
 EMPTY = ("Empty", "Available")
 RENTED = ("Rented", "Late", "Pull", "Pulling", "Emptying")
 
@@ -170,10 +172,8 @@ class ContainerContractBase(Document):
 			fail("Set a rental item and tax template to calculate the tax-inclusive contract cost")
 
 	def before_submit(self):
-		if self.allow_extra_trips and not ({"Container Manager", "System Manager"} & set(frappe.get_roles())):
-			frappe.throw(
-				_("A Container Manager must submit contracts with a trip override"), frappe.PermissionError
-			)
+		if self.allow_extra_trips and not has_container_full_access():
+			frappe.throw(_("A container application role is required for a trip override"), frappe.PermissionError)
 		for container_type in sorted(
 			{frappe.db.get_value("Container", row.container, "container_type") for row in self.containers}
 		):
@@ -197,8 +197,8 @@ class ContainerContractBase(Document):
 	@frappe.whitelist()
 	def complete(self):
 		self.check_permission("write")
-		if "Container Manager" not in frappe.get_roles() and frappe.session.user != "Administrator":
-			frappe.throw(_("Container Manager role required"), frappe.PermissionError)
+		if not has_container_full_access():
+			frappe.throw(_("A container application role is required"), frappe.PermissionError)
 		lock(self.doctype, self.name)
 		self.reload()
 		if self.docstatus != 1 or self.status != "Active":

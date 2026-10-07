@@ -1,71 +1,80 @@
 {
-  "doctype": "DocType",
-  "name": "Contract Container",
-  "module": "Container",
-  "engine": "InnoDB",
-  "fields": [
-    {
-      "fieldname": "container",
-      "fieldtype": "Link",
-      "label": "Container",
-      "reqd": 1,
-      "in_list_view": 1,
-      "options": "Container"
-    },
-    {
-      "fieldname": "container_type",
-      "fieldtype": "Link",
-      "label": "Container Type",
-      "fetch_from": "container.container_type",
-      "read_only": 1,
-      "options": "Container Type"
-    },
-    {
-      "fieldname": "no_of_trips",
-      "fieldtype": "Int",
-      "label": "No Of Trips",
-      "in_list_view": 1
-    },
-    {
-      "fieldname": "trip_duration",
-      "fieldtype": "Data",
-      "label": "Trip Duration"
-    },
-    {
-      "fieldname": "rate",
-      "fieldtype": "Currency",
-      "label": "Rate",
-      "in_list_view": 1
-    },
-    {
-      "fieldname": "total",
-      "fieldtype": "Currency",
-      "label": "Total",
-      "read_only": 1
-    },
-    {
-      "fieldname": "start_date",
-      "fieldtype": "Date",
-      "label": "Start Date"
-    },
-    {
-      "fieldname": "end_date",
-      "fieldtype": "Date",
-      "label": "End Date"
-    }
-  ],
-  "field_order": [
-    "container",
-    "container_type",
-    "no_of_trips",
-    "trip_duration",
-    "rate",
-    "total",
-    "start_date",
-    "end_date"
-  ],
-  "track_changes": 1,
-  "is_submittable": 0,
-  "istable": 1,
-  "permissions": []
+ "actions": [],
+ "creation": "2026-10-06 14:01:44.212302",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "container",
+  "container_type",
+  "no_of_trips",
+  "trip_duration",
+  "rate",
+  "total",
+  "start_date",
+  "end_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "container",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Container",
+   "options": "Container",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "container.container_type",
+   "fieldname": "container_type",
+   "fieldtype": "Link",
+   "label": "Container Type",
+   "options": "Container Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "no_of_trips",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "No Of Trips"
+  },
+  {
+   "fieldname": "trip_duration",
+   "fieldtype": "Data",
+   "label": "Trip Duration"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-07 11:37:42.455967",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Contract Container",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
 }

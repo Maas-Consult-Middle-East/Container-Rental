@@ -1,106 +1,178 @@
 {
-  "doctype": "DocType",
-  "name": "Truck Permit",
-  "module": "Container",
-  "autoname": "format:TP-{#####}",
-  "engine": "InnoDB",
-  "fields": [
-    {
-      "fieldname": "truck",
-      "fieldtype": "Link",
-      "label": "Truck",
-      "reqd": 1,
-      "options": "Vehicle"
-    },
-    {
-      "fieldname": "permit_type",
-      "fieldtype": "Data",
-      "label": "Permit Type",
-      "reqd": 1
-    },
-    {
-      "fieldname": "permit_number",
-      "fieldtype": "Data",
-      "label": "Permit Number",
-      "reqd": 1
-    },
-    {
-      "fieldname": "issue_date",
-      "fieldtype": "Date",
-      "label": "Issue Date",
-      "reqd": 1
-    },
-    {
-      "fieldname": "expiry_date",
-      "fieldtype": "Date",
-      "label": "Expiry Date",
-      "reqd": 1
-    },
-    {
-      "fieldname": "status",
-      "fieldtype": "Select",
-      "label": "Status",
-      "read_only": 1,
-      "options": "Valid\nExpiring\nExpired"
-    },
-    {
-      "fieldname": "attachment",
-      "fieldtype": "Attach",
-      "label": "Attachment"
-    }
-  ],
-  "field_order": [
-    "truck",
-    "permit_type",
-    "permit_number",
-    "issue_date",
-    "expiry_date",
-    "status",
-    "attachment"
-  ],
-  "track_changes": 1,
-  "is_submittable": 0,
-  "istable": 0,
-  "permissions": [
-    {
-      "role": "System Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 0,
-      "cancel": 0
-    },
-    {
-      "role": "Container Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 0,
-      "cancel": 0
-    },
-    {
-      "role": "Fleet Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 0,
-      "cancel": 0
-    },
-    {
-      "role": "Container Reports User",
-      "read": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1
-    }
-  ]
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:TP-{#####}",
+ "creation": "2026-10-07 10:52:49.115018",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "truck",
+  "permit_type",
+  "permit_number",
+  "issue_date",
+  "expiry_date",
+  "status",
+  "attachment"
+ ],
+ "fields": [
+  {
+   "fieldname": "truck",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Truck",
+   "options": "Vehicle",
+   "reqd": 1
+  },
+  {
+   "fieldname": "permit_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Permit Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "permit_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Permit Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Issue Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Valid\nExpiring\nExpired",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-07 11:37:40.805098",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Truck Permit",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Operator",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Reports User",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
 }

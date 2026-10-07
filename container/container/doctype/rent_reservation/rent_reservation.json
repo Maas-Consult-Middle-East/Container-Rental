@@ -1,140 +1,234 @@
 {
-  "doctype": "DocType",
-  "name": "Rent Reservation",
-  "module": "Container",
-  "autoname": "format:RR-{#####}",
-  "engine": "InnoDB",
-  "fields": [
-    {
-      "fieldname": "customer",
-      "fieldtype": "Link",
-      "label": "Customer",
-      "reqd": 1,
-      "options": "Customer"
-    },
-    {
-      "fieldname": "reservation_date",
-      "fieldtype": "Date",
-      "label": "Reservation Date",
-      "default": "Today",
-      "reqd": 1
-    },
-    {
-      "fieldname": "from_date",
-      "fieldtype": "Date",
-      "label": "From Date",
-      "reqd": 1
-    },
-    {
-      "fieldname": "to_date",
-      "fieldtype": "Date",
-      "label": "To Date",
-      "reqd": 1
-    },
-    {
-      "fieldname": "container_type",
-      "fieldtype": "Link",
-      "label": "Container Type",
-      "reqd": 1,
-      "options": "Container Type"
-    },
-    {
-      "fieldname": "quantity",
-      "fieldtype": "Int",
-      "label": "Quantity",
-      "default": "1",
-      "reqd": 1
-    },
-    {
-      "fieldname": "container",
-      "fieldtype": "Link",
-      "label": "Container",
-      "description": "Optional specific container; quantity must be one.",
-      "options": "Container"
-    },
-    {
-      "fieldname": "rental_rate",
-      "fieldtype": "Currency",
-      "label": "Rental Rate"
-    },
-    {
-      "fieldname": "status",
-      "fieldtype": "Select",
-      "label": "Status",
-      "default": "Draft",
-      "read_only": 1,
-      "options": "Draft\nReserved\nConfirmed\nCancelled\nCompleted"
-    },
-    {
-      "fieldname": "remarks",
-      "fieldtype": "Small Text",
-      "label": "Remarks"
-    },
-    {
-      "fieldname": "amended_from",
-      "fieldtype": "Link",
-      "label": "Amended From",
-      "read_only": 1,
-      "no_copy": 1,
-      "options": "Rent Reservation"
-    }
-  ],
-  "field_order": [
-    "customer",
-    "reservation_date",
-    "from_date",
-    "to_date",
-    "container_type",
-    "quantity",
-    "container",
-    "rental_rate",
-    "status",
-    "remarks",
-    "amended_from"
-  ],
-  "track_changes": 1,
-  "is_submittable": 1,
-  "istable": 0,
-  "permissions": [
-    {
-      "role": "System Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Operator",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 0
-    },
-    {
-      "role": "Container Reports User",
-      "read": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1
-    }
-  ]
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:RR-{#####}",
+ "creation": "2026-10-07 10:52:51.531665",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "reservation_date",
+  "from_date",
+  "to_date",
+  "container_type",
+  "quantity",
+  "container",
+  "rental_rate",
+  "status",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "reservation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Reservation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "From Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "To Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "container_type",
+   "fieldtype": "Link",
+   "label": "Container Type",
+   "options": "Container Type",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "description": "Optional specific container; quantity must be one.",
+   "fieldname": "container",
+   "fieldtype": "Link",
+   "label": "Container",
+   "options": "Container"
+  },
+  {
+   "fieldname": "rental_rate",
+   "fieldtype": "Currency",
+   "label": "Rental Rate"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nReserved\nConfirmed\nCancelled\nCompleted",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rent Reservation",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-07 11:37:36.905709",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Rent Reservation",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Operator",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Reports User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
 }

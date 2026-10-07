@@ -1,149 +1,243 @@
 {
-  "doctype": "DocType",
-  "name": "Container Trip",
-  "module": "Container",
-  "autoname": "format:CT-{#####}",
-  "engine": "InnoDB",
-  "fields": [
-    {
-      "fieldname": "container",
-      "fieldtype": "Link",
-      "label": "Container",
-      "reqd": 1,
-      "options": "Container"
-    },
-    {
-      "fieldname": "customer",
-      "fieldtype": "Link",
-      "label": "Customer",
-      "reqd": 1,
-      "options": "Customer"
-    },
-    {
-      "fieldname": "contract",
-      "fieldtype": "Link",
-      "label": "Contract",
-      "reqd": 1,
-      "options": "Container Contract"
-    },
-    {
-      "fieldname": "truck",
-      "fieldtype": "Link",
-      "label": "Truck",
-      "reqd": 1,
-      "options": "Vehicle"
-    },
-    {
-      "fieldname": "driver",
-      "fieldtype": "Link",
-      "label": "Driver",
-      "options": "Driver"
-    },
-    {
-      "fieldname": "pickup_date",
-      "fieldtype": "Datetime",
-      "label": "Pickup Date",
-      "reqd": 1
-    },
-    {
-      "fieldname": "delivery_date",
-      "fieldtype": "Datetime",
-      "label": "Delivery Date"
-    },
-    {
-      "fieldname": "pickup_location",
-      "fieldtype": "Data",
-      "label": "Pickup Location"
-    },
-    {
-      "fieldname": "delivery_location",
-      "fieldtype": "Data",
-      "label": "Delivery Location"
-    },
-    {
-      "fieldname": "trip_status",
-      "fieldtype": "Select",
-      "label": "Trip Status",
-      "default": "Planned",
-      "options": "Planned\nAssigned\nIn Transit\nDelivered\nReturned\nCancelled"
-    },
-    {
-      "fieldname": "trip_cost",
-      "fieldtype": "Currency",
-      "label": "Trip Cost"
-    },
-    {
-      "fieldname": "remarks",
-      "fieldtype": "Small Text",
-      "label": "Remarks"
-    },
-    {
-      "fieldname": "amended_from",
-      "fieldtype": "Link",
-      "label": "Amended From",
-      "read_only": 1,
-      "no_copy": 1,
-      "options": "Container Trip"
-    }
-  ],
-  "field_order": [
-    "container",
-    "customer",
-    "contract",
-    "truck",
-    "driver",
-    "pickup_date",
-    "delivery_date",
-    "pickup_location",
-    "delivery_location",
-    "trip_status",
-    "trip_cost",
-    "remarks",
-    "amended_from"
-  ],
-  "track_changes": 1,
-  "is_submittable": 1,
-  "istable": 0,
-  "permissions": [
-    {
-      "role": "System Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Operator",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 0
-    },
-    {
-      "role": "Container Reports User",
-      "read": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1
-    }
-  ]
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:CT-{#####}",
+ "creation": "2026-10-07 10:52:51.265845",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "container",
+  "customer",
+  "contract",
+  "truck",
+  "driver",
+  "pickup_date",
+  "delivery_date",
+  "pickup_location",
+  "delivery_location",
+  "trip_status",
+  "trip_cost",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "container",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Container",
+   "options": "Container",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Contract",
+   "options": "Container Contract",
+   "reqd": 1
+  },
+  {
+   "fieldname": "truck",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Truck",
+   "options": "Vehicle",
+   "reqd": 1
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fieldname": "pickup_date",
+   "fieldtype": "Datetime",
+   "label": "Pickup Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Datetime",
+   "label": "Delivery Date"
+  },
+  {
+   "fieldname": "pickup_location",
+   "fieldtype": "Data",
+   "label": "Pickup Location"
+  },
+  {
+   "fieldname": "delivery_location",
+   "fieldtype": "Data",
+   "label": "Delivery Location"
+  },
+  {
+   "default": "Planned",
+   "fieldname": "trip_status",
+   "fieldtype": "Select",
+   "label": "Trip Status",
+   "options": "Planned\nAssigned\nIn Transit\nDelivered\nReturned\nCancelled"
+  },
+  {
+   "fieldname": "trip_cost",
+   "fieldtype": "Currency",
+   "label": "Trip Cost"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Container Trip",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-07 11:37:37.286837",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Container Trip",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Operator",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Reports User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
 }

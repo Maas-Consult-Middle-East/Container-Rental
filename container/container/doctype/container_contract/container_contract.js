@@ -7,7 +7,16 @@ frappe.ui.form.on('Container Contract', {
                         callback(r) { if (r.message) frappe.set_route('Form', 'Sales Invoice', r.message); }});
                 });
             }
-            if (frappe.user.has_role('Container Manager')) {
+            const full_access_roles = [
+                'System Manager',
+                'Container Manager',
+                'Container Operator',
+                'Container Reports User',
+                'Accounts User',
+                'Accounts Manager',
+                'Fleet Manager'
+            ];
+            if (full_access_roles.some(role => frappe.user.has_role(role))) {
                 frm.add_custom_button(__('Complete Contract'), () => frm.call('complete').then(() => frm.reload_doc()));
             }
         }

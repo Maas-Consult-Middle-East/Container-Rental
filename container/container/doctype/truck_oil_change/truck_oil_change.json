@@ -1,133 +1,226 @@
 {
-  "doctype": "DocType",
-  "name": "Truck Oil Change",
-  "module": "Container",
-  "autoname": "format:TOC-{#####}",
-  "engine": "InnoDB",
-  "fields": [
-    {
-      "fieldname": "truck",
-      "fieldtype": "Link",
-      "label": "Truck",
-      "reqd": 1,
-      "options": "Vehicle"
-    },
-    {
-      "fieldname": "oil_type",
-      "fieldtype": "Data",
-      "label": "Oil Type"
-    },
-    {
-      "fieldname": "oil_change_date",
-      "fieldtype": "Date",
-      "label": "Oil Change Date",
-      "default": "Today",
-      "reqd": 1
-    },
-    {
-      "fieldname": "current_km",
-      "fieldtype": "Int",
-      "label": "Current Km",
-      "reqd": 1
-    },
-    {
-      "fieldname": "next_oil_change_date",
-      "fieldtype": "Date",
-      "label": "Next Oil Change Date"
-    },
-    {
-      "fieldname": "next_oil_change_km",
-      "fieldtype": "Int",
-      "label": "Next Oil Change Km"
-    },
-    {
-      "fieldname": "cost",
-      "fieldtype": "Currency",
-      "label": "Cost"
-    },
-    {
-      "fieldname": "supplier",
-      "fieldtype": "Link",
-      "label": "Supplier",
-      "options": "Supplier"
-    },
-    {
-      "fieldname": "remarks",
-      "fieldtype": "Small Text",
-      "label": "Remarks"
-    },
-    {
-      "fieldname": "amended_from",
-      "fieldtype": "Link",
-      "label": "Amended From",
-      "read_only": 1,
-      "no_copy": 1,
-      "options": "Truck Oil Change"
-    },
-    {
-      "fieldname": "purchase_invoice",
-      "fieldtype": "Link",
-      "options": "Purchase Invoice",
-      "label": "Purchase Invoice",
-      "description": "Posted supplier bill for this service; cost here is informational."
-    }
-  ],
-  "field_order": [
-    "truck",
-    "oil_type",
-    "oil_change_date",
-    "current_km",
-    "next_oil_change_date",
-    "next_oil_change_km",
-    "cost",
-    "supplier",
-    "remarks",
-    "amended_from",
-    "purchase_invoice"
-  ],
-  "track_changes": 1,
-  "is_submittable": 1,
-  "istable": 0,
-  "permissions": [
-    {
-      "role": "System Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Fleet Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1,
-      "submit": 1,
-      "cancel": 1
-    },
-    {
-      "role": "Container Reports User",
-      "read": 1,
-      "report": 1,
-      "export": 1,
-      "print": 1
-    }
-  ]
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:TOC-{#####}",
+ "creation": "2026-10-07 10:52:48.260285",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "truck",
+  "oil_type",
+  "oil_change_date",
+  "current_km",
+  "next_oil_change_date",
+  "next_oil_change_km",
+  "cost",
+  "supplier",
+  "remarks",
+  "amended_from",
+  "purchase_invoice"
+ ],
+ "fields": [
+  {
+   "fieldname": "truck",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Truck",
+   "options": "Vehicle",
+   "reqd": 1
+  },
+  {
+   "fieldname": "oil_type",
+   "fieldtype": "Data",
+   "label": "Oil Type"
+  },
+  {
+   "default": "Today",
+   "fieldname": "oil_change_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Oil Change Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "current_km",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Current Km",
+   "reqd": 1
+  },
+  {
+   "fieldname": "next_oil_change_date",
+   "fieldtype": "Date",
+   "label": "Next Oil Change Date"
+  },
+  {
+   "fieldname": "next_oil_change_km",
+   "fieldtype": "Int",
+   "label": "Next Oil Change Km"
+  },
+  {
+   "fieldname": "cost",
+   "fieldtype": "Currency",
+   "label": "Cost"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Truck Oil Change",
+   "read_only": 1
+  },
+  {
+   "description": "Posted supplier bill for this service; cost here is informational.",
+   "fieldname": "purchase_invoice",
+   "fieldtype": "Link",
+   "label": "Purchase Invoice",
+   "options": "Purchase Invoice"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-07 11:37:42.117800",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Truck Oil Change",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Operator",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Container Reports User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
 }
