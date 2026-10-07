@@ -1,5 +1,9 @@
 {
- "cards": [],
+ "cards": [
+  {
+   "card": "Rented Containers"
+  }
+ ],
  "charts": [
   {
    "chart": "Containers",
@@ -13,7 +17,7 @@
  "idx": 0,
  "is_default": 1,
  "is_standard": 1,
- "modified": "2026-10-07 11:11:19.054872",
+ "modified": "2026-10-07 14:54:32.921873",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container",
