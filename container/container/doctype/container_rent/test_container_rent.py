@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestCotainerRent(FrappeTestCase):
+class TestContainerRent(FrappeTestCase):
 	pass

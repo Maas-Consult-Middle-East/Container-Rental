@@ -7,6 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "trip",
+	  "commission_type",
+	  "driver",
+	  "supervisor",
   "amount",
   "amended_from"
  ],
@@ -15,12 +18,37 @@
    "fieldname": "trip",
    "fieldtype": "Link",
    "label": "Trip",
-   "options": "Container Trip"
+	   "options": "Container Trip",
+	   "reqd": 1
+	  },
+	  {
+	   "fieldname": "commission_type",
+	   "fieldtype": "Select",
+	   "label": "Commission Type",
+	   "options": "Driver\nSupervisor",
+	   "reqd": 1
+	  },
+	  {
+	   "depends_on": "eval:doc.commission_type == 'Driver'",
+	   "fieldname": "driver",
+	   "fieldtype": "Link",
+	   "label": "Driver",
+	   "mandatory_depends_on": "eval:doc.commission_type == 'Driver'",
+	   "options": "Driver"
+	  },
+	  {
+	   "depends_on": "eval:doc.commission_type == 'Supervisor'",
+	   "fieldname": "supervisor",
+	   "fieldtype": "Link",
+	   "label": "Supervisor",
+	   "mandatory_depends_on": "eval:doc.commission_type == 'Supervisor'",
+	   "options": "Employee"
   },
   {
    "fieldname": "amount",
    "fieldtype": "Currency",
-   "label": "Amount"
+	   "label": "Amount",
+	   "reqd": 1
   },
   {
    "fieldname": "amended_from",

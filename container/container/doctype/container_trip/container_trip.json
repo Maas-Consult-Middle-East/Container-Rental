@@ -11,13 +11,18 @@
   "contract",
   "truck",
   "driver",
+	  "supervisor",
   "pickup_date",
   "delivery_date",
   "pickup_location",
   "delivery_location",
   "trip_status",
   "trip_cost",
+	  "driver_commission",
+	  "supervisor_commission",
   "remarks",
+	  "source_doctype",
+	  "source_name",
   "amended_from"
  ],
  "fields": [
@@ -59,6 +64,12 @@
    "label": "Driver",
    "options": "Driver"
   },
+	  {
+	   "fieldname": "supervisor",
+	   "fieldtype": "Link",
+	   "label": "Supervisor",
+	   "options": "Employee"
+	  },
   {
    "fieldname": "pickup_date",
    "fieldtype": "Datetime",
@@ -92,12 +103,36 @@
    "fieldtype": "Currency",
    "label": "Trip Cost"
   },
+	  {
+	   "fieldname": "driver_commission",
+	   "fieldtype": "Currency",
+	   "label": "Driver Commission"
+	  },
+	  {
+	   "fieldname": "supervisor_commission",
+	   "fieldtype": "Currency",
+	   "label": "Supervisor Commission"
+	  },
   {
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
   },
   {
+	   "fieldname": "source_doctype",
+	   "fieldtype": "Link",
+	   "label": "Source DocType",
+	   "options": "DocType",
+	   "read_only": 1
+	  },
+	  {
+	   "fieldname": "source_name",
+	   "fieldtype": "Dynamic Link",
+	   "label": "Source Document",
+	   "options": "source_doctype",
+	   "read_only": 1
+	  },
+	  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",

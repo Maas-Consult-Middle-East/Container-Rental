@@ -12,7 +12,8 @@
   "issue_date",
   "expiry_date",
   "status",
-  "attachment"
+	  "attachment",
+	  "amended_from"
  ],
  "fields": [
   {
@@ -60,8 +61,19 @@
    "fieldname": "attachment",
    "fieldtype": "Attach",
    "label": "Attachment"
+	  },
+	  {
+	   "fieldname": "amended_from",
+	   "fieldtype": "Link",
+	   "label": "Amended From",
+	   "no_copy": 1,
+	   "options": "Truck Permit",
+	   "print_hide": 1,
+	   "read_only": 1,
+	   "search_index": 1
   }
  ],
+	 "is_submittable": 1,
  "links": [],
  "modified": "2026-10-11 17:27:53.510732",
  "modified_by": "Administrator",

@@ -29,7 +29,8 @@
   "section_break_vvah",
   "location",
   "latitude",
-  "longitude"
+	  "longitude",
+	  "amended_from"
  ],
  "fields": [
   {
@@ -145,7 +146,7 @@
    "label": "Longitude"
   },
   {
-   "depends_on": "eval:doc.container_rent == \"Unlimited Contract\"",
+   "depends_on": "eval:doc.rent_type == \"Unlimited Contract\"",
    "fieldname": "cost",
    "fieldtype": "Data",
    "label": "Cost"
@@ -157,15 +158,26 @@
    "label": "Rent Type",
    "options": "Rent Type",
    "reqd": 1
+	  },
+	  {
+	   "fieldname": "amended_from",
+	   "fieldtype": "Link",
+	   "label": "Amended From",
+	   "no_copy": 1,
+	   "options": "Container Rent",
+	   "print_hide": 1,
+	   "read_only": 1,
+	   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+	 "is_submittable": 1,
  "links": [],
  "modified": "2026-10-12 14:00:29.328981",
  "modified_by": "Administrator",
  "module": "Container",
- "name": "Cotainer Rent",
+ "name": "Container Rent",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

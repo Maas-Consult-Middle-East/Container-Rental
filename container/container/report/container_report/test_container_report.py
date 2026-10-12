@@ -20,7 +20,7 @@ class TestContainerReport(unittest.TestCase):
 		queries = []
 		def get_list(doctype, **kwargs):
 			queries.append((doctype, kwargs))
-			if doctype == 'Cotainer Rent':
+			if doctype == 'Container Rent':
 				return [frappe._dict(name='OLD', container_number='C1', client='CLIENT', driver='D1',
 					contact_number='0500000000', address='Rental address', classification='20 Yard',
 					**{'from': '2026-10-12 23:59:59', 'to': '2026-10-22 23:59:59'})]

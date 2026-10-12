@@ -14,7 +14,7 @@ def execute(filters=None):
 		frappe.throw(_("From Date cannot be after To Date."))
 	if filters.container_status not in (None, "", "Rented", "Pull", "Late", "Empty"):
 		frappe.throw(_("Select a valid container status."))
-	frappe.has_permission("Cotainer Rent", "read", throw=True)
+	frappe.has_permission("Container Rent", "read", throw=True)
 	conditions = [["docstatus", "!=", 2]]
 	if filters.container:
 		conditions.append(["container_number", "=", filters.container])
@@ -25,11 +25,11 @@ def execute(filters=None):
 	if filters.to_date:
 		conditions.append(["from", "<", add_days(getdate(filters.to_date), 1)])
 	rentals = frappe.get_list(
-		"Cotainer Rent",
+		"Container Rent",
 		filters=conditions,
 		fields=["name", "container_number", "client", "contact_number", "address", "driver",
 			"classification", "from", "to", "latitude", "longitude", "location"],
-		order_by="`tabCotainer Rent`.`from` desc, creation desc, name desc",
+		order_by="`tabContainer Rent`.`from` desc, creation desc, name desc",
 		limit_page_length=0,
 	)
 	if not rentals:
@@ -135,7 +135,7 @@ def get_columns():
 		{"fieldname": field, "label": _(label), "fieldtype": kind, "width": width, **options}
 		for field, label, kind, width, options in [
 			("container_number", "Container Number", "Link", 150, {"options": "Container"}),
-			("rent_number", "Rent Number", "Link", 150, {"options": "Cotainer Rent"}),
+			("rent_number", "Rent Number", "Link", 150, {"options": "Container Rent"}),
 			("client_name", "Client Name", "Data", 230, {}),
 			("client_phone", "Client Phone Number", "Data", 170, {}),
 			("client_address", "Client Address", "Data", 220, {}),

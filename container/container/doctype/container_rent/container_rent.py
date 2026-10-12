@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class CotainerRent(Document):
+class ContainerRent(Document):
 	pass
