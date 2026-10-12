@@ -54,8 +54,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Valid\nExpiring\nExpired",
-   "read_only": 1
+   "options": "Valid\nExpiring\nExpired"
   },
   {
    "fieldname": "attachment",
@@ -64,7 +63,7 @@
   }
  ],
  "links": [],
- "modified": "2026-10-07 11:37:40.805098",
+ "modified": "2026-10-11 17:27:53.510732",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Truck Permit",

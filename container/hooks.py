@@ -258,11 +258,3 @@ app_license = "mit"
 required_apps = ["erpnext"]
 after_install = "container.setup.after_migrate"
 after_migrate = "container.setup.after_migrate"
-scheduler_events = {"daily": ["container.tasks.daily"]}
-doc_events = {
-	"Sales Invoice": {
-		"validate": "container.billing.validate_invoice",
-		"before_cancel": "container.billing.prevent_accounting_cancel",
-	},
-	"Payment Entry": {"before_cancel": "container.billing.prevent_accounting_cancel"},
-}

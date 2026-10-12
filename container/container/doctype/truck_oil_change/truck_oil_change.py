@@ -1,5 +1,5 @@
-from container.operations import TruckOilChangeBase
+from frappe.model.document import Document
 
 
-class TruckOilChange(TruckOilChangeBase):
+class TruckOilChange(Document):
 	pass

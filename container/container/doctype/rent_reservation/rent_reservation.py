@@ -1,5 +1,5 @@
-from container.operations import RentReservationBase
+from frappe.model.document import Document
 
 
-class RentReservation(RentReservationBase):
+class RentReservation(Document):
 	pass

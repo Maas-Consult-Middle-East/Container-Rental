@@ -1,5 +1,5 @@
-from container.operations import CommissionEntryBase
+from frappe.model.document import Document
 
 
-class CommissionEntry(CommissionEntryBase):
+class CommissionEntry(Document):
 	pass

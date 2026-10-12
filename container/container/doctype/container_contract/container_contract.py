@@ -1,5 +1,5 @@
-from container.operations import ContainerContractBase
+from frappe.model.document import Document
 
 
-class ContainerContract(ContainerContractBase):
+class ContainerContract(Document):
 	pass

@@ -6,83 +6,76 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "customer",
-  "contract",
-  "old_container",
-  "new_container",
-  "replacement_date",
-  "reason",
-  "old_container_condition",
-  "new_container_condition",
-  "charges",
-  "remarks",
-  "amended_from"
+  "rented_container_number",
+  "new_container_classification",
+  "new_container_number",
+  "section_break_qtpr",
+  "driver",
+  "supervisor",
+  "truck",
+  "replace_date",
+  "replace_options",
+  "amended_from",
+  "notes",
+  "column_break_joue",
+  "driver_commission",
+  "supervisor_commission"
  ],
  "fields": [
   {
-   "fieldname": "customer",
+   "fieldname": "rented_container_number",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Customer",
-   "options": "Customer",
-   "reqd": 1
-  },
-  {
-   "fieldname": "contract",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Contract",
-   "options": "Container Contract",
-   "reqd": 1
-  },
-  {
-   "fieldname": "old_container",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Old Container",
+   "label": "Rented Container Number",
    "options": "Container",
    "reqd": 1
   },
   {
-   "fieldname": "new_container",
+   "fieldname": "new_container_classification",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "New Container",
-   "options": "Container",
+   "label": "New Container Classification",
+   "options": "Classification",
    "reqd": 1
   },
   {
-   "default": "Now",
-   "fieldname": "replacement_date",
-   "fieldtype": "Datetime",
-   "label": "Replacement Date",
-   "reqd": 1
+   "fieldname": "new_container_number",
+   "fieldtype": "Link",
+   "label": "New Container Number",
+   "options": "Container"
   },
   {
-   "fieldname": "reason",
-   "fieldtype": "Small Text",
-   "label": "Reason",
-   "reqd": 1
+   "fieldname": "section_break_qtpr",
+   "fieldtype": "Section Break"
   },
   {
-   "fieldname": "old_container_condition",
-   "fieldtype": "Data",
-   "label": "Old Container Condition"
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
   },
   {
-   "fieldname": "new_container_condition",
-   "fieldtype": "Data",
-   "label": "New Container Condition"
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "Employee"
   },
   {
-   "fieldname": "charges",
-   "fieldtype": "Currency",
-   "label": "Charges"
+   "fieldname": "truck",
+   "fieldtype": "Link",
+   "label": "Truck",
+   "options": "Vehicle"
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
+   "fieldname": "replace_date",
+   "fieldtype": "Date",
+   "label": "Replace Date"
+  },
+  {
+   "fieldname": "replace_options",
+   "fieldtype": "Select",
+   "label": "Replace options",
+   "options": "Replace Only\nReplace with Rent"
   },
   {
    "fieldname": "amended_from",
@@ -90,12 +83,33 @@
    "label": "Amended From",
    "no_copy": 1,
    "options": "Container Replacement",
-   "read_only": 1
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "column_break_joue",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "driver_commission",
+   "fieldtype": "Data",
+   "label": "Commission"
+  },
+  {
+   "fieldname": "supervisor_commission",
+   "fieldtype": "Data",
+   "label": "Commission"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-07 11:37:38.895506",
+ "modified": "2026-10-12 09:54:05.092617",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Replacement",

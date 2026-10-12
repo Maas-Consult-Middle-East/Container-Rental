@@ -1,5 +1,5 @@
-from container.operations import ClientWithdrawalBase
+from frappe.model.document import Document
 
 
-class ClientWithdrawal(ClientWithdrawalBase):
+class ClientWithdrawal(Document):
 	pass

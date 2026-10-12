@@ -6,95 +6,25 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "customer",
-  "contract",
-  "sales_person",
-  "invoice",
-  "commission_rule",
-  "base_amount",
-  "commission_percentage",
-  "commission_amount",
-  "status",
-  "amended_from"
+  "trip",
+  "amount"
  ],
  "fields": [
   {
-   "fieldname": "customer",
+   "fieldname": "trip",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Customer",
-   "options": "Customer",
-   "reqd": 1
+   "label": "Trip",
+   "options": "Container Trip"
   },
   {
-   "fieldname": "contract",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Contract",
-   "options": "Container Contract",
-   "reqd": 1
-  },
-  {
-   "fieldname": "sales_person",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Sales Person",
-   "options": "Sales Person",
-   "reqd": 1
-  },
-  {
-   "fieldname": "invoice",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Invoice",
-   "options": "Sales Invoice",
-   "reqd": 1
-  },
-  {
-   "fieldname": "commission_rule",
-   "fieldtype": "Link",
-   "label": "Commission Rule",
-   "options": "Commission Rule",
-   "reqd": 1
-  },
-  {
-   "fieldname": "base_amount",
-   "fieldtype": "Currency",
-   "label": "Base Amount",
-   "read_only": 1
-  },
-  {
-   "fieldname": "commission_percentage",
-   "fieldtype": "Percent",
-   "label": "Commission Percentage",
-   "read_only": 1
-  },
-  {
-   "fieldname": "commission_amount",
-   "fieldtype": "Currency",
-   "label": "Commission Amount",
-   "read_only": 1
-  },
-  {
-   "default": "Draft",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Draft\nAccrued\nCancelled",
-   "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Commission Entry",
-   "read_only": 1
+   "fieldname": "amount",
+   "fieldtype": "Data",
+   "label": "Amount"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-07 11:37:38.109264",
+ "modified": "2026-10-12 09:25:42.915104",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Commission Entry",

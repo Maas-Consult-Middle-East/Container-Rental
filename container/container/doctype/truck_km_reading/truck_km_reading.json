@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "truck",
-  "driver",
   "reading_date",
   "current_km",
   "previous_km",
@@ -22,12 +21,6 @@
    "label": "Truck",
    "options": "Vehicle",
    "reqd": 1
-  },
-  {
-   "fieldname": "driver",
-   "fieldtype": "Link",
-   "label": "Driver",
-   "options": "Driver"
   },
   {
    "default": "Today",
@@ -67,7 +60,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-07 11:37:41.043627",
+ "modified": "2026-10-11 17:26:52.801589",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Truck KM Reading",

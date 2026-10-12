@@ -2,83 +2,61 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "prompt",
+ "autoname": "field:container_number",
  "creation": "2026-10-06 11:08:55.406013",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "container_type",
-  "current_customer",
+  "container_number",
+  "classification",
+  "container_size",
   "column_break_uqwj",
   "status",
-  "current_contract",
-  "current_location",
-  "condition",
-  "remarks"
+  "branch_name"
  ],
  "fields": [
-  {
-   "fieldname": "container_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Container Type",
-   "options": "Container Type",
-   "reqd": 1
-  },
   {
    "fieldname": "column_break_uqwj",
    "fieldtype": "Column Break"
   },
   {
-   "default": "Empty",
+   "fieldname": "container_number",
+   "fieldtype": "Data",
+   "label": "Container Number",
+   "unique": 1
+  },
+  {
+   "fieldname": "container_size",
+   "fieldtype": "Data",
+   "label": "Container Size"
+  },
+  {
+   "fieldname": "classification",
+   "fieldtype": "Link",
+   "label": "Classification",
+   "options": "Classification"
+  },
+  {
+   "fieldname": "branch_name",
+   "fieldtype": "Link",
+   "label": "Branch Name",
+   "options": "Branch"
+  },
+  {
    "fieldname": "status",
    "fieldtype": "Select",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Status",
-   "options": "Empty\nRented\nLate\nPull\nAvailable\nEmptying\nPulling",
-   "read_only": 1
-  },
-  {
-   "fieldname": "current_customer",
-   "fieldtype": "Link",
-   "label": "Current Customer",
-   "options": "Customer",
-   "read_only": 1
-  },
-  {
-   "fieldname": "current_contract",
-   "fieldtype": "Link",
-   "label": "Current Contract",
-   "options": "Container Contract",
-   "read_only": 1
-  },
-  {
-   "fieldname": "current_location",
-   "fieldtype": "Data",
-   "label": "Current Location",
-   "read_only": 1
-  },
-  {
-   "fieldname": "condition",
-   "fieldtype": "Data",
-   "label": "Condition"
-  },
-  {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
+   "options": "Rented\nPull\nEmpty\nLate"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-07 11:37:40.122539",
+ "modified": "2026-10-12 10:28:28.170579",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container",
- "naming_rule": "Set by user",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

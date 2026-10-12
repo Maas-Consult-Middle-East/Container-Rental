@@ -1,5 +1,5 @@
-from container.operations import ContainerBase
+from frappe.model.document import Document
 
 
-class Container(ContainerBase):
+class Container(Document):
 	pass

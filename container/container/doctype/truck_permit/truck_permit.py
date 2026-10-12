@@ -1,5 +1,5 @@
-from container.operations import TruckPermitBase
+from frappe.model.document import Document
 
 
-class TruckPermit(TruckPermitBase):
+class TruckPermit(Document):
 	pass

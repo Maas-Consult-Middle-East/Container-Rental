@@ -1,0 +1,186 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-10-11 15:37:01.744584",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "container_rent",
+  "client",
+  "contact_number",
+  "address",
+  "cost",
+  "column_break_umet",
+  "classification",
+  "container_size",
+  "container_number",
+  "rent_duration_section",
+  "from",
+  "column_break_dwvt",
+  "to",
+  "section_break_bqfi",
+  "supervisor",
+  "driver",
+  "truck",
+  "column_break_icgk",
+  "supervisor_commission",
+  "driver_commission",
+  "section_break_vvah",
+  "location",
+  "latitude",
+  "longitude"
+ ],
+ "fields": [
+  {
+   "fieldname": "container_rent",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Container Rent",
+   "options": "Rent Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_umet",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "classification",
+   "fieldtype": "Link",
+   "label": "Classification",
+   "options": "Classification"
+  },
+  {
+   "fieldname": "container_size",
+   "fieldtype": "Data",
+   "label": "Container Size"
+  },
+  {
+   "fieldname": "container_number",
+   "fieldtype": "Data",
+   "label": "Container Number"
+  },
+  {
+   "fieldname": "rent_duration_section",
+   "fieldtype": "Section Break",
+   "label": "Rent Duration"
+  },
+  {
+   "fieldname": "from",
+   "fieldtype": "Datetime",
+   "label": "From"
+  },
+  {
+   "fieldname": "column_break_dwvt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to",
+   "fieldtype": "Datetime",
+   "label": "To"
+  },
+  {
+   "fieldname": "section_break_bqfi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fieldname": "column_break_icgk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "truck",
+   "fieldtype": "Link",
+   "label": "Truck",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "supervisor_commission",
+   "fieldtype": "Data",
+   "label": "Commission"
+  },
+  {
+   "fieldname": "driver_commission",
+   "fieldtype": "Data",
+   "label": "Driver"
+  },
+  {
+   "fieldname": "section_break_vvah",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "Location"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Data",
+   "label": "Latitude"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Data",
+   "label": "Longitude"
+  },
+  {
+   "depends_on": "eval:doc.container_rent == \"Unlimited Contract\"",
+   "fieldname": "cost",
+   "fieldtype": "Data",
+   "label": "Cost"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-12 09:54:04.905463",
+ "modified_by": "Administrator",
+ "module": "Container",
+ "name": "Cotainer Rent",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

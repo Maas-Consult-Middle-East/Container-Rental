@@ -5,7 +5,7 @@
    "label": "Container Details"
   }
  ],
- "content": "[{\"id\":\"container-10\",\"type\":\"header\",\"data\":{\"text\":\"<b>Quick Actions</b>\",\"col\":12}},{\"id\":\"CF2b3wS1dp\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Container Details\",\"col\":12}},{\"id\":\"Yfml2BCbdg\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Late Containers\",\"col\":4}},{\"id\":\"OpZDosALKf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rented Containers\",\"col\":4}},{\"id\":\"pulR3QC-RD\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pull Containers\",\"col\":4}},{\"id\":\"fZFXkYG6ZA\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Empty Containers\",\"col\":4}},{\"id\":\"EMeBPEDh-t\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"container-11\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Container\",\"col\":3}},{\"id\":\"container-12\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Contract\",\"col\":3}},{\"id\":\"container-13\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Reservation\",\"col\":3}},{\"id\":\"container-14\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Container Movement\",\"col\":3}},{\"id\":\"container-15\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Trip\",\"col\":3}},{\"id\":\"container-16\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Payment\",\"col\":3}},{\"id\":\"action-return\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Return Container\",\"col\":3}},{\"id\":\"action-pull\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pull Container\",\"col\":3}},{\"id\":\"container-17\",\"type\":\"card\",\"data\":{\"card_name\":\"Container\",\"col\":4}},{\"id\":\"container-18\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental\",\"col\":4}},{\"id\":\"container-19\",\"type\":\"card\",\"data\":{\"card_name\":\"Finance\",\"col\":4}},{\"id\":\"container-20\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet\",\"col\":4}},{\"id\":\"container-21\",\"type\":\"card\",\"data\":{\"card_name\":\"Operational Reports\",\"col\":4}},{\"id\":\"container-22\",\"type\":\"card\",\"data\":{\"card_name\":\"ERPNext Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"container-10\",\"type\":\"header\",\"data\":{\"text\":\"<b>Quick Actions</b>\",\"col\":12}},{\"id\":\"CF2b3wS1dp\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Container Details\",\"col\":12}},{\"id\":\"Yfml2BCbdg\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Late Containers\",\"col\":4}},{\"id\":\"OpZDosALKf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rented Containers\",\"col\":4}},{\"id\":\"pulR3QC-RD\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pull Containers\",\"col\":4}},{\"id\":\"fZFXkYG6ZA\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Empty Containers\",\"col\":4}},{\"id\":\"EMeBPEDh-t\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ubloAyIUcG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container\",\"col\":3}},{\"id\":\"JXNkNMCpTy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Type\",\"col\":3}},{\"id\":\"mQ88QORZTu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Contract\",\"col\":3}},{\"id\":\"kXDKjlRzSa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Rent\",\"col\":3}},{\"id\":\"Fk6_n5Cpn5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Commission Entry\",\"col\":3}},{\"id\":\"6twZnGiCkW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Classification\",\"col\":3}},{\"id\":\"ghIR67niJN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Classification Type\",\"col\":3}},{\"id\":\"FGwvcQNWRo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Classifcation Sizes\",\"col\":3}},{\"id\":\"mPSApK13B2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Wi8FvOaHy3\",\"type\":\"card\",\"data\":{\"card_name\":\"Appointments\",\"col\":4}},{\"id\":\"X2zxjV42S7\",\"type\":\"card\",\"data\":{\"card_name\":\"Empty and Reservation\",\"col\":4}},{\"id\":\"container-20\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet\",\"col\":4}},{\"id\":\"container-22\",\"type\":\"card\",\"data\":{\"card_name\":\"ERPNext Reports\",\"col\":4}},{\"id\":\"container-21\",\"type\":\"card\",\"data\":{\"card_name\":\"Operational Reports\",\"col\":4}}]",
  "creation": "2026-10-06 14:08:05.638809",
  "custom_blocks": [],
  "docstatus": 0,
@@ -16,82 +16,6 @@
  "is_hidden": 0,
  "label": "Container Management",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container",
-   "link_count": 0,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container",
-   "link_count": 0,
-   "link_to": "Container",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container Type",
-   "link_count": 0,
-   "link_to": "Container Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container Movement",
-   "link_count": 0,
-   "link_to": "Container Movement",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container Trip",
-   "link_count": 0,
-   "link_to": "Container Trip",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container Emptying",
-   "link_count": 0,
-   "link_to": "Container Emptying",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Container Replacement",
-   "link_count": 0,
-   "link_to": "Container Replacement",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Rental",
-   "link_count": 0,
-   "onboard": 0,
-   "type": "Card Break"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -121,14 +45,6 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Finance",
-   "link_count": 0,
-   "onboard": 0,
-   "type": "Card Break"
   },
   {
    "hidden": 0,
@@ -176,54 +92,6 @@
    "label": "Commission Entry",
    "link_count": 0,
    "link_to": "Commission Entry",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fleet",
-   "link_count": 0,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Trucks",
-   "link_count": 0,
-   "link_to": "Vehicle",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Truck Oil Change",
-   "link_count": 0,
-   "link_to": "Truck Oil Change",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Truck Permit",
-   "link_count": 0,
-   "link_to": "Truck Permit",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Truck KM Reading",
-   "link_count": 0,
-   "link_to": "Truck KM Reading",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -311,17 +179,6 @@
    "link_type": "Report",
    "onboard": 0,
    "report_ref_doctype": "Container Replacement",
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Emptying Report",
-   "link_count": 0,
-   "link_to": "Emptying Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "report_ref_doctype": "Container Emptying",
    "type": "Link"
   },
   {
@@ -572,9 +429,146 @@
    "onboard": 0,
    "report_ref_doctype": "Purchase Invoice",
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appointments",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appointment",
+   "link_count": 0,
+   "link_to": "Container Appointment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rent Reservation",
+   "link_count": 0,
+   "link_to": "Rent Reservation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Empty Reservation",
+   "link_count": 0,
+   "link_to": "Empty Reservation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Empty and Reservation",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Emptying Container",
+   "link_count": 0,
+   "link_to": "Emptying Container",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pull Container",
+   "link_count": 0,
+   "link_to": "Pull Container",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Replace Container",
+   "link_count": 0,
+   "link_to": "Container Replacement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fleet",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trucks",
+   "link_count": 0,
+   "link_to": "Vehicle",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Truck Oil Change",
+   "link_count": 0,
+   "link_to": "Truck Oil Change",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Oil Type",
+   "link_count": 0,
+   "link_to": "Oil Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Truck Permit",
+   "link_count": 0,
+   "link_to": "Truck Permit",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Truck KM Reading",
+   "link_count": 0,
+   "link_to": "Truck KM Reading",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-10-07 15:38:05.590273",
+ "modified": "2026-10-12 10:42:45.013893",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Management",
@@ -603,50 +597,68 @@
  "sequence_id": 0.0,
  "shortcuts": [
   {
-   "doc_view": "New",
-   "label": "New Container",
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Classification",
+   "link_to": "Classification",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Container",
    "link_to": "Container",
+   "stats_filter": "[]",
    "type": "DocType"
   },
   {
-   "doc_view": "New",
-   "label": "New Contract",
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Container Type",
+   "link_to": "Classification",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Classification Type",
+   "link_to": "Classification Type",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Container Contract",
    "link_to": "Container Contract",
+   "stats_filter": "[]",
    "type": "DocType"
   },
   {
-   "doc_view": "New",
-   "label": "New Reservation",
-   "link_to": "Rent Reservation",
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Classifcation Sizes",
+   "link_to": "Classifcation Sizes",
+   "stats_filter": "[]",
    "type": "DocType"
   },
   {
-   "doc_view": "New",
-   "label": "New Container Movement",
-   "link_to": "Container Movement",
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Container Rent",
+   "link_to": "Container Rent",
+   "stats_filter": "[]",
    "type": "DocType"
   },
   {
-   "doc_view": "New",
-   "label": "New Trip",
-   "link_to": "Container Trip",
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Commission Entry",
+   "link_to": "Commission Entry",
+   "stats_filter": "[]",
    "type": "DocType"
-  },
-  {
-   "doc_view": "New",
-   "label": "New Payment",
-   "link_to": "Payment Entry",
-   "type": "DocType"
-  },
-  {
-   "label": "Pull Container",
-   "type": "URL",
-   "url": "/app/container-movement/new?movement_type=Pull"
-  },
-  {
-   "label": "Return Container",
-   "type": "URL",
-   "url": "/app/container-movement/new?movement_type=Return"
   }
  ],
  "title": "Container Management"

@@ -1,5 +1,5 @@
-from container.operations import ContainerMovementBase
+from frappe.model.document import Document
 
 
-class ContainerMovement(ContainerMovementBase):
+class ContainerMovement(Document):
 	pass

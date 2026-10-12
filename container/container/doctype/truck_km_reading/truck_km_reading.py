@@ -1,5 +1,5 @@
-from container.operations import TruckKMReadingBase
+from frappe.model.document import Document
 
 
-class TruckKMReading(TruckKMReadingBase):
+class TruckKMReading(Document):
 	pass

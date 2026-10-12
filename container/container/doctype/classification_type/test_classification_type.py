@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestContainerEmptying(FrappeTestCase):
+class TestClassificationType(FrappeTestCase):
 	pass

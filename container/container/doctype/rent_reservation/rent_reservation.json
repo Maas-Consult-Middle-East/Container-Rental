@@ -6,16 +6,14 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "customer",
+  "select_rent_type",
   "reservation_date",
-  "from_date",
-  "to_date",
-  "container_type",
-  "quantity",
-  "container",
-  "rental_rate",
-  "status",
-  "remarks",
+  "appointment",
+  "customer",
+  "address",
+  "supervisor",
+  "driver",
+  "notes",
   "amended_from"
  ],
  "fields": [
@@ -36,57 +34,38 @@
    "reqd": 1
   },
   {
-   "fieldname": "from_date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "From Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "to_date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "To Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "container_type",
+   "fieldname": "select_rent_type",
    "fieldtype": "Link",
-   "label": "Container Type",
-   "options": "Container Type",
-   "reqd": 1
+   "label": "Select Rent Type",
+   "options": "Rent Type"
   },
   {
-   "default": "1",
-   "fieldname": "quantity",
-   "fieldtype": "Int",
-   "label": "Quantity",
-   "reqd": 1
-  },
-  {
-   "description": "Optional specific container; quantity must be one.",
-   "fieldname": "container",
+   "fieldname": "appointment",
    "fieldtype": "Link",
-   "label": "Container",
-   "options": "Container"
+   "label": "Appointment",
+   "options": "Container Appointment"
   },
   {
-   "fieldname": "rental_rate",
-   "fieldtype": "Currency",
-   "label": "Rental Rate"
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
   },
   {
-   "default": "Draft",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Draft\nReserved\nConfirmed\nCancelled\nCompleted",
-   "read_only": 1
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "Employee"
   },
   {
-   "fieldname": "remarks",
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fieldname": "notes",
    "fieldtype": "Small Text",
-   "label": "Remarks"
+   "label": "Notes"
   },
   {
    "fieldname": "amended_from",
@@ -94,12 +73,14 @@
    "label": "Amended From",
    "no_copy": 1,
    "options": "Rent Reservation",
-   "read_only": 1
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-07 11:37:36.905709",
+ "modified": "2026-10-11 16:44:43.313070",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Rent Reservation",
