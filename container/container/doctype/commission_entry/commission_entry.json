@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "trip",
-  "amount"
+  "amount",
+  "amended_from"
  ],
  "fields": [
   {
@@ -18,13 +19,23 @@
   },
   {
    "fieldname": "amount",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Commission Entry",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-12 09:25:42.915104",
+ "modified": "2026-10-12 12:04:41.030809",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Commission Entry",

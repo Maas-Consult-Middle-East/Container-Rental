@@ -1,19 +1,20 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "CR-.####",
  "creation": "2026-10-11 15:37:01.744584",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "container_rent",
+  "rent_type",
   "client",
   "contact_number",
   "address",
   "cost",
   "column_break_umet",
   "classification",
-  "container_size",
   "container_number",
+  "container_size",
   "rent_duration_section",
   "from",
   "column_break_dwvt",
@@ -31,14 +32,6 @@
   "longitude"
  ],
  "fields": [
-  {
-   "fieldname": "container_rent",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Container Rent",
-   "options": "Rent Type",
-   "reqd": 1
-  },
   {
    "fieldname": "client",
    "fieldtype": "Link",
@@ -66,14 +59,16 @@
    "options": "Classification"
   },
   {
+   "fetch_from": "container_number.container_size",
    "fieldname": "container_size",
    "fieldtype": "Data",
    "label": "Container Size"
   },
   {
    "fieldname": "container_number",
-   "fieldtype": "Data",
-   "label": "Container Number"
+   "fieldtype": "Link",
+   "label": "Container Number",
+   "options": "Container"
   },
   {
    "fieldname": "rent_duration_section",
@@ -128,7 +123,7 @@
   {
    "fieldname": "driver_commission",
    "fieldtype": "Data",
-   "label": "Driver"
+   "label": "Commission"
   },
   {
    "fieldname": "section_break_vvah",
@@ -154,15 +149,24 @@
    "fieldname": "cost",
    "fieldtype": "Data",
    "label": "Cost"
+  },
+  {
+   "fieldname": "rent_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Rent Type",
+   "options": "Rent Type",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-12 09:54:04.905463",
+ "modified": "2026-10-12 14:00:29.328981",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Cotainer Rent",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

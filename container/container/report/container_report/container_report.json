@@ -1,0 +1,33 @@
+{
+  "doctype": "Report",
+  "name": "Container Report",
+  "report_name": "Container Report",
+  "ref_doctype": "Cotainer Rent",
+  "module": "Container",
+  "is_standard": "Yes",
+  "report_type": "Script Report",
+  "disabled": 0,
+  "roles": [
+    {
+      "role": "System Manager"
+    },
+    {
+      "role": "Container Manager"
+    },
+    {
+      "role": "Container Operator"
+    },
+    {
+      "role": "Container Reports User"
+    },
+    {
+      "role": "Accounts User"
+    },
+    {
+      "role": "Accounts Manager"
+    },
+    {
+      "role": "Fleet Manager"
+    }
+  ]
+}
