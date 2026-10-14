@@ -16,7 +16,8 @@
   "amended_from",
   "column_break_vhak",
   "driver_commission",
-  "baladiayya"
+  "baladiayya",
+  "journal_entry"
  ],
  "fields": [
   {
@@ -83,6 +84,14 @@
    "fieldtype": "Link",
    "label": "Baladiayya",
    "options": "Baladiyya"
+  },
+  {
+   "fieldname": "journal_entry",
+   "fieldtype": "Link",
+   "label": "Journal Entry",
+   "options": "Journal Entry",
+   "read_only": 1,
+   "no_copy": 1
   }
  ],
  "is_submittable": 1,
