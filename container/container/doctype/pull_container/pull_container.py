@@ -13,8 +13,8 @@ class PullContainer(Document):
 			frappe.throw(_("The container cannot be changed after saving. Create a new Pull Container instead."))
 		if self.is_new():
 			status = frappe.db.get_value("Container", self.container, "status", for_update=True)
-			if status != "Rented":
-				frappe.throw(_("Only a Rented container can be selected for pulling."))
+			if status not in ("Rented", "Late"):
+				frappe.throw(_("Only a Rented or Late container can be selected for pulling."))
 
 	def after_insert(self):
 		frappe.db.set_value("Container", self.container, "status", "Pull")

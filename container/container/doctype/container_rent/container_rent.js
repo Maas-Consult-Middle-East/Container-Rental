@@ -13,6 +13,7 @@ frappe.ui.form.on("Container Rent", {
 	},
 
 	refresh(frm) {
+		
 		if (!frm.is_new() && frm.doc.docstatus !== 2 && frappe.model.can_create("Sales Invoice")) {
 			frm.add_custom_button(__("Sales Invoice"), async () => {
 				if (frm.is_dirty()) {
@@ -67,5 +68,34 @@ frappe.ui.form.on("Container Rent", {
                 console.error("Error reading location:", error);
             }
         }
+    },
+	onload(frm) {
+        set_default_commissions(frm);
     }
 });
+
+async function set_default_commissions(frm) {
+    if (!frm.is_new()) return;
+
+    const settings = await Promise.all([
+        frappe.db.get_single_value("Container Settings", "enable"),
+        frappe.db.get_single_value("Container Settings", "default_driver_commission"),
+        frappe.db.get_single_value("Container Settings", "default_supervisor_commission")
+    ]);
+
+    const [enabled, driver_commission, supervisor_commission] = settings;
+
+    if (!enabled) return;
+
+    if (!frm.doc.driver_commission && driver_commission) {
+        frm.set_value("driver_commission", driver_commission);
+    }
+
+    if (
+        frm.doctype === "Container Rent" &&
+        !frm.doc.supervisor_commission &&
+        supervisor_commission
+    ) {
+        frm.set_value("supervisor_commission", supervisor_commission);
+    }
+}

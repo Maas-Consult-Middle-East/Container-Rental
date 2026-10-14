@@ -256,6 +256,9 @@ app_license = "mit"
 
 # Container rental management integrations
 required_apps = ["erpnext"]
+scheduler_events = {
+    "daily": ["container.rental_status.mark_late_containers"],
+}
 after_install = "container.setup.after_migrate"
 after_migrate = "container.setup.after_migrate"
 

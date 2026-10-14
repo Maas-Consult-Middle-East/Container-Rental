@@ -136,8 +136,8 @@ def make_pull_from_container_rent(source_name, target_doc=None):
 	frappe.has_permission("Pull Container", "create", throw=True)
 	if source.docstatus == 2:
 		frappe.throw(_("Cannot create a Pull Container from a cancelled rental."))
-	if not source.container_number or frappe.db.get_value("Container", source.container_number, "status") != "Rented":
-		frappe.throw(_("Only a Rented container can be selected for pulling."))
+	if not source.container_number or frappe.db.get_value("Container", source.container_number, "status") not in ("Rented", "Late"):
+		frappe.throw(_("Only a Rented or Late container can be selected for pulling."))
 	return get_mapped_doc(
 		"Container Rent",
 		source_name,

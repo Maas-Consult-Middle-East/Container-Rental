@@ -177,7 +177,8 @@
   },
   {
    "fieldname": "container_contract",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
+   "options": "Container Contract",
    "label": "Container Contract",
    "read_only": 1
   }

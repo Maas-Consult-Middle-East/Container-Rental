@@ -1,0 +1,17 @@
+{
+ "doctype": "Report",
+ "name": "Driver Commission Report",
+ "report_name": "Driver Commission Report",
+ "ref_doctype": "Container Rent",
+ "module": "Container",
+ "is_standard": "Yes",
+ "report_type": "Script Report",
+ "add_total_row": 1,
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Container Manager"},
+  {"role": "Container Reports User"},
+  {"role": "Accounts User"},
+  {"role": "Accounts Manager"}
+ ]
+}
