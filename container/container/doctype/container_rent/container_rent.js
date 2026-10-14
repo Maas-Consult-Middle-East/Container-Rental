@@ -13,6 +13,7 @@ frappe.ui.form.on("Container Rent", {
 	},
 
 	refresh(frm) {
+		bind_rental_current_location(frm);
 		
 		if (!frm.is_new() && frm.doc.docstatus !== 2 && frappe.model.can_create("Sales Invoice")) {
 			frm.add_custom_button(__("Sales Invoice"), async () => {
@@ -54,25 +55,63 @@ frappe.ui.form.on("Container Rent", {
 	},
 
 	location(frm) {
-        if (frm.doc.location) {
-            try {
-                let location = JSON.parse(frm.doc.location);
-
-                if (location.features && location.features.length > 0) {
-                    let coordinates = location.features[0].geometry.coordinates;
-
-                    frm.set_value('longitude', coordinates[0]);
-                    frm.set_value('latitude', coordinates[1]);
-                }
-            } catch (error) {
-                console.error("Error reading location:", error);
-            }
-        }
-    },
+		let latitude = null;
+		let longitude = null;
+		try {
+			const location = typeof frm.doc.location === "string"
+				? JSON.parse(frm.doc.location || "null") : frm.doc.location;
+			const geometry = location?.type === "FeatureCollection"
+				? location.features?.find((feature) => feature.geometry?.type === "Point")?.geometry
+				: location?.type === "Feature" ? location.geometry : location;
+			if (geometry?.type === "Point") {
+				const [lng, lat] = geometry.coordinates || [];
+				if (Number.isFinite(lat) && Number.isFinite(lng)
+					&& Math.abs(lat) <= 90 && Math.abs(lng) <= 180) {
+					latitude = lat;
+					longitude = lng;
+				}
+			}
+		} catch (error) {
+			console.error("Error reading location:", error);
+		}
+		return frm.set_value({ latitude, longitude });
+	},
 	onload(frm) {
         set_default_commissions(frm);
     }
 });
+
+function bind_rental_current_location(frm) {
+	const field = frm.fields_dict.location;
+	if (!field || field._rental_location_bound) return;
+	field._rental_location_bound = true;
+	const bind_map = () => {
+		const map = field.map;
+		if (!map || map._rental_location_bound) return;
+		map._rental_location_bound = true;
+		map.on("locationfound", async ({ latlng }) => {
+			if (frm.doc.docstatus !== 0 || field.df.read_only || field.disabled) return;
+			if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng)) return;
+			// Save the located point as the rental's marker, not just the map's temporary GPS overlay.
+			field.locate_control?.stop();
+			await frm.set_value("location", JSON.stringify({
+				type: "FeatureCollection",
+				features: [{
+					type: "Feature",
+					properties: {},
+					geometry: { type: "Point", coordinates: [latlng.lng, latlng.lat] },
+				}],
+			}));
+		});
+	};
+	const make_map = field.make_map;
+	field.make_map = function (...args) {
+		const result = make_map.apply(this, args);
+		bind_map();
+		return result;
+	};
+	bind_map();
+}
 
 async function set_default_commissions(frm) {
     if (!frm.is_new()) return;
