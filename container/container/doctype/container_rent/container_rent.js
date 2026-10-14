@@ -51,4 +51,21 @@ frappe.ui.form.on("Container Rent", {
 		console.log("Container field changed");
 		console.log("Selected:", frm.doc.container_number);
 	},
+
+	location(frm) {
+        if (frm.doc.location) {
+            try {
+                let location = JSON.parse(frm.doc.location);
+
+                if (location.features && location.features.length > 0) {
+                    let coordinates = location.features[0].geometry.coordinates;
+
+                    frm.set_value('longitude', coordinates[0]);
+                    frm.set_value('latitude', coordinates[1]);
+                }
+            } catch (error) {
+                console.error("Error reading location:", error);
+            }
+        }
+    }
 });
