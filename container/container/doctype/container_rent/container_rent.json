@@ -2,19 +2,21 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "CR-.####",
- "creation": "2026-10-11 15:37:01.744584",
+ "creation": "2026-10-14 10:21:30.158185",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "rent_type",
   "client",
   "contact_number",
+  "cr_number",
   "address",
-  "cost",
   "column_break_umet",
   "classification",
   "container_number",
   "container_size",
+  "cost",
+  "container_contract",
   "rent_duration_section",
   "from",
   "column_break_dwvt",
@@ -29,8 +31,8 @@
   "section_break_vvah",
   "location",
   "latitude",
-	  "longitude",
-	  "amended_from"
+  "longitude",
+  "amended_from"
  ],
  "fields": [
   {
@@ -46,7 +48,7 @@
   },
   {
    "fieldname": "address",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Address"
   },
   {
@@ -157,23 +159,34 @@
    "label": "Rent Type",
    "options": "Rent Type",
    "reqd": 1
-	  },
-	  {
-	   "fieldname": "amended_from",
-	   "fieldtype": "Link",
-	   "label": "Amended From",
-	   "no_copy": 1,
-	   "options": "Container Rent",
-	   "print_hide": 1,
-	   "read_only": 1,
-	   "search_index": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Container Rent",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "cr_number",
+   "fieldtype": "Data",
+   "label": "CR Number"
+  },
+  {
+   "fieldname": "container_contract",
+   "fieldtype": "Data",
+   "label": "Container Contract",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
-	 "is_submittable": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2026-10-12 14:00:29.328981",
+ "modified": "2026-10-14 13:01:21.865127",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Rent",

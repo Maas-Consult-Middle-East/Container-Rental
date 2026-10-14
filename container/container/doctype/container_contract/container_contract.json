@@ -213,8 +213,13 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2026-10-12 09:54:04.504541",
+ "links": [
+  {
+   "link_doctype": "Container Rent",
+   "link_fieldname": "container_contract"
+  }
+ ],
+ "modified": "2026-10-14 14:29:45.248207",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Contract",
