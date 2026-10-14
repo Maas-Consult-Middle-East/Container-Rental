@@ -23,6 +23,15 @@ def after_migrate():
 		],
 		"Sales Invoice": [
 			dict(
+				fieldname="container_rent",
+				label="Container Rent",
+				fieldtype="Link",
+				options="Container Rent",
+				insert_after="customer",
+				read_only=1,
+				no_copy=1,
+			),
+			dict(
 				fieldname="container_contract",
 				label="Container Contract",
 				fieldtype="Link",
@@ -64,3 +73,42 @@ def after_migrate():
 	from container.permissions import sync_full_access_permissions
 
 	sync_full_access_permissions()
+	setup_emptying_accounting()
+
+
+DISPOSAL_ACCOUNT_NAME = "Gabage Disporsal Fee"
+
+
+def ensure_disposal_account(company):
+	"""Create a company-specific expense ledger, without duplicating existing accounts."""
+	existing = frappe.db.get_value("Account", {"company": company, "account_name": DISPOSAL_ACCOUNT_NAME}, "name")
+	if existing:
+		return existing
+	parent = frappe.db.get_value(
+		"Account", {"company": company, "root_type": "Expense", "is_group": 1, "parent_account": ["is", "not set"]}, "name"
+	)
+	if not parent:
+		return None  # The company may not have a chart of accounts yet.
+	account = frappe.get_doc({
+		"doctype": "Account", "account_name": DISPOSAL_ACCOUNT_NAME,
+		"company": company, "parent_account": parent, "is_group": 0,
+		"account_currency": frappe.get_cached_value("Company", company, "default_currency"),
+	})
+	account.insert(ignore_permissions=True)
+	return account.name
+
+
+def setup_company_disposal_account(doc, method=None):
+	ensure_disposal_account(doc.name)
+
+
+def setup_emptying_accounting():
+	create_custom_fields({
+		"Driver": [{"fieldname": "custom_petty_cash_account", "label": "Petty Cash Account",
+			"fieldtype": "Link", "options": "Account", "insert_after": "address"}],
+		"Journal Entry": [{"fieldname": "container_emptying", "label": "Emptying Container",
+			"fieldtype": "Link", "options": "Emptying Container", "insert_after": "user_remark",
+			"read_only": 1, "no_copy": 1}],
+	}, update=False)
+	for company in frappe.get_all("Company", pluck="name"):
+		ensure_disposal_account(company)

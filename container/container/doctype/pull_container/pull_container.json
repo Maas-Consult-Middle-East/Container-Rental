@@ -11,13 +11,11 @@
   "driver",
   "supervisor",
   "truck",
-  "emptying_date",
+  "date",
   "notes",
   "amended_from",
   "column_break_vhak",
-  "driver_commission",
-  "supervisor_commission",
-  "amended_from"
+  "driver_commission"
  ],
  "fields": [
   {
@@ -51,11 +49,6 @@
    "options": "Vehicle"
   },
   {
-   "fieldname": "emptying_date",
-   "fieldtype": "Date",
-   "label": "Emptying Date"
-  },
-  {
    "fieldname": "notes",
    "fieldtype": "Small Text",
    "label": "Notes"
@@ -80,24 +73,24 @@
    "label": "Commission"
   },
   {
-   "fieldname": "supervisor_commission",
-   "fieldtype": "Data",
-   "label": "Commission"
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Pull Container",
+   "options": "Emptying Container",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-11 16:12:56.106059",
+ "modified": "2026-10-14 10:50:51.579013",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Pull Container",

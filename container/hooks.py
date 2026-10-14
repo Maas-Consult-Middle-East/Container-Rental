@@ -258,3 +258,7 @@ app_license = "mit"
 required_apps = ["erpnext"]
 after_install = "container.setup.after_migrate"
 after_migrate = "container.setup.after_migrate"
+
+doc_events = {
+    "Company": {"on_update": "container.setup.setup_company_disposal_account"},
+}

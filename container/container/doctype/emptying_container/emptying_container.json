@@ -2,7 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "autoname": "format:CE-{#####}",
- "creation": "2026-10-07 10:52:48.723422",
+ "creation": "2026-10-14 11:20:17.927908",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -16,7 +16,7 @@
   "amended_from",
   "column_break_vhak",
   "driver_commission",
-  "supervisor_commission"
+  "baladiayya"
  ],
  "fields": [
   {
@@ -79,14 +79,20 @@
    "label": "Commission"
   },
   {
-   "fieldname": "supervisor_commission",
-   "fieldtype": "Data",
-   "label": "Commission"
+   "fieldname": "baladiayya",
+   "fieldtype": "Link",
+   "label": "Baladiayya",
+   "options": "Baladiyya"
   }
  ],
  "is_submittable": 1,
- "links": [],
- "modified": "2026-10-11 16:11:39.102965",
+ "links": [
+  {
+   "link_doctype": "Journal Entry",
+   "link_fieldname": "container_emptying"
+  }
+ ],
+ "modified": "2026-10-14 12:05:11.182090",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Emptying Container",

@@ -146,7 +146,6 @@
    "label": "Longitude"
   },
   {
-   "depends_on": "eval:doc.rent_type == \"Unlimited Contract\"",
    "fieldname": "cost",
    "fieldtype": "Data",
    "label": "Cost"
