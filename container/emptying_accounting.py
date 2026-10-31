@@ -37,7 +37,7 @@ def create_disposal_journal(emptying):
 		frappe.throw(_("Set up the company's expense chart of accounts before submitting."))
 	debit = frappe.get_doc("Account", debit_name)
 	if debit.is_group or debit.disabled or debit.root_type != "Expense" or debit.account_currency != company.default_currency:
-		frappe.throw(_("Gabage Disporsal Fee must be an enabled expense ledger in the company currency."))
+		frappe.throw(_("Garbage Disposal Fee must be an enabled expense ledger in the company currency."))
 	if not company.cost_center:
 		frappe.throw(_("Set the company's default Cost Center before submitting."))
 	journal = frappe.new_doc("Journal Entry")

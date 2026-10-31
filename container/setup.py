@@ -76,7 +76,7 @@ def after_migrate():
 	setup_emptying_accounting()
 
 
-DISPOSAL_ACCOUNT_NAME = "Gabage Disporsal Fee"
+DISPOSAL_ACCOUNT_NAME = "Garbage Disposal Fee"
 
 
 def ensure_disposal_account(company):
