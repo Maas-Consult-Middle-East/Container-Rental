@@ -14,10 +14,10 @@ def execute(filters=None):
 		frappe.throw(_("From Date cannot be after To Date."))
 	if filters.container_status not in (None, "", "Rented", "Pull", "Late", "Empty"):
 		frappe.throw(_("Select a valid container status."))
-	frappe.has_permission("Container Rent", "read", throw=True)
+	frappe.has_permission("Rent A Container", "read", throw=True)
 	conditions = [["docstatus", "!=", 2]]
 	if filters.container:
-		conditions.append(["container_number", "=", filters.container])
+		conditions.append(["Rent A Container Item", "container", "=", filters.container])
 	if filters.customer:
 		conditions.append(["client", "=", filters.customer])
 	if filters.from_date:
@@ -25,11 +25,11 @@ def execute(filters=None):
 	if filters.to_date:
 		conditions.append(["from", "<", add_days(getdate(filters.to_date), 1)])
 	rentals = frappe.get_list(
-		"Container Rent",
+		"Rent A Container",
 		filters=conditions,
-		fields=["name", "container_number", "client", "contact_number", "address", "driver",
+		fields=["name", "`tabRent A Container Item`.container as container_number", "client", "contact_number", "address", "driver",
 			"classification", "from", "to", "latitude", "longitude", "location"],
-		order_by="`tabContainer Rent`.`from` desc, creation desc, name desc",
+		order_by="`tabRent A Container`.`from` desc, `tabRent A Container`.creation desc, `tabRent A Container`.name desc, `tabRent A Container Item`.idx asc",
 		limit_page_length=0,
 	)
 	if not rentals:
@@ -135,7 +135,7 @@ def get_columns():
 		{"fieldname": field, "label": _(label), "fieldtype": kind, "width": width, **options}
 		for field, label, kind, width, options in [
 			("container_number", "Container Number", "Link", 150, {"options": "Container"}),
-			("rent_number", "Rent Number", "Link", 150, {"options": "Container Rent"}),
+			("rent_number", "Rent Number", "Link", 150, {"options": "Rent A Container"}),
 			("client_name", "Client Name", "Data", 230, {}),
 			("client_phone", "Client Phone Number", "Data", 170, {}),
 			("client_address", "Client Address", "Data", 220, {}),

@@ -6,7 +6,21 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "container",
+  "rental_details_section",
+  "rent_a_container",
+  "rent_type",
+  "client",
+  "contact_number",
+  "cr_number",
+  "address",
+  "column_break_rent",
+  "classification",
+  "cost",
+  "container_contract",
+  "rent_from",
+  "rent_to",
+  "containers_section",
+  "containers",
   "section_break_mzmc",
   "driver",
   "supervisor",
@@ -15,20 +29,22 @@
   "notes",
   "amended_from",
   "column_break_vhak",
-  "driver_commission"
+  "driver_commission",
+  "location_section",
+  "location",
+  "latitude",
+  "longitude"
  ],
  "fields": [
   {
-   "fieldname": "container",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Container",
-   "options": "Container",
-   "reqd": 1
+   "fieldname": "rental_details_section",
+   "fieldtype": "Section Break",
+   "label": "Rental Details"
   },
   {
    "fieldname": "section_break_mzmc",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Operation"
   },
   {
    "fieldname": "driver",
@@ -58,7 +74,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Emptying Container",
+   "options": "Pull Container",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -70,27 +86,140 @@
   {
    "fieldname": "driver_commission",
    "fieldtype": "Data",
-   "label": "Commission"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Emptying Container",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "label": "Driver Commission"
   },
   {
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
+  },
+  {
+   "fieldname": "containers",
+   "fieldtype": "Table",
+   "label": "Containers",
+   "options": "Pull Container Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rent_a_container",
+   "fieldtype": "Link",
+   "label": "Rent A Container",
+   "options": "Rent A Container",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "rent_a_container.rent_type",
+   "fieldname": "rent_type",
+   "fieldtype": "Link",
+   "label": "Rent Type",
+   "options": "Rent Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.client",
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.contact_number",
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.cr_number",
+   "fieldname": "cr_number",
+   "fieldtype": "Data",
+   "label": "CR Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.address",
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_rent",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "rent_a_container.classification",
+   "fieldname": "classification",
+   "fieldtype": "Link",
+   "label": "Classification",
+   "options": "Classification",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.cost",
+   "fieldname": "cost",
+   "fieldtype": "Data",
+   "label": "Cost",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.container_contract",
+   "fieldname": "container_contract",
+   "fieldtype": "Link",
+   "label": "Container Contract",
+   "options": "Container Contract",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.from",
+   "fieldname": "rent_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.to",
+   "fieldname": "rent_to",
+   "fieldtype": "Date",
+   "label": "To",
+   "read_only": 1
+  },
+  {
+   "fieldname": "containers_section",
+   "fieldtype": "Section Break",
+   "label": "Containers"
+  },
+  {
+   "fieldname": "location_section",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fetch_from": "rent_a_container.location",
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "Location",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.latitude",
+   "fieldname": "latitude",
+   "fieldtype": "Data",
+   "label": "Latitude",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rent_a_container.longitude",
+   "fieldname": "longitude",
+   "fieldtype": "Data",
+   "label": "Longitude",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-14 10:50:51.579013",
+ "modified": "2026-11-01 15:11:47.757038",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Pull Container",

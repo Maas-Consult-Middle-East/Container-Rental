@@ -14,8 +14,11 @@ def mark_late_containers():
 			continue
 		# Use the latest submitted rental, never an old rental from a previous cycle.
 		rentals = frappe.get_all(
-			"Container Rent", filters={"container_number": name, "docstatus": 1},
-			fields=["from"], order_by="creation desc, name desc", limit_page_length=1,
+			"Rent A Container",
+			filters=[["Rent A Container Item", "container", "=", name], ["docstatus", "=", 1]],
+			fields=["from"],
+			order_by="`tabRent A Container`.creation desc, `tabRent A Container`.name desc",
+			limit_page_length=1,
 		)
 		if rentals and rentals[0].get("from") and getdate(rentals[0].get("from")) < cutoff:
 			frappe.db.set_value("Container", name, "status", "Late")

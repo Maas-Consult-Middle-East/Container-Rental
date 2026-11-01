@@ -2,7 +2,7 @@
  "doctype": "Report",
  "name": "Driver Commission Report",
  "report_name": "Driver Commission Report",
- "ref_doctype": "Container Rent",
+ "ref_doctype": "Rent A Container",
  "module": "Container",
  "is_standard": "Yes",
  "report_type": "Script Report",

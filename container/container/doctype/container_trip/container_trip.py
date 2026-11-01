@@ -10,8 +10,9 @@ class ContainerTrip(Document):
 			{
 				"source_doctype": self.source_doctype,
 				"source_name": self.source_name,
+				"container": self.container,
 				"docstatus": ["!=", 2],
 				"name": ["!=", self.name],
 			},
 		):
-			frappe.throw(_("An active Container Trip already exists for this source document."))
+			frappe.throw(_("An active Container Trip already exists for this container and source document."))

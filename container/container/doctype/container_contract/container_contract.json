@@ -202,7 +202,7 @@
  "is_submittable": 1,
  "links": [
   {
-   "link_doctype": "Container Rent",
+   "link_doctype": "Rent A Container",
    "link_fieldname": "container_contract"
   }
  ],

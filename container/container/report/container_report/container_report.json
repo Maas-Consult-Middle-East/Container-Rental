@@ -2,7 +2,7 @@
   "doctype": "Report",
   "name": "Container Report",
   "report_name": "Container Report",
-  "ref_doctype": "Container Rent",
+  "ref_doctype": "Rent A Container",
   "module": "Container",
   "is_standard": "Yes",
   "report_type": "Script Report",

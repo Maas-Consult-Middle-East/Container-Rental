@@ -24,9 +24,9 @@ def after_migrate():
 		"Sales Invoice": [
 			dict(
 				fieldname="container_rent",
-				label="Container Rent",
+				label="Rent A Container",
 				fieldtype="Link",
-				options="Container Rent",
+				options="Rent A Container",
 				insert_after="customer",
 				read_only=1,
 				no_copy=1,

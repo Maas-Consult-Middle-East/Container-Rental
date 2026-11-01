@@ -16,10 +16,10 @@ def source(**values):
 class TestWorkflowMapping(unittest.TestCase):
 	def test_container_rent_maps_to_trip(self):
 		rent = source(
-			doctype="Container Rent",
+			doctype="Rent A Container",
 			name="CR-0001",
 			docstatus=1,
-			container_number="R11",
+			containers=[frappe._dict(container="R11")],
 			client="DEMO",
 			classification="20 Yard",
 			truck="TRUCK-1",
@@ -36,13 +36,33 @@ class TestWorkflowMapping(unittest.TestCase):
 			patch.object(frappe, "db", SimpleNamespace(exists=lambda *args, **kwargs: False)), \
 			patch.object(frappe, "new_doc", return_value=frappe._dict()), \
 			patch.object(workflows, "_find_contract", return_value=frappe._dict(name="CON-1")):
-			trip = workflows._make_trip("Container Rent", "CR-0001")
+			trip = workflows._make_trip("Rent A Container", "CR-0001")
 		self.assertEqual(trip.container, "R11")
 		self.assertEqual(trip.customer, "DEMO")
 		self.assertEqual(trip.contract, "CON-1")
-		self.assertEqual(trip.source_doctype, "Container Rent")
+		self.assertEqual(trip.source_doctype, "Rent A Container")
 		self.assertEqual(trip.driver_commission, 20)
 		self.assertEqual(trip.supervisor_commission, 10)
+
+	def test_multi_container_rent_uses_selected_container(self):
+		rent = source(
+			doctype="Rent A Container",
+			name="CR-0001",
+			docstatus=1,
+			containers=[frappe._dict(container="R11"), frappe._dict(container="R12")],
+		)
+		with patch.object(frappe, "has_permission", return_value=True), \
+			patch.object(frappe, "get_doc", return_value=rent), \
+			patch.object(frappe, "db", SimpleNamespace(exists=lambda *args, **kwargs: False)), \
+			patch.object(frappe, "new_doc", return_value=frappe._dict()), \
+			patch.object(workflows, "_find_contract", return_value=None), \
+			patch.object(workflows, "_", side_effect=lambda text: text), \
+			patch.object(frappe, "throw", side_effect=ValueError):
+			with patch.object(frappe, "flags", frappe._dict(args=frappe._dict(container="R12"))):
+				self.assertEqual(workflows._make_trip("Rent A Container", "CR-0001").container, "R12")
+			for args in (None, frappe._dict(container="OTHER")):
+				with patch.object(frappe, "flags", frappe._dict(args=args)), self.assertRaises(ValueError):
+					workflows._make_trip("Rent A Container", "CR-0001")
 
 	def test_replacement_uses_new_container_and_current_rental(self):
 		replacement = source(
@@ -76,8 +96,8 @@ class TestWorkflowMapping(unittest.TestCase):
 			doctype="Pull Container",
 			name="PULL-1",
 			docstatus=1,
-			container="R11",
-			emptying_date="2026-10-12",
+			containers=[frappe._dict(container="R11")],
+			date="2026-10-12",
 			truck="TRUCK-1",
 			driver="DRIVER-1",
 			supervisor=None,
@@ -117,20 +137,22 @@ class TestWorkflowMapping(unittest.TestCase):
 		)
 
 	def test_duplicate_trip_is_rejected(self):
-		rent = source(doctype="Container Rent", name="CR-0001", docstatus=1)
+		rent = source(
+			doctype="Rent A Container", name="CR-0001", docstatus=1, containers=[frappe._dict(container="R11")]
+		)
 		with patch.object(frappe, "has_permission", return_value=True), \
 			patch.object(frappe, "get_doc", return_value=rent), \
 			patch.object(frappe, "db", SimpleNamespace(exists=lambda *args, **kwargs: "CT-00001")), \
 			patch.object(workflows, "_", side_effect=lambda text: text), \
 			patch.object(frappe, "throw", side_effect=ValueError):
 			with self.assertRaises(ValueError):
-				workflows._make_trip("Container Rent", "CR-0001")
+				workflows._make_trip("Rent A Container", "CR-0001")
 
 	def test_draft_source_is_rejected(self):
-		rent = source(doctype="Container Rent", name="CR-0001", docstatus=0)
+		rent = source(doctype="Rent A Container", name="CR-0001", docstatus=0)
 		with patch.object(frappe, "has_permission", return_value=True), \
 			patch.object(frappe, "get_doc", return_value=rent), \
 			patch.object(workflows, "_", side_effect=lambda text: text), \
 			patch.object(frappe, "throw", side_effect=ValueError):
 			with self.assertRaises(ValueError):
-				workflows._make_trip("Container Rent", "CR-0001")
+				workflows._make_trip("Rent A Container", "CR-0001")

@@ -13,10 +13,10 @@
   "address",
   "column_break_umet",
   "classification",
-  "container_number",
-  "container_size",
   "cost",
   "container_contract",
+  "containers_section",
+  "containers",
   "rent_duration_section",
   "from",
   "column_break_dwvt",
@@ -60,18 +60,6 @@
    "fieldtype": "Link",
    "label": "Classification",
    "options": "Classification"
-  },
-  {
-   "fetch_from": "container_number.container_size",
-   "fieldname": "container_size",
-   "fieldtype": "Data",
-   "label": "Container Size"
-  },
-  {
-   "fieldname": "container_number",
-   "fieldtype": "Link",
-   "label": "Container Number",
-   "options": "Container"
   },
   {
    "fieldname": "rent_duration_section",
@@ -165,7 +153,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Container Rent",
+   "options": "Rent A Container",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -181,16 +169,28 @@
    "label": "Container Contract",
    "options": "Container Contract",
    "read_only": 1
+  },
+  {
+   "fieldname": "containers_section",
+   "fieldtype": "Section Break",
+   "label": "Containers"
+  },
+  {
+   "fieldname": "containers",
+   "fieldtype": "Table",
+   "label": "Containers",
+   "options": "Rent A Container Item",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-11-01 11:05:35.685300",
+ "modified": "2026-11-01 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
- "name": "Container Rent",
+ "name": "Rent A Container",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

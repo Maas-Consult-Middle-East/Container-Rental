@@ -1,20 +1,19 @@
-frappe.ui.form.on("Container Rent", {
+frappe.ui.form.on("Rent A Container", {
 	setup(frm) {
 		frm.set_query("supervisor", () => ({
 			filters: { designation: "Supervisor" },
 		}));
-		frm.set_query("container_number",function(){
-			return {
-				filters:{
-					status: "Empty"
-				}
-			}
-		})
+		frm.set_query("container", "containers", (doc) => ({
+			filters: {
+				status: "Empty",
+				name: ["not in", (doc.containers || []).map((row) => row.container).filter(Boolean)],
+			},
+		}));
 	},
 
 	refresh(frm) {
 		bind_rental_current_location(frm);
-		
+
 		if (!frm.is_new() && frm.doc.docstatus !== 2 && frappe.model.can_create("Sales Invoice")) {
 			frm.add_custom_button(__("Sales Invoice"), async () => {
 				if (frm.is_dirty()) {
@@ -30,7 +29,7 @@ frappe.ui.form.on("Container Rent", {
 				if (response.message) frappe.set_route("Form", "Sales Invoice", response.message);
 			}, __("Create"));
 		}
-		if (!frm.is_new() && frm.doc.docstatus !== 2 && frm.doc.container_number
+		if (!frm.is_new() && frm.doc.docstatus !== 2 && (frm.doc.containers || []).length
 			&& frappe.model.can_create("Pull Container")) {
 			frm.add_custom_button(__("Pull Container"), () => {
 				frappe.model.open_mapped_doc({
@@ -39,10 +38,15 @@ frappe.ui.form.on("Container Rent", {
 				});
 			}, __("Create"));
 		}
-		if (frm.doc.docstatus === 1) {
+		if (frm.doc.docstatus === 1 && frappe.model.can_create("Container Trip")) {
 			frm.add_custom_button(__("Container Trip"), () => {
+				container.utils.open_mapped_doc_for_container(frm, "container.workflows.make_trip_from_container_rent");
+			}, __("Create"));
+		}
+		if (frm.doc.docstatus === 1 && frappe.model.can_create("Payment Entry")) {
+			frm.add_custom_button(__("Payment"), () => {
 				frappe.model.open_mapped_doc({
-					method: "container.workflows.make_trip_from_container_rent",
+					method: "container.workflows.make_payment_entry_from_container_rent",
 					frm,
 				});
 			}, __("Create"));
@@ -51,11 +55,6 @@ frappe.ui.form.on("Container Rent", {
 
 	from(frm) {
 		return frm.set_value("to", frm.doc.from ? frappe.datetime.add_days(frm.doc.from, 10) : null);
-	},
-
-	container_number(frm) {
-		console.log("Container field changed");
-		console.log("Selected:", frm.doc.container_number);
 	},
 
 	location(frm) {
@@ -135,7 +134,7 @@ async function set_default_commissions(frm) {
     }
 
     if (
-        frm.doctype === "Container Rent" &&
+        frm.doctype === "Rent A Container" &&
         !frm.doc.supervisor_commission &&
         supervisor_commission
     ) {

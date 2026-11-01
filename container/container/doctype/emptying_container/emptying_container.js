@@ -33,7 +33,7 @@ async function set_default_commissions(frm) {
     }
 
     if (
-        frm.doctype === "Container Rent" &&
+        frm.doctype === "Rent A Container" &&
         !frm.doc.supervisor_commission &&
         supervisor_commission
     ) {

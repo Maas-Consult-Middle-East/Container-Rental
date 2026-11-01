@@ -1,0 +1,35 @@
+{
+ "add_total_row": 0,
+ "disabled": 0,
+ "doctype": "Report",
+ "is_standard": "Yes",
+ "module": "Container",
+ "name": "Emptying Containers List",
+ "prepared_report": 0,
+ "ref_doctype": "Emptying Container",
+ "report_name": "Emptying Containers List",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Container Manager"
+  },
+  {
+   "role": "Container Operator"
+  },
+  {
+   "role": "Container Reports User"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Fleet Manager"
+  }
+ ]
+}

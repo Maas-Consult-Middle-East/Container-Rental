@@ -5,7 +5,7 @@ from frappe import _
 from frappe.utils import add_days, flt, getdate
 
 
-TRIP_SOURCES = ("Container Rent", "Container Replacement", "Pull Container")
+TRIP_SOURCES = ("Rent A Container", "Container Replacement", "Pull Container")
 
 
 def _new_doc(doctype, target_doc=None):
@@ -41,23 +41,34 @@ def _find_contract(customer, operation_date, classification=None):
 def _rental_for_container(container, operation_date):
 	if not container:
 		return None
-	filters = [["container_number", "=", container], ["docstatus", "!=", 2]]
+	filters = [["Rent A Container Item", "container", "=", container], ["docstatus", "!=", 2]]
 	if operation_date:
 		filters.append(["from", "<", add_days(getdate(operation_date), 1)])
 	rows = frappe.get_list(
-		"Container Rent",
+		"Rent A Container",
 		filters=filters,
 		fields=["name", "client", "classification", "address", "from", "to"],
-		order_by="`tabContainer Rent`.`from` desc, creation desc, name desc",
+		order_by="`tabRent A Container`.`from` desc, `tabRent A Container`.creation desc, `tabRent A Container`.name desc",
 		limit_page_length=1,
 	)
 	return rows[0] if rows else None
 
 
+def _selected_container(source):
+	"""Return the container chosen for a mapped document; rentals and pulls can hold several."""
+	containers = [row.container for row in source.containers]
+	container = (frappe.flags.args or {}).get("container")
+	if not container and len(containers) == 1:
+		container = containers[0]
+	if not container or container not in containers:
+		frappe.throw(_("Select a container from {0}.").format(source.name))
+	return container
+
+
 def _trip_context(source):
-	if source.doctype == "Container Rent":
+	if source.doctype == "Rent A Container":
 		return frappe._dict(
-			container=source.container_number,
+			container=_selected_container(source),
 			customer=source.client,
 			classification=source.classification,
 			pickup_date=source.get("from"),
@@ -70,10 +81,13 @@ def _trip_context(source):
 		rental_container = source.rented_container_number
 		operation_date = source.replace_date
 	else:
-		container = source.container
+		container = _selected_container(source)
 		rental_container = container
-		operation_date = source.emptying_date
-	rental = _rental_for_container(rental_container, operation_date) or frappe._dict()
+		operation_date = source.get("date")
+	if source.get("rent_a_container"):
+		rental = frappe._dict(client=source.client, classification=source.classification, address=source.address)
+	else:
+		rental = _rental_for_container(rental_container, operation_date) or frappe._dict()
 	return frappe._dict(
 		container=container,
 		customer=rental.get("client"),
@@ -91,13 +105,18 @@ def _make_trip(source_doctype, source_name, target_doc=None):
 	source.check_permission("read")
 	if source.docstatus != 1:
 		frappe.throw(_("Submit {0} before creating a Container Trip.").format(source_doctype))
+	context = _trip_context(source)
 	if frappe.db.exists(
 		"Container Trip",
-		{"source_doctype": source_doctype, "source_name": source.name, "docstatus": ["!=", 2]},
+		{
+			"source_doctype": source_doctype,
+			"source_name": source.name,
+			"container": context.container,
+			"docstatus": ["!=", 2],
+		},
 	):
-		frappe.throw(_("An active Container Trip already exists for this document."))
+		frappe.throw(_("An active Container Trip already exists for container {0}.").format(context.container))
 
-	context = _trip_context(source)
 	contract = _find_contract(
 		context.customer,
 		context.pickup_date,
@@ -131,30 +150,47 @@ def _make_trip(source_doctype, source_name, target_doc=None):
 def make_pull_from_container_rent(source_name, target_doc=None):
 	from frappe.model.mapper import get_mapped_doc
 
-	source = frappe.get_doc("Container Rent", source_name)
+	source = frappe.get_doc("Rent A Container", source_name)
 	source.check_permission("read")
 	frappe.has_permission("Pull Container", "create", throw=True)
 	if source.docstatus == 2:
 		frappe.throw(_("Cannot create a Pull Container from a cancelled rental."))
-	if not source.container_number or frappe.db.get_value("Container", source.container_number, "status") not in ("Rented", "Late"):
+	containers = [
+		frappe.db.get_value(
+			"Container", row.container, ["name", "status", "container_size", "classification"], as_dict=True
+		)
+		for row in source.containers
+	]
+	containers = [c for c in containers if c and c.status in ("Rented", "Late")]
+	if not containers:
 		frappe.throw(_("Only a Rented or Late container can be selected for pulling."))
+
+	def set_containers(source_doc, target):
+		# Fill the fetched columns now; fetch_from would only run when the new pull is saved.
+		for c in containers:
+			target.append(
+				"containers",
+				{"container": c.name, "container_size": c.container_size, "classification": c.classification},
+			)
+
 	return get_mapped_doc(
-		"Container Rent",
+		"Rent A Container",
 		source_name,
 		{
-			"Container Rent": {
+			"Rent A Container": {
 				"doctype": "Pull Container",
-				"field_map": {"container_number": "container"},
+				"field_map": {"name": "rent_a_container", "from": "rent_from", "to": "rent_to"},
 				"field_no_map": ["amended_from"],
 			}
 		},
 		target_doc,
+		set_containers,
 	)
 
 
 @frappe.whitelist()
 def make_trip_from_container_rent(source_name, target_doc=None):
-	return _make_trip("Container Rent", source_name, target_doc)
+	return _make_trip("Rent A Container", source_name, target_doc)
 
 
 @frappe.whitelist()
@@ -171,8 +207,13 @@ def make_emptying_from_pull_container(source_name, target_doc=None):
 	frappe.has_permission("Emptying Container", "create", throw=True)
 	if source.docstatus == 2:
 		frappe.throw(_("Cannot create an Emptying Container from a cancelled pull."))
-	if not source.container or frappe.db.get_value("Container", source.container, "status") != "Pull":
+	container = _selected_container(source)
+	if frappe.db.get_value("Container", container, "status") != "Pull":
 		frappe.throw(_("Only a container with status Pull can be emptied."))
+
+	def set_container(source_doc, target):
+		target.container = container
+
 	return get_mapped_doc(
 		"Pull Container",
 		source_name,
@@ -183,6 +224,7 @@ def make_emptying_from_pull_container(source_name, target_doc=None):
 			}
 		},
 		target_doc,
+		set_container,
 	)
 
 
@@ -237,10 +279,10 @@ def create_sales_invoice_from_container_rent(source_name):
 	from erpnext.stock.get_item_details import get_price_list_rate_for
 
 	frappe.has_permission("Sales Invoice", "create", throw=True)
-	source = frappe.get_doc("Container Rent", source_name)
+	source = frappe.get_doc("Rent A Container", source_name)
 	source.check_permission("read")
 	# Serialize clicks against the same rental, including requests from other tabs.
-	frappe.db.get_value("Container Rent", source_name, "name", for_update=True)
+	frappe.db.get_value("Rent A Container", source_name, "name", for_update=True)
 	source.reload()
 	if source.docstatus == 2:
 		frappe.throw(_("Cannot invoice a cancelled rental."))
@@ -252,12 +294,18 @@ def create_sales_invoice_from_container_rent(source_name):
 		return existing
 	if not source.client:
 		frappe.throw(_("Select a Client on the rental before creating an invoice."))
-	if not source.container_number or not frappe.db.exists("Item", source.container_number):
-		frappe.throw(_("Create an Item with the same code as Container {0} and set its selling Item Price.").format(source.container_number or ""))
-	item = frappe.get_doc("Item", source.container_number)
-	item.check_permission("read")
-	if item.disabled or not item.is_sales_item:
-		frappe.throw(_("The container Item must be enabled for sales."))
+	containers = [row.container for row in source.containers]
+	if not containers:
+		frappe.throw(_("Add at least one container to the rental before creating an invoice."))
+	items = []
+	for container in containers:
+		if not frappe.db.exists("Item", container):
+			frappe.throw(_("Create an Item with the same code as Container {0} and set its selling Item Price.").format(container))
+		item = frappe.get_doc("Item", container)
+		item.check_permission("read")
+		if item.disabled or not item.is_sales_item:
+			frappe.throw(_("The container Item {0} must be enabled for sales.").format(container))
+		items.append(item)
 	company = frappe.defaults.get_user_default("Company") or frappe.db.get_single_value("Global Defaults", "default_company")
 	if not company:
 		frappe.throw(_("Set a default Company before creating an invoice."))
@@ -273,33 +321,58 @@ def create_sales_invoice_from_container_rent(source_name):
 		"conversion_rate": 1,
 		"container_rent": source.name,
 		"update_stock": 0,
-		"remarks": _("Container rental {0}; container {1}").format(source.name, source.container_number or ""),
+		"remarks": _("Container rental {0}; containers {1}").format(source.name, ", ".join(containers)),
 	})
 	invoice.set_missing_values()
 	if not invoice.selling_price_list:
 		frappe.throw(_("Set a Selling Price List for the customer or in Selling Settings."))
-	price = get_price_list_rate_for(frappe._dict(
-		price_list=invoice.selling_price_list,
-		customer=source.client,
-		uom=item.stock_uom,
-		stock_uom=item.stock_uom,
-		qty=1,
-		conversion_factor=1,
-		transaction_date=invoice.posting_date,
-	), item.name)
-	if price is None:
-		frappe.throw(_("No valid Item Price found for {0} in {1}. Add one before creating the invoice.").format(item.name, invoice.selling_price_list))
-	invoice.append("items", {
-		"item_code": item.name,
-		"qty": 1,
-		"uom": item.stock_uom,
-		"stock_uom": item.stock_uom,
-		"conversion_factor": 1,
-		"income_account": company_doc.default_income_account,
-		"cost_center": company_doc.cost_center,
-	})
+	for item in items:
+		price = get_price_list_rate_for(frappe._dict(
+			price_list=invoice.selling_price_list,
+			customer=source.client,
+			uom=item.stock_uom,
+			stock_uom=item.stock_uom,
+			qty=1,
+			conversion_factor=1,
+			transaction_date=invoice.posting_date,
+		), item.name)
+		if price is None:
+			frappe.throw(_("No valid Item Price found for {0} in {1}. Add one before creating the invoice.").format(item.name, invoice.selling_price_list))
+		invoice.append("items", {
+			"item_code": item.name,
+			"qty": 1,
+			"uom": item.stock_uom,
+			"stock_uom": item.stock_uom,
+			"conversion_factor": 1,
+			"income_account": company_doc.default_income_account,
+			"cost_center": company_doc.cost_center,
+		})
 	invoice.set_missing_values()
 	invoice.calculate_taxes_and_totals()
 	invoice.insert()
 	invoice.submit()
 	return invoice.name
+
+
+@frappe.whitelist()
+def make_payment_entry_from_container_rent(source_name, target_doc=None):
+	"""Open a Payment Entry against the rental's outstanding Sales Invoice."""
+	from erpnext.accounts.doctype.payment_entry.payment_entry import get_payment_entry
+
+	frappe.has_permission("Payment Entry", "create", throw=True)
+	source = frappe.get_doc("Rent A Container", source_name)
+	source.check_permission("read")
+	if source.docstatus != 1:
+		frappe.throw(_("Submit the rental before creating a payment."))
+	invoices = frappe.get_list(
+		"Sales Invoice",
+		filters={"container_rent": source.name, "docstatus": 1, "is_return": 0},
+		fields=["name", "outstanding_amount"],
+		order_by="posting_date desc, creation desc",
+	)
+	if not invoices:
+		frappe.throw(_("Create the Sales Invoice for rental {0} before recording a payment.").format(source.name))
+	invoice = next((row for row in invoices if flt(row.outstanding_amount) > 0), None)
+	if not invoice:
+		frappe.throw(_("The Sales Invoice for rental {0} is already fully paid.").format(source.name))
+	return get_payment_entry("Sales Invoice", invoice.name)
