@@ -49,6 +49,10 @@ frappe.ui.form.on("Container Rent", {
 		}
 	},
 
+	from(frm) {
+		return frm.set_value("to", frm.doc.from ? frappe.datetime.add_days(frm.doc.from, 10) : null);
+	},
+
 	container_number(frm) {
 		console.log("Container field changed");
 		console.log("Selected:", frm.doc.container_number);

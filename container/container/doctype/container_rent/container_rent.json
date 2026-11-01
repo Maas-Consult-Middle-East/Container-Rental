@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "CR-.####",
- "creation": "2026-10-14 10:21:30.158185",
+ "creation": "2026-10-14 15:50:20.528947",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -80,7 +80,7 @@
   },
   {
    "fieldname": "from",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "From"
   },
   {
@@ -89,7 +89,7 @@
   },
   {
    "fieldname": "to",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "To"
   },
   {
@@ -178,8 +178,8 @@
   {
    "fieldname": "container_contract",
    "fieldtype": "Link",
-   "options": "Container Contract",
    "label": "Container Contract",
+   "options": "Container Contract",
    "read_only": 1
   }
  ],
@@ -187,7 +187,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-14 13:01:21.865127",
+ "modified": "2026-11-01 11:05:35.685300",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Rent",
