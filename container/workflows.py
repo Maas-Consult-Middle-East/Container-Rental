@@ -275,9 +275,6 @@ def make_supervisor_commission(source_name, target_doc=None):
 @frappe.whitelist(methods=["POST"])
 def create_sales_invoice_from_container_rent(source_name):
 	"""Create the rental invoice using the item's selling price."""
-	from frappe.utils import today
-	from erpnext.stock.get_item_details import get_price_list_rate_for
-
 	frappe.has_permission("Sales Invoice", "create", throw=True)
 	source = frappe.get_doc("Rent A Container", source_name)
 	source.check_permission("read")
@@ -292,6 +289,17 @@ def create_sales_invoice_from_container_rent(source_name):
 	if existing:
 		frappe.get_doc("Sales Invoice", existing).check_permission("read")
 		return existing
+	invoice = _build_rental_invoice(source)
+	invoice.insert()
+	invoice.submit()
+	return invoice.name
+
+
+def _build_rental_invoice(source):
+	"""Return an unsaved Sales Invoice priced from the rental's container Items."""
+	from frappe.utils import today
+	from erpnext.stock.get_item_details import get_price_list_rate_for
+
 	if not source.client:
 		frappe.throw(_("Select a Client on the rental before creating an invoice."))
 	containers = [row.container for row in source.containers]
@@ -349,15 +357,15 @@ def create_sales_invoice_from_container_rent(source_name):
 		})
 	invoice.set_missing_values()
 	invoice.calculate_taxes_and_totals()
-	invoice.insert()
-	invoice.submit()
-	return invoice.name
+	return invoice
 
 
 @frappe.whitelist()
 def make_payment_entry_from_container_rent(source_name, target_doc=None):
-	"""Open a Payment Entry against the rental's outstanding Sales Invoice."""
-	from erpnext.accounts.doctype.payment_entry.payment_entry import get_payment_entry
+	"""Open a Payment Entry against the rental's outstanding Sales Invoice, or an advance for its total."""
+	from frappe.utils import today
+	from erpnext.accounts.doctype.payment_entry.payment_entry import get_bank_cash_account, get_payment_entry
+	from erpnext.accounts.party import get_party_account
 
 	frappe.has_permission("Payment Entry", "create", throw=True)
 	source = frappe.get_doc("Rent A Container", source_name)
@@ -370,9 +378,36 @@ def make_payment_entry_from_container_rent(source_name, target_doc=None):
 		fields=["name", "outstanding_amount"],
 		order_by="posting_date desc, creation desc",
 	)
-	if not invoices:
-		frappe.throw(_("Create the Sales Invoice for rental {0} before recording a payment.").format(source.name))
-	invoice = next((row for row in invoices if flt(row.outstanding_amount) > 0), None)
-	if not invoice:
-		frappe.throw(_("The Sales Invoice for rental {0} is already fully paid.").format(source.name))
-	return get_payment_entry("Sales Invoice", invoice.name)
+	if invoices:
+		invoice = next((row for row in invoices if flt(row.outstanding_amount) > 0), None)
+		if not invoice:
+			frappe.throw(_("The Sales Invoice for rental {0} is already fully paid.").format(source.name))
+		return get_payment_entry("Sales Invoice", invoice.name)
+
+	# Not invoiced yet: take an unallocated advance priced exactly as the invoice will be.
+	invoice = _build_rental_invoice(source)
+	party_account = get_party_account("Customer", source.client, invoice.company)
+	if frappe.get_cached_value("Account", party_account, "account_currency") != invoice.currency:
+		frappe.throw(_("Receivable account {0} must be in {1} to take an advance.").format(party_account, invoice.currency))
+	bank = get_bank_cash_account(invoice, None)
+	if not bank:
+		frappe.throw(_("Set a default Bank or Cash account for company {0}.").format(invoice.company))
+	amount = invoice.rounded_total or invoice.grand_total
+	payment = frappe.new_doc("Payment Entry")
+	payment.update({
+		"payment_type": "Receive",
+		"company": invoice.company,
+		"posting_date": today(),
+		"party_type": "Customer",
+		"party": source.client,
+		"paid_from": party_account,
+		"paid_to": bank.account,
+		"paid_amount": amount,
+		"received_amount": amount,
+		"source_exchange_rate": 1,
+		"target_exchange_rate": 1,
+		"remarks": _("Advance for container rental {0}").format(source.name),
+	})
+	payment.setup_party_account_field()
+	payment.set_missing_values()
+	return payment

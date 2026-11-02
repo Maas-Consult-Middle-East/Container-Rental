@@ -1,0 +1,220 @@
+A draft Journal Entry already exists for this emptying. Resolve it before submitting.,يوجد قيد يومية مسودة لهذا التفريغ بالفعل. قم بمعالجته قبل الاعتماد.
+Active Contracts,العقود النشطة
+Active/Inactive,نشط/غير نشط
+Add at least one container to the rental before creating an invoice.,أضف حاوية واحدة على الأقل إلى الإيجار قبل إنشاء الفاتورة.
+Advance for container rental {0},دفعة مقدمة لإيجار الحاوية {0}
+An active Container Trip already exists for container {0}.,توجد رحلة حاوية نشطة بالفعل للحاوية {0}.
+An active Container Trip already exists for this container and source document.,توجد رحلة حاوية نشطة بالفعل لهذه الحاوية والمستند المصدر.
+An active commission of this type already exists for the trip.,توجد عمولة نشطة من هذا النوع بالفعل لهذه الرحلة.
+An active {0} commission already exists for this trip.,توجد عمولة {0} نشطة بالفعل لهذه الرحلة.
+Available Containers List,قائمة الحاويات المتاحة
+Baladiayya,البلدية
+Baladiyya,البلدية
+Baladiyya fee for {0}; Driver {1}; Emptying Container {2},رسوم البلدية لـ {0}؛ السائق {1}؛ تفريغ الحاوية {2}
+Branch Name,اسم الفرع
+CR Number,رقم السجل التجاري
+Cannot create a Pull Container from a cancelled rental.,لا يمكن إنشاء سحب حاوية من إيجار ملغى.
+Cannot create an Emptying Container from a cancelled pull.,لا يمكن إنشاء تفريغ حاوية من سحب ملغى.
+Cannot invoice a cancelled rental.,لا يمكن إصدار فاتورة لإيجار ملغى.
+Classifcation Sizes,أحجام التصنيف
+Classification,التصنيف
+Classification Name,اسم التصنيف
+Classification Type,نوع التصنيف
+Client Withdrawal,سحب العميل
+Client Withdrawal Report,تقرير سحب العميل
+Commission Entry,قيد العمولة
+Commission Entry requires a submitted Container Trip.,يتطلب قيد العمولة رحلة حاوية معتمدة.
+Commission Report,تقرير العمولات
+Commission Rule,قاعدة العمولة
+Commission Type,نوع العمولة
+Commission amount must be greater than zero.,يجب أن يكون مبلغ العمولة أكبر من صفر.
+Container Active Contracts,عقود الحاويات النشطة
+Container Appointment,موعد الحاوية
+Container Contract,عقد الحاوية
+Container Empty Containers,الحاويات الفارغة
+Container Late Containers,الحاويات المتأخرة
+Container Management,إدارة الحاويات
+Container Movement,حركة الحاوية
+Container Movement Report,تقرير حركة الحاويات
+Container Number,رقم الحاوية
+Container Outstanding Payments,المدفوعات المستحقة للحاويات
+Container Pending Returns,الحاويات بانتظار الإرجاع
+Container Pull Containers,الحاويات المسحوبة
+Container Rented Containers,الحاويات المؤجرة
+Container Replacement,استبدال الحاوية
+Container Replacement Report,تقرير استبدال الحاويات
+Container Report,تقرير الحاويات
+Container Size,حجم الحاوية
+Container Status,حالة الحاوية
+Container Status Report,تقرير حالة الحاويات
+Container Today's Trips,رحلات اليوم
+Container Total Containers,إجمالي الحاويات
+Container Trip,رحلة الحاوية
+Container Type,نوع الحاوية
+Container rental {0}; containers {1},إيجار الحاوية {0}؛ الحاويات {1}
+Container settings,إعدادات الحاويات
+Containers,الحاويات
+Contract Container,حاوية العقد
+Contract Cost,تكلفة العقد
+Contract Duration,مدة العقد
+Contract Outstanding Report,تقرير مستحقات العقود
+Contract Payment Report,تقرير مدفوعات العقود
+Contract To,العقد حتى
+Contract Trip Report,تقرير رحلات العقود
+Contract Type,نوع العقد
+Contract from,العقد من
+Create an Item with the same code as Container {0} and set its selling Item Price.,أنشئ صنفًا بنفس رمز الحاوية {0} وحدد سعر بيعه.
+Creating Sales Invoice…,جارٍ إنشاء فاتورة المبيعات…
+Current Km,الكيلومترات الحالية
+Customer Rental Report,تقرير إيجارات العملاء
+Default Driver Commission,عمولة السائق الافتراضية
+Default Supervisor Commission,عمولة المشرف الافتراضية
+Delayed Containers Report,تقرير الحاويات المتأخرة
+Delivery Location,موقع التسليم
+Driver / Supervisor,السائق / المشرف
+Driver Commission,عمولة السائق
+Driver Commission Report,تقرير عمولات السائقين
+Driver Name / Supervisor,اسم السائق / المشرف
+Driver must match the Container Trip.,يجب أن يطابق السائق رحلة الحاوية.
+Effective From,ساري من
+Effective To,ساري حتى
+Empty Containers,الحاويات الفارغة
+Empty Containers Report,تقرير الحاويات الفارغة
+Empty Reservation,حجز فارغ
+Empty and Reservation,فارغ ومحجوز
+Emptying,التفريغ
+Emptying Container,تفريغ الحاوية
+Emptying Containers List,قائمة الحاويات المفرغة
+Emptying Date,تاريخ التفريغ
+Emptying ID,رقم التفريغ
+Emptying Report,تقرير التفريغ
+Exempt from tax,معفى من الضريبة
+Expiring,قارب على الانتهاء
+Fixed Amount,مبلغ ثابت
+Fleet,الأسطول
+Fleet Maintenance Due Report,تقرير الصيانة المستحقة للأسطول
+From Date cannot be after To Date.,لا يمكن أن يكون تاريخ البداية بعد تاريخ النهاية.
+From Location,من موقع
+Garbage Disposal Fee must be an enabled expense ledger in the company currency.,يجب أن يكون حساب رسوم التخلص من النفايات حساب مصروفات مفعّلًا بعملة الشركة.
+General Contract Report,تقرير العقود العام
+Late,متأخر
+Late Containers,الحاويات المتأخرة
+Measure Unit,وحدة القياس
+Movement Date,تاريخ الحركة
+Movement Type,نوع الحركة
+Name in English,الاسم بالإنجليزية
+New Container Classification,تصنيف الحاوية الجديدة
+New Container Number,رقم الحاوية الجديدة
+Next Oil Change Km,كيلومترات تغيير الزيت التالي
+No Of Trips,عدد الرحلات
+No valid Item Price found for {0} in {1}. Add one before creating the invoice.,لا يوجد سعر صالح للصنف {0} في {1}. أضف سعرًا قبل إنشاء الفاتورة.
+No. of Trips,عدد الرحلات
+Oil Change Date,تاريخ تغيير الزيت
+Oil Type,نوع الزيت
+Only a Rented or Late container can be selected for pulling.,يمكن اختيار حاوية مؤجرة أو متأخرة فقط للسحب.
+Only a container with status Pull can be emptied.,يمكن تفريغ الحاوية ذات الحالة سحب فقط.
+Outstanding Payments,المدفوعات المستحقة
+Pending Returns,بانتظار الإرجاع
+Permit Number,رقم التصريح
+Permit Type,نوع التصريح
+Person,الشخص
+Pickup,الاستلام
+Pickup Date,تاريخ الاستلام
+Pickup Location,موقع الاستلام
+Plan Number,رقم المخطط
+Please save the rental before creating an invoice.,يرجى حفظ الإيجار قبل إنشاء الفاتورة.
+Plot Number,رقم القطعة
+Previous Km,الكيلومترات السابقة
+Previous State,الحالة السابقة
+Price Include Tax,السعر شامل الضريبة
+Price Not Include Tax,السعر غير شامل الضريبة
+Pull,سحب
+Pull Container,سحب الحاوية
+Pull Container Item,بند سحب الحاوية
+Pull Containers,سحب الحاويات
+Pull Containers Report,تقرير سحب الحاويات
+Pull ID,رقم السحب
+Pulled Containers List,قائمة الحاويات المسحوبة
+Reading Date,تاريخ القراءة
+Receivable account {0} must be in {1} to take an advance.,يجب أن يكون حساب المدينين {0} بعملة {1} لاستلام دفعة مقدمة.
+Rent A Container,استئجار حاوية
+Rent A Container Item,بند استئجار حاوية
+Rent Duration,مدة الإيجار
+Rent From,الإيجار من
+Rent ID,رقم الإيجار
+Rent Reservation,حجز إيجار
+Rent To,الإيجار حتى
+Rent Type,نوع الإيجار
+Rental Details,تفاصيل الإيجار
+"Rental start date, inclusive",تاريخ بدء الإيجار، شاملًا
+Rented Container Number,رقم الحاوية المؤجرة
+Rented Containers,الحاويات المؤجرة
+Rented Containers List,قائمة الحاويات المؤجرة
+Rented Containers Report,تقرير الحاويات المؤجرة
+Replace Container,استبدال الحاوية
+Replace Date,تاريخ الاستبدال
+Replace Only,استبدال فقط
+Replace options,خيارات الاستبدال
+Replace with Rent,استبدال مع إيجار
+Replacement,الاستبدال
+Reservation Date,تاريخ الحجز
+Row #{0}: Container {1} is selected more than once.,الصف #{0}: تم اختيار الحاوية {1} أكثر من مرة.
+Row #{0}: Only a Rented or Late container can be selected for pulling.,الصف #{0}: يمكن اختيار حاوية مؤجرة أو متأخرة فقط للسحب.
+Select Container,اختر الحاوية
+Select Driver or Employee for the person type.,اختر سائقًا أو موظفًا لنوع الشخص.
+Select Driver or Supervisor as the commission type.,اختر سائقًا أو مشرفًا كنوع للعمولة.
+Select Rent Type,اختر نوع الإيجار
+Select a Client on the rental before creating an invoice.,اختر عميلًا في الإيجار قبل إنشاء الفاتورة.
+Select a Driver and Baladiyya before submitting.,اختر سائقًا وبلدية قبل الاعتماد.
+Select a container from {0}.,اختر حاوية من {0}.
+Select a person type before selecting a person.,اختر نوع الشخص قبل اختيار الشخص.
+Select a valid container status.,اختر حالة حاوية صالحة.
+Select an active Baladiyya with a Rate greater than zero.,اختر بلدية نشطة بسعر أكبر من صفر.
+Set a Selling Price List for the customer or in Selling Settings.,حدد قائمة أسعار بيع للعميل أو في إعدادات المبيعات.
+Set a default Bank or Cash account for company {0}.,حدد حساب بنك أو نقدية افتراضيًا للشركة {0}.
+Set a default Company before creating an invoice.,حدد شركة افتراضية قبل إنشاء الفاتورة.
+Set the Petty Cash Account on Driver {0} before submitting.,حدد حساب العهدة النقدية للسائق {0} قبل الاعتماد.
+Set the company's Default Income Account and Cost Center before creating an invoice.,حدد حساب الإيرادات الافتراضي ومركز التكلفة للشركة قبل إنشاء الفاتورة.
+Set the company's default Cost Center before submitting.,حدد مركز التكلفة الافتراضي للشركة قبل الاعتماد.
+Set up the company's expense chart of accounts before submitting.,قم بإعداد دليل حسابات المصروفات للشركة قبل الاعتماد.
+Show in Cash Rent,إظهار في الإيجار النقدي
+Show in Rubble Contract,إظهار في عقد الأنقاض
+Show in Trash Contract,إظهار في عقد النفايات
+Source Doctype,نوع المستند المصدر
+Source Document,المستند المصدر
+Submit the Container Trip before creating a Commission Entry.,اعتمد رحلة الحاوية قبل إنشاء قيد العمولة.
+Submit the Emptying Container before posting the disposal fee.,اعتمد تفريغ الحاوية قبل ترحيل رسوم التخلص.
+Submit the rental before creating a payment.,اعتمد الإيجار قبل إنشاء الدفعة.
+Submit {0} before creating a Container Trip.,اعتمد {0} قبل إنشاء رحلة حاوية.
+Supervisor Commission,عمولة المشرف
+Supervisor Commission Report,تقرير عمولات المشرفين
+Supervisor must match the Container Trip.,يجب أن يطابق المشرف رحلة الحاوية.
+Tax Details,تفاصيل الضريبة
+Tax Template,قالب الضريبة
+Tax Treatment,المعاملة الضريبية
+The Sales Invoice for rental {0} is already fully paid.,فاتورة المبيعات للإيجار {0} مدفوعة بالكامل بالفعل.
+The container Item {0} must be enabled for sales.,يجب تفعيل صنف الحاوية {0} للمبيعات.
+The container cannot be changed after saving. Create a new Emptying Container instead.,لا يمكن تغيير الحاوية بعد الحفظ. أنشئ تفريغ حاوية جديدًا بدلًا من ذلك.
+The containers cannot be changed after saving. Create a new Pull Container instead.,لا يمكن تغيير الحاويات بعد الحفظ. أنشئ سحب حاوية جديدًا بدلًا من ذلك.
+"The driver's Petty Cash Account must be an enabled, non-group asset account, not a receivable/payable account.",يجب أن يكون حساب العهدة النقدية للسائق حساب أصول مفعّلًا وغير مجمّع، وليس حساب مدينين أو دائنين.
+The driver's Petty Cash Account must use the company currency for Baladiyya fees.,يجب أن يستخدم حساب العهدة النقدية للسائق عملة الشركة لرسوم البلدية.
+This trip has no {0} commission to create.,لا توجد عمولة {0} لإنشائها لهذه الرحلة.
+To Location,إلى موقع
+Today's Trips,رحلات اليوم
+Total Containers,إجمالي الحاويات
+Trip,الرحلة
+Trip Cost,تكلفة الرحلة
+Trip Duration,مدة الرحلة
+Trip Returns Tracking Report,تقرير متابعة رحلات الإرجاع
+Trip Status,حالة الرحلة
+Truck,الشاحنة
+Truck KM Reading,قراءة عداد الشاحنة
+Truck KM Report,تقرير كيلومترات الشاحنات
+Truck Oil Change,تغيير زيت الشاحنة
+Truck Oil Change Report,تقرير تغيير زيت الشاحنات
+Truck Permit,تصريح الشاحنة
+Truck Permit Report,تقرير تصاريح الشاحنات
+Truck Report,تقرير الشاحنات
+Truck Spending Report,تقرير مصروفات الشاحنات
+Trucks,الشاحنات
+Unsupported trip source.,مصدر رحلة غير مدعوم.
