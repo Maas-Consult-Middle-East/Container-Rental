@@ -10,16 +10,17 @@ app_license = "mit"
 
 # required_apps = []
 
-# Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "container",
-# 		"logo": "/assets/container/logo.png",
-# 		"title": "Container",
-# 		"route": "/container",
-# 		"has_permission": "container.api.permission.has_app_permission"
-# 	}
-# ]
+# Each item in the list will be shown as an app in the apps page.
+# Frappe v16 only lists apps declaring this; the rail comes from `dock/container/container.json`
+# and the sidebar from `container/sidebar/container_management/container_management.json`.
+# "/app/..." works on v15 and is redirected to "/desk/..." on v16.
+add_to_apps_screen = [
+	{
+		"name": "container",
+		"title": "Container Management",
+		"route": "/app/container-management",
+	}
+]
 
 # Includes in <head>
 # ------------------
