@@ -53,3 +53,25 @@ bench build --app container
 bench --site container.com execute container.tests.test_workflows.run
 ```
 # Container-Rental
+
+### Tax and price list fixtures
+
+The app includes the `VAT-15%` Tax Category, `VAT-15% - BC` Sales Taxes and
+Charges Template, `Vat - BC` Item Tax Template, and the Standard Buying and
+Standard Selling price lists in SAR. Frappe imports these fixtures on installation
+and migration; matching records are managed by the app and may be overwritten.
+
+These tax templates preserve the source site's configuration: 15% against
+`Freight and Forwarding Charges - BC` for `BADR CONTAINER`, with `Main - BC` as
+the sales tax cost center. The destination site must have that company, account,
+and cost center before using the templates. Review the tax account mapping before
+posting invoices. Company and chart-of-accounts records are not exported.
+
+To refresh the selected fixtures after changing them on the source site:
+
+```sh
+bench --site container.com export-fixtures --app container
+```
+
+Price lists contain currency and selling/buying settings, not individual Item
+Prices. New Containers create their own Item and selling Item Price of 500.

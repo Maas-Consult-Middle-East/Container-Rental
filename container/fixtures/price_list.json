@@ -1,0 +1,28 @@
+[
+ {
+  "buying": 1,
+  "countries": [],
+  "currency": "SAR",
+  "docstatus": 0,
+  "doctype": "Price List",
+  "enabled": 1,
+  "modified": "2026-10-06 10:19:27.211735",
+  "name": "Standard Buying",
+  "price_list_name": "Standard Buying",
+  "price_not_uom_dependent": 0,
+  "selling": 0
+ },
+ {
+  "buying": 0,
+  "countries": [],
+  "currency": "SAR",
+  "docstatus": 0,
+  "doctype": "Price List",
+  "enabled": 1,
+  "modified": "2026-10-06 10:19:28.413274",
+  "name": "Standard Selling",
+  "price_list_name": "Standard Selling",
+  "price_not_uom_dependent": 0,
+  "selling": 1
+ }
+]
