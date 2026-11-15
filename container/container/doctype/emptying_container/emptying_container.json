@@ -17,6 +17,7 @@
   "column_break_vhak",
   "driver_commission",
   "baladiayya",
+  "baladiyya_amount",
   "journal_entry"
  ],
  "fields": [
@@ -82,8 +83,16 @@
   {
    "fieldname": "baladiayya",
    "fieldtype": "Link",
-   "label": "Baladiayya",
+   "label": "Legacy Baladiyya",
+   "hidden": 1,
+   "read_only": 1,
+   "no_copy": 1,
    "options": "Baladiyya"
+  },
+  {
+   "fieldname": "baladiyya_amount",
+   "fieldtype": "Currency",
+   "label": "Baladiyya"
   },
   {
    "fieldname": "journal_entry",

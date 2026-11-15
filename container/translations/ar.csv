@@ -218,3 +218,7 @@ Truck Report,تقرير الشاحنات
 Truck Spending Report,تقرير مصروفات الشاحنات
 Trucks,الشاحنات
 Unsupported trip source.,مصدر رحلة غير مدعوم.
+Legacy Baladiyya,البلدية السابقة
+Select a Driver before submitting.,اختر سائقًا قبل الاعتماد.
+Enter a Baladiyya amount greater than zero before submitting.,أدخل مبلغ البلدية أكبر من صفر قبل الاعتماد.
+Baladiyya fee; Driver {0}; Emptying Container {1},رسوم البلدية؛ السائق {0}؛ تفريغ الحاوية {1}

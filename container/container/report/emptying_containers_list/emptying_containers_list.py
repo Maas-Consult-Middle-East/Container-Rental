@@ -7,7 +7,7 @@ COLUMNS = [
 	{"fieldname": "docstatus", "label": "Document Status", "fieldtype": "Select", "options": "\nDraft\nSubmitted", "width": 130},
 	{"fieldname": "container", "label": "Container", "fieldtype": "Link", "options": "Container", "width": 130},
 	{"fieldname": "emptying_date", "label": "Emptying Date", "fieldtype": "Date", "width": 120},
-	{"fieldname": "baladiayya", "label": "Baladiyya", "fieldtype": "Link", "options": "Baladiyya", "width": 140},
+	{"fieldname": "baladiyya_amount", "label": "Baladiyya", "fieldtype": "Currency", "width": 140},
 	{"fieldname": "driver", "label": "Driver", "fieldtype": "Link", "options": "Driver", "width": 140},
 	{"fieldname": "driver_commission", "label": "Driver Commission", "fieldtype": "Data", "width": 140},
 	{"fieldname": "supervisor", "label": "Supervisor", "fieldtype": "Link", "options": "Employee", "width": 140},

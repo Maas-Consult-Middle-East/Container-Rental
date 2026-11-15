@@ -88,14 +88,37 @@ function bind_rental_current_location(frm) {
 	const field = frm.fields_dict.location;
 	if (!field || field._rental_location_bound) return;
 	field._rental_location_bound = true;
+	field.get_leaflet_controls = function () {
+		return new L.Control.Draw({
+			position: "topleft",
+			draw: {
+				marker: true,
+				polyline: false,
+				polygon: false,
+				rectangle: false,
+				circle: false,
+				circlemarker: false,
+			},
+			edit: {
+				featureGroup: this.editableLayers,
+				edit: false,
+				remove: true,
+			},
+		});
+	};
 	const bind_map = () => {
 		const map = field.map;
 		if (!map || map._rental_location_bound) return;
 		map._rental_location_bound = true;
+		if (!frm.doc.location) {
+			map.setView([24.7136, 46.6753], 12);
+		}
+		if (field.draw_control) map.removeControl(field.draw_control);
+		if (!field.disabled) field.bind_leaflet_draw_control();
+		map.zoomControl?.remove();
 		map.on("locationfound", async ({ latlng }) => {
 			if (frm.doc.docstatus !== 0 || field.df.read_only || field.disabled) return;
 			if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng)) return;
-			// Save the located point as the rental's marker, not just the map's temporary GPS overlay.
 			field.locate_control?.stop();
 			await frm.set_value("location", JSON.stringify({
 				type: "FeatureCollection",

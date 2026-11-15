@@ -4,7 +4,7 @@ frappe.query_reports["Emptying Containers List"] = {
 		{ fieldname: "docstatus", label: __("Document Status"), fieldtype: "Select", options: ["", "Draft", "Submitted"] },
 		{ fieldname: "container", label: __("Container"), fieldtype: "Link", options: "Container" },
 		{ fieldname: "emptying_date", label: __("Emptying Date"), fieldtype: "DateRange" },
-		{ fieldname: "baladiayya", label: __("Baladiyya"), fieldtype: "Link", options: "Baladiyya" },
+		{ fieldname: "baladiyya_amount", label: __("Baladiyya"), fieldtype: "Currency" },
 		{ fieldname: "driver", label: __("Driver"), fieldtype: "Link", options: "Driver" },
 		{ fieldname: "driver_commission", label: __("Driver Commission"), fieldtype: "Data" },
 		{ fieldname: "supervisor", label: __("Supervisor"), fieldtype: "Link", options: "Employee" },

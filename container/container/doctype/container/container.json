@@ -45,6 +45,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "default": "Empty",
    "label": "Status",
    "options": "Rented\nPull\nEmpty\nLate"
   }
