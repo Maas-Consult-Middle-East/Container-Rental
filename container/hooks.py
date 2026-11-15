@@ -258,10 +258,9 @@ app_include_js = "container.bundle.js"
 
 # Container rental management integrations
 required_apps = ["erpnext"]
+# Company-specific tax templates belong to each site, not shared app fixtures.
 fixtures = [
     {"dt": "Tax Category", "filters": [["name", "in", ["VAT-15%"]]]},
-    {"dt": "Sales Taxes and Charges Template", "filters": [["name", "in", ["VAT-15% - BC"]]]},
-    {"dt": "Item Tax Template", "filters": [["name", "in", ["Vat - BC"]]]},
     {"dt": "Price List", "filters": [["name", "in", ["Standard Buying", "Standard Selling"]]]},
 ]
 scheduler_events = {
