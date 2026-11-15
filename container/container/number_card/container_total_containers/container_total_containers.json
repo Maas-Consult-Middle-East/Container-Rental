@@ -1,14 +1,16 @@
 {
-  "doctype": "Number Card",
-  "name": "Container Total Containers",
-  "label": "Total Containers",
-  "module": "Container",
-  "is_standard": 1,
-  "type": "Document Type",
-  "document_type": "Container",
-  "function": "Count",
-  "aggregate_function_based_on": null,
-  "is_public": 1,
-  "show_percentage_stats": 0,
-  "filters_json": "[]"
+ "doctype": "Number Card",
+ "name": "Container Total Containers",
+ "label": "Total Container",
+ "module": "Container",
+ "is_standard": 1,
+ "type": "Document Type",
+ "document_type": "Container",
+ "function": "Count",
+ "aggregate_function_based_on": null,
+ "is_public": 1,
+ "show_percentage_stats": 0,
+ "filters_json": "[]",
+ "show_full_number": 1,
+ "modified": "2026-11-15 16:30:00.000000"
 }

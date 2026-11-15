@@ -1,0 +1,2 @@
+(()=>{frappe.provide("container.utils");container.utils.open_mapped_doc_for_container=function(o,a){let n=(o.doc.containers||[]).map(e=>e.container).filter(Boolean),t=e=>frappe.model.open_mapped_doc({method:a,frm:o,args:{container:e}});if(n.length===1)return t(n[0]);frappe.prompt({fieldname:"container",fieldtype:"Select",label:__("Container"),options:n,reqd:1},e=>t(e.container),__("Select Container"))};})();
+//# sourceMappingURL=container.bundle.XS6ADP7G.js.map

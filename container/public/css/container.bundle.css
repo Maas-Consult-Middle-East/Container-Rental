@@ -1,6 +1,6 @@
 /* Container Management workspace: status number cards with a gradient and a scene icon.
    Icons are inlined so they ship inside this hashed bundle and never go stale in the browser cache. */
-:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"]) .widget.number-widget-box {
+:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"], [number_card_name="Total Container"], [number_card_name="Available for Rent"]) .widget.number-widget-box {
 	position: relative;
 	min-height: 104px;
 	padding-inline-end: 92px;
@@ -11,27 +11,27 @@
 	transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"]) .widget.number-widget-box:hover {
+:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"], [number_card_name="Total Container"], [number_card_name="Available for Rent"]) .widget.number-widget-box:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 12px 24px -10px var(--card-shadow);
 }
 
-:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"]) .widget.number-widget-box .widget-head .widget-title {
+:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"], [number_card_name="Total Container"], [number_card_name="Available for Rent"]) .widget.number-widget-box .widget-head .widget-title {
 	color: rgba(255, 255, 255, 0.88);
 	letter-spacing: 0.04em;
 }
 
-:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"]) .widget.number-widget-box .widget-body .number {
+:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"], [number_card_name="Total Container"], [number_card_name="Available for Rent"]) .widget.number-widget-box .widget-body .number {
 	color: #fff !important;
 	font-size: 2rem;
 	font-weight: 700;
 }
 
-:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"]) .widget.number-widget-box .widget-control .btn {
+:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"], [number_card_name="Total Container"], [number_card_name="Available for Rent"]) .widget.number-widget-box .widget-control .btn {
 	color: rgba(255, 255, 255, 0.85);
 }
 
-:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"]) .widget.number-widget-box::after {
+:is([number_card_name="Late Containers"], [number_card_name="Rented Containers"], [number_card_name="Pull Containers"], [number_card_name="Empty Containers"], [number_card_name="Total Container"], [number_card_name="Available for Rent"]) .widget.number-widget-box::after {
 	content: "";
 	position: absolute;
 	inset-inline-end: 18px;
@@ -79,4 +79,22 @@
 
 [number_card_name="Empty Containers"] .widget.number-widget-box::after {
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231d4ed8'/%3E%3Cpath d='M4 52.5h56' stroke='%23fff' stroke-opacity='.45' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M9 30l7-9h32l7 9z' fill='%230b1f5c' stroke='%23fff' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M17.5 27.5l3-3.5h23l3 3.5' fill='none' stroke='%23fff' stroke-opacity='.35' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M9 30h46l-6 21H15z' fill='%231d4ed8' stroke='%23fff' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M23 34v13M32 34v13M41 34v13' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12.5' cy='35' r='2' fill='%23fff'/%3E%3Ccircle cx='51.5' cy='35' r='2' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+[number_card_name="Total Container"] .widget.number-widget-box {
+	--card-shadow: #ea580c;
+	background-image: linear-gradient(135deg, #fb923c, #ea580c);
+}
+
+[number_card_name="Total Container"] .widget.number-widget-box::after {
+	background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2716%27%20fill%3D%27%23c2410c%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23fff%27%20stroke-width%3D%272.5%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%278%27%20y%3D%2736%27%20width%3D%2722%27%20height%3D%2716%27%20rx%3D%272%27%2F%3E%3Crect%20x%3D%2734%27%20y%3D%2736%27%20width%3D%2722%27%20height%3D%2716%27%20rx%3D%272%27%2F%3E%3Crect%20x%3D%2721%27%20y%3D%2716%27%20width%3D%2722%27%20height%3D%2716%27%20rx%3D%272%27%2F%3E%3Cpath%20d%3D%27M15%2040v8m8-8v8m18-8v8m8-8v8M28%2020v8m8-8v8%27%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%27M4%2055h56%27%20stroke%3D%27%23fff%27%20stroke-opacity%3D%27.45%27%20stroke-width%3D%272%27%2F%3E%3C%2Fsvg%3E");
+}
+
+[number_card_name="Available for Rent"] .widget.number-widget-box {
+	--card-shadow: #0d9488;
+	background-image: linear-gradient(135deg, #2dd4bf, #0d9488);
+}
+
+[number_card_name="Available for Rent"] .widget.number-widget-box::after {
+	background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2716%27%20fill%3D%27%230f766e%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23fff%27%20stroke-width%3D%272.5%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M9%2033h46l-6%2019H15zM9%2033l7-7h20M23%2037v11m9-11v11m9-11v11%27%2F%3E%3Ccircle%20cx%3D%2746%27%20cy%3D%2719%27%20r%3D%2711%27%2F%3E%3Cpath%20d%3D%27m40%2019%204%204%208-9%27%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%27M4%2055h56%27%20stroke%3D%27%23fff%27%20stroke-opacity%3D%27.45%27%20stroke-width%3D%272%27%2F%3E%3C%2Fsvg%3E");
 }

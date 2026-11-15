@@ -1,5 +1,6 @@
-"""Containers with status Empty, ready to rent."""
+"""Containers without an active submitted rental or saved pull."""
 
+from container.availability import available_container_filters
 from container.container.report.list_report import get_columns, get_rows
 
 COLUMNS = [
@@ -15,7 +16,7 @@ def execute(filters=None):
 		"Container",
 		COLUMNS,
 		filters or {},
-		conditions=[["status", "=", "Empty"]],
+		conditions=available_container_filters(),
 		order_by="`tabContainer`.name asc",
 	)
 	return get_columns(COLUMNS), rows
