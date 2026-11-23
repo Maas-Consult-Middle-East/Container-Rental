@@ -11,7 +11,7 @@ frappe.query_reports["Pulled Containers List"] = {
 		{ fieldname: "contact_number", label: __("Contact Number"), fieldtype: "Data" },
 		{ fieldname: "cr_number", label: __("CR Number"), fieldtype: "Data" },
 		{ fieldname: "address", label: __("Address"), fieldtype: "Data" },
-		{ fieldname: "classification", label: __("Classification"), fieldtype: "Link", options: "Classification" },
+		{ fieldname: "classification", label: __("Classification"), fieldtype: "Select", options: "\n12\n20" },
 		{ fieldname: "cost", label: __("Cost"), fieldtype: "Data" },
 		{ fieldname: "container_contract", label: __("Container Contract"), fieldtype: "Link", options: "Container Contract" },
 		{ fieldname: "rent_from", label: __("Rent From"), fieldtype: "DateRange" },

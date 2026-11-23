@@ -8,6 +8,7 @@
  "field_order": [
   "rent_type",
   "client",
+  "client_name",
   "contact_number",
   "cr_number",
   "address",
@@ -17,6 +18,7 @@
   "container_contract",
   "containers_section",
   "containers",
+  "container_names",
   "rent_duration_section",
   "from",
   "column_break_dwvt",
@@ -36,10 +38,26 @@
  ],
  "fields": [
   {
+   "fieldname": "container_names",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Containers",
+   "read_only": 1,
+   "in_list_view": 1,
+   "no_copy": 1
+  },
+  {
    "fieldname": "client",
    "fieldtype": "Link",
    "label": "Client",
    "options": "Customer"
+  },
+  {
+   "fieldname": "client_name",
+   "fieldtype": "Data",
+   "label": "Client Name",
+   "fetch_from": "client.customer_name",
+   "fetch_if_empty": 1
   },
   {
    "fieldname": "contact_number",
@@ -57,9 +75,9 @@
   },
   {
    "fieldname": "classification",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Classification",
-   "options": "Classification"
+   "options": "\n12\n20"
   },
   {
    "fieldname": "rent_duration_section",
@@ -187,7 +205,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-11-01 12:00:00.000000",
+ "modified": "2026-11-22 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Rent A Container",

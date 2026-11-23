@@ -3,6 +3,7 @@
 import frappe
 from frappe import _
 from frappe.utils import add_days, flt, getdate
+from container.invoice_sources import existing_source_invoice, source_invoices
 
 
 TRIP_SOURCES = ("Rent A Container", "Container Replacement", "Pull Container")
@@ -272,6 +273,98 @@ def make_supervisor_commission(source_name, target_doc=None):
 	return _make_commission(source_name, "Supervisor", target_doc)
 
 
+@frappe.whitelist()
+def fetch_container_invoice_items(source_doctype, source_name, target_doc):
+	"""Populate an editable invoice without saving or submitting any document."""
+	sources = {
+		"Rent A Container": ("client", "container_rent", _build_rental_invoice),
+		"Container Contract": ("customer", "container_contract", _build_contract_invoice),
+	}
+	if source_doctype not in sources:
+		frappe.throw(_("Select Rent A Container or Container Contract."))
+	invoice = frappe.get_doc(frappe.parse_json(target_doc))
+	if invoice.doctype != "Sales Invoice" or invoice.docstatus != 0 or invoice.is_return:
+		frappe.throw(_("Items can only be fetched into a draft Sales Invoice, not a credit note."))
+	if invoice.is_new():
+		frappe.has_permission("Sales Invoice", "create", throw=True)
+	else:
+		stored = frappe.get_doc("Sales Invoice", invoice.name)
+		stored.check_permission("write")
+		if stored.docstatus != 0:
+			frappe.throw(_("The Sales Invoice must still be a draft."))
+	source = frappe.get_doc(source_doctype, source_name)
+	source.check_permission("read")
+	if source.docstatus != 1:
+		frappe.throw(_("Submit the source document before fetching items."))
+	customer_field, link_field, builder = sources[source_doctype]
+	if invoice.customer and invoice.customer != source.get(customer_field):
+		frappe.throw(_("The source Client must match the Sales Invoice Customer."))
+	if invoice.get(link_field) == source.name or any(row.get(link_field) == source.name for row in invoice.items):
+		frappe.throw(_("Items from this source have already been fetched."))
+	existing = existing_source_invoice(link_field, source.name, exclude=invoice.name)
+	if existing:
+		frappe.throw(_("This source already has an active Sales Invoice."))
+	# Contract Cost has no currency field: it is denominated in company currency.
+	if source_doctype == "Container Contract" and invoice.company and invoice.currency:
+		if invoice.currency != frappe.get_cached_value("Company", invoice.company, "default_currency"):
+			frappe.throw(_("Use the company currency when fetching a Container Contract."))
+	invoice.set("items", [row for row in invoice.items if row.item_code or row.item_name or row.description])
+	return builder(source, invoice)
+
+
+@frappe.whitelist()
+def make_sales_invoice_from_container_contract(source_name):
+	"""Open a reviewable invoice for the contract's total service charge."""
+	frappe.has_permission("Sales Invoice", "create", throw=True)
+	source = frappe.get_doc("Container Contract", source_name)
+	source.check_permission("read")
+	if source.docstatus != 1:
+		frappe.throw(_("Submit the Container Contract before creating an invoice."))
+	existing = existing_source_invoice("container_contract", source.name)
+	if existing:
+		invoice = frappe.get_doc("Sales Invoice", existing)
+		invoice.check_permission("read")
+		return invoice
+	return _build_contract_invoice(source)
+
+
+def _build_contract_invoice(source, invoice=None):
+	from frappe.utils import escape_html, today
+
+	if not source.customer or flt(source.total) <= 0:
+		frappe.throw(_("Set a Client and a Cost greater than zero on the contract before creating an invoice."))
+	company = (invoice.company if invoice else None) or frappe.defaults.get_user_default("Company") or frappe.db.get_single_value("Global Defaults", "default_company")
+	if not company:
+		frappe.throw(_("Set a default Company before creating an invoice."))
+	company_doc = frappe.get_doc("Company", company)
+	if not company_doc.default_income_account or not company_doc.cost_center:
+		frappe.throw(_("Set the company's Default Income Account and Cost Center before creating an invoice."))
+	uom = frappe.db.get_single_value("Stock Settings", "stock_uom")
+	if not uom:
+		frappe.throw(_("Set the Default Stock UOM in Stock Settings before creating an invoice."))
+	invoice = invoice or frappe.new_doc("Sales Invoice")
+	invoice.update({
+		"company": company, "customer": source.customer, "posting_date": invoice.posting_date or today(),
+		"currency": invoice.currency or company_doc.default_currency, "conversion_rate": invoice.conversion_rate or 1,
+		"container_contract": invoice.container_contract or source.name, "update_stock": 0,
+	})
+	invoice.set_missing_values()
+	description = _("Container Contract {0}").format(source.name)
+	containers = ", ".join(row.container for row in source.containers if row.container)
+	if containers:
+		description += "; " + _("Containers: {0}").format(containers)
+	invoice.append("items", {
+		"container_contract": source.name,
+		"item_name": _("Container Contract"), "description": escape_html(description),
+		"qty": 1, "rate": flt(source.total), "uom": uom, "stock_uom": uom,
+		"conversion_factor": 1, "income_account": company_doc.default_income_account,
+		"cost_center": company_doc.cost_center,
+	})
+	invoice.set_missing_values()
+	invoice.calculate_taxes_and_totals()
+	return invoice
+
+
 @frappe.whitelist(methods=["POST"])
 def create_sales_invoice_from_container_rent(source_name):
 	"""Create the rental invoice using the item's selling price."""
@@ -283,9 +376,7 @@ def create_sales_invoice_from_container_rent(source_name):
 	source.reload()
 	if source.docstatus == 2:
 		frappe.throw(_("Cannot invoice a cancelled rental."))
-	existing = frappe.db.get_value(
-		"Sales Invoice", {"container_rent": source.name, "docstatus": ["!=", 2], "is_return": 0}, "name"
-	)
+	existing = existing_source_invoice("container_rent", source.name)
 	if existing:
 		frappe.get_doc("Sales Invoice", existing).check_permission("read")
 		return existing
@@ -295,7 +386,7 @@ def create_sales_invoice_from_container_rent(source_name):
 	return invoice.name
 
 
-def _build_rental_invoice(source):
+def _build_rental_invoice(source, invoice=None):
 	"""Return an unsaved Sales Invoice priced from the rental's container Items."""
 	from frappe.utils import today
 	from erpnext.stock.get_item_details import get_price_list_rate_for
@@ -314,20 +405,20 @@ def _build_rental_invoice(source):
 		if item.disabled or not item.is_sales_item:
 			frappe.throw(_("The container Item {0} must be enabled for sales.").format(container))
 		items.append(item)
-	company = frappe.defaults.get_user_default("Company") or frappe.db.get_single_value("Global Defaults", "default_company")
+	company = (invoice.company if invoice else None) or frappe.defaults.get_user_default("Company") or frappe.db.get_single_value("Global Defaults", "default_company")
 	if not company:
 		frappe.throw(_("Set a default Company before creating an invoice."))
 	company_doc = frappe.get_doc("Company", company)
 	if not company_doc.default_income_account or not company_doc.cost_center:
 		frappe.throw(_("Set the company's Default Income Account and Cost Center before creating an invoice."))
-	invoice = frappe.new_doc("Sales Invoice")
+	invoice = invoice or frappe.new_doc("Sales Invoice")
 	invoice.update({
 		"company": company,
 		"customer": source.client,
-		"posting_date": today(),
-		"currency": company_doc.default_currency,
-		"conversion_rate": 1,
-		"container_rent": source.name,
+		"posting_date": invoice.posting_date or today(),
+		"currency": invoice.currency or company_doc.default_currency,
+		"conversion_rate": invoice.conversion_rate or 1,
+		"container_rent": invoice.container_rent or source.name,
 		"update_stock": 0,
 		"remarks": _("Container rental {0}; containers {1}").format(source.name, ", ".join(containers)),
 	})
@@ -347,6 +438,7 @@ def _build_rental_invoice(source):
 		if price is None:
 			frappe.throw(_("No valid Item Price found for {0} in {1}. Add one before creating the invoice.").format(item.name, invoice.selling_price_list))
 		invoice.append("items", {
+			"container_rent": source.name,
 			"item_code": item.name,
 			"qty": 1,
 			"uom": item.stock_uom,
@@ -372,12 +464,7 @@ def make_payment_entry_from_container_rent(source_name, target_doc=None):
 	source.check_permission("read")
 	if source.docstatus != 1:
 		frappe.throw(_("Submit the rental before creating a payment."))
-	invoices = frappe.get_list(
-		"Sales Invoice",
-		filters={"container_rent": source.name, "docstatus": 1, "is_return": 0},
-		fields=["name", "outstanding_amount"],
-		order_by="posting_date desc, creation desc",
-	)
+	invoices = source_invoices("container_rent", [source.name], ["outstanding_amount"], submitted=True)
 	if invoices:
 		invoice = next((row for row in invoices if flt(row.outstanding_amount) > 0), None)
 		if not invoice:

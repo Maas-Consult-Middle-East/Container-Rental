@@ -5,6 +5,8 @@
  "engine": "InnoDB",
  "field_order": [
   "container",
+  "container_size",
+  "classification",
   "container_type",
   "no_of_trips",
   "trip_duration",
@@ -16,57 +18,87 @@
  "fields": [
   {
    "fieldname": "container",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Container",
-   "options": "Container",
    "reqd": 1
   },
   {
-   "fetch_from": "container.container_type",
+   "fieldname": "container_size",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Container Size"
+  },
+  {
+   "fieldname": "classification",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Classification",
+   "options": "\n12\n20"
+  },
+  {
    "fieldname": "container_type",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Container Type",
-   "options": "Classification",
-   "read_only": 1
+   "options": "\n12\n20",
+   "read_only": 1,
+   "hidden": 1,
+   "in_list_view": 0,
+   "reqd": 0
   },
   {
    "fieldname": "no_of_trips",
    "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "No Of Trips"
+   "in_list_view": 0,
+   "label": "No Of Trips",
+   "hidden": 1,
+   "reqd": 0
   },
   {
    "fieldname": "trip_duration",
    "fieldtype": "Data",
-   "label": "Trip Duration"
+   "label": "Trip Duration",
+   "hidden": 1,
+   "in_list_view": 0,
+   "reqd": 0
   },
   {
    "fieldname": "rate",
    "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Rate"
+   "in_list_view": 0,
+   "label": "Rate",
+   "hidden": 1,
+   "reqd": 0
   },
   {
    "fieldname": "total",
    "fieldtype": "Currency",
    "label": "Total",
-   "read_only": 1
+   "read_only": 1,
+   "hidden": 1,
+   "in_list_view": 0,
+   "reqd": 0
   },
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "label": "Start Date"
+   "label": "Start Date",
+   "hidden": 1,
+   "in_list_view": 0,
+   "reqd": 0
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
-   "label": "End Date"
+   "label": "End Date",
+   "hidden": 1,
+   "in_list_view": 0,
+   "reqd": 0
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2026-10-12 09:54:04.069937",
+ "modified": "2026-11-22 23:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Contract Container",
@@ -76,5 +108,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1
+ "track_changes": 1,
+ "editable_grid": 1
 }

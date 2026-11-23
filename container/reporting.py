@@ -2,7 +2,38 @@
 
 import frappe
 
-from container.availability import available_container_filters
+from container.availability import active_container_operations, available_container_filters
+
+
+def _active_operation_card(operation, doctype):
+	frappe.has_permission("Container", "read", throw=True)
+	frappe.has_permission(doctype, "read", throw=True)
+	visible = set(frappe.get_list("Container", pluck="name", limit_page_length=0))
+	rows = [
+		row for row in active_container_operations()
+		if row.operation == operation and row.container in visible
+	]
+	# Count containers, while retaining navigation to the relevant source documents.
+	sources = sorted({row.source_name for row in rows})
+	readable_sources = frappe.get_list(
+		doctype, filters={"name": ["in", sources]}, pluck="name", limit_page_length=0
+	) if sources else []
+	return {
+		"value": len({row.container for row in rows}),
+		"fieldtype": "Int",
+		"route": ["List", doctype, "List"],
+		"route_options": {"name": ["in", readable_sources or [""]]},
+	}
+
+
+@frappe.whitelist()
+def rented_containers_card(filters=None):
+	return _active_operation_card("rental", "Rent A Container")
+
+
+@frappe.whitelist()
+def pull_containers_card(filters=None):
+	return _active_operation_card("pull", "Pull Container")
 
 
 @frappe.whitelist()

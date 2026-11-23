@@ -32,10 +32,10 @@
   },
   {
    "fieldname": "new_container_classification",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "New Container Classification",
-   "options": "Classification",
+   "options": "\n12\n20",
    "reqd": 1
   },
   {
@@ -109,7 +109,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-12 09:54:05.092617",
+ "modified": "2026-11-22 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Replacement",

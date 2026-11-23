@@ -1,10 +1,15 @@
 frappe.query_reports["Rented Containers List"] = {
 	filters: [
+		{ fieldname: "current_status", label: __("Current Status"), fieldtype: "Select", options: "\nRented\nPulled\nEmpty\nLate" },
+		{ fieldname: "invoice_no", label: __("Invoice No"), fieldtype: "Link", options: "Sales Invoice" },
+		{ fieldname: "has_credit_note", label: __("Credit Note"), fieldtype: "Select", options: "\nYes\nNo" },
+		{ fieldname: "credit_note", label: __("Credit Note No"), fieldtype: "Link", options: "Sales Invoice", get_query: () => ({ filters: { is_return: 1, docstatus: 1 } }) },
+		{ fieldname: "payment_status", label: __("Payment Status"), fieldtype: "Data" },
 		{ fieldname: "name", label: __("Rent ID"), fieldtype: "Link", options: "Rent A Container" },
 		{ fieldname: "container", label: __("Container"), fieldtype: "Link", options: "Container" },
 		{ fieldname: "container_size", label: __("Container Size"), fieldtype: "Data" },
 		{ fieldname: "rent_type", label: __("Rent Type"), fieldtype: "Link", options: "Rent Type" },
-		{ fieldname: "classification", label: __("Classification"), fieldtype: "Link", options: "Classification" },
+		{ fieldname: "classification", label: __("Classification"), fieldtype: "Select", options: "\n12\n20" },
 		{ fieldname: "client", label: __("Client"), fieldtype: "Link", options: "Customer" },
 		{ fieldname: "contact_number", label: __("Contact Number"), fieldtype: "Data" },
 		{ fieldname: "cr_number", label: __("CR Number"), fieldtype: "Data" },

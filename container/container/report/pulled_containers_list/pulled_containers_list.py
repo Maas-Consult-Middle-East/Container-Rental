@@ -14,7 +14,7 @@ COLUMNS = [
 	{"fieldname": "contact_number", "label": "Contact Number", "fieldtype": "Data", "width": 140},
 	{"fieldname": "cr_number", "label": "CR Number", "fieldtype": "Data", "width": 120},
 	{"fieldname": "address", "label": "Address", "fieldtype": "Data", "width": 200},
-	{"fieldname": "classification", "label": "Classification", "fieldtype": "Link", "options": "Classification", "width": 140},
+	{"fieldname": "classification", "label": "Classification", "fieldtype": "Select", "options": "\n12\n20", "width": 140},
 	{"fieldname": "cost", "label": "Cost", "fieldtype": "Data", "width": 100},
 	{"fieldname": "container_contract", "label": "Container Contract", "fieldtype": "Link", "options": "Container Contract", "width": 150},
 	{"fieldname": "rent_from", "label": "Rent From", "fieldtype": "Date", "width": 110},

@@ -5,6 +5,8 @@ from frappe import _
 from frappe.utils import add_days, flt, getdate
 
 from container.container.report.container_report.container_report import linked_records
+from container.commissions import commission_amounts, reversed_rentals
+from container.invoice_sources import source_invoices
 
 
 def execute(filters=None):
@@ -30,6 +32,7 @@ def execute(filters=None):
 	employees = linked_records("Employee", [r.supervisor for r in rentals], ["employee_name"])
 	invoices = invoices_by_rental([r.name for r in rentals])
 	payments = payments_by_invoice([invoice.name for invoice in invoices.values()])
+	reversed = reversed_rentals([r.name for r in rentals])
 	rows = [
 		{
 			"date": rental.get("from"),
@@ -39,7 +42,7 @@ def execute(filters=None):
 			"sales_invoice": invoices.get(rental.name, {}).get("name"),
 			"invoice_status": _(invoices.get(rental.name, {}).get("status") or ""),
 			"payment_entry": payments.get(invoices.get(rental.name, {}).get("name")),
-			"commission": flt(rental.supervisor_commission),
+			**commission_amounts(rental.supervisor_commission, rental.name in reversed),
 		}
 		for rental in rentals
 	]
@@ -52,13 +55,7 @@ def invoices_by_rental(rentals):
 		return {}
 	return {
 		invoice.container_rent: invoice
-		for invoice in frappe.get_list(
-			"Sales Invoice",
-			filters={"container_rent": ["in", rentals], "docstatus": ["!=", 2], "is_return": 0},
-			fields=["name", "container_rent", "status"],
-			order_by="creation asc",
-			limit_page_length=0,
-		)
+		for invoice in reversed(source_invoices("container_rent", rentals, ["status"]))
 	}
 
 
@@ -93,5 +90,7 @@ def get_columns():
 		{"fieldname": "sales_invoice", "label": _("Sales Invoice"), "fieldtype": "Link", "options": "Sales Invoice", "width": 170},
 		{"fieldname": "invoice_status", "label": _("Invoice Status"), "fieldtype": "Data", "width": 130},
 		{"fieldname": "payment_entry", "label": _("Payment Entry"), "fieldtype": "Data", "width": 200},
-		{"fieldname": "commission", "label": _("Supervisor Commission"), "fieldtype": "Currency", "width": 170},
+		{"fieldname": "original_commission", "label": _("Original Commission"), "fieldtype": "Currency", "width": 170},
+		{"fieldname": "commission_reversal", "label": _("Commission Reversal"), "fieldtype": "Currency", "width": 170},
+		{"fieldname": "commission", "label": _("Supervisor Commission"), "fieldtype": "Currency", "width": 190},
 	]

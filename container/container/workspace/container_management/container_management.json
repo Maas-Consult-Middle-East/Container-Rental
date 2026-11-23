@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"container-10\",\"type\":\"header\",\"data\":{\"text\":\"<b>Quick Actions</b>\",\"col\":12}},{\"id\":\"Yfml2BCbdg\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Late Containers\",\"col\":4}},{\"id\":\"OpZDosALKf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rented Containers\",\"col\":4}},{\"id\":\"pulR3QC-RD\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pull Containers\",\"col\":4}},{\"id\":\"fZFXkYG6ZA\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Empty Containers\",\"col\":4}},{\"id\":\"total-container-card\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Container\",\"col\":4}},{\"id\":\"available-for-rent-card\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Available for Rent\",\"col\":4}},{\"id\":\"EMeBPEDh-t\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ubloAyIUcG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container\",\"col\":3}},{\"id\":\"JXNkNMCpTy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Type\",\"col\":3}},{\"id\":\"mQ88QORZTu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Contract\",\"col\":3}},{\"id\":\"kXDKjlRzSa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rent A Container\",\"col\":3}},{\"id\":\"Fk6_n5Cpn5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Commission Entry\",\"col\":3}},{\"id\":\"K7IHYNZJs1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Trip\",\"col\":3}},{\"id\":\"6twZnGiCkW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Classification\",\"col\":3}},{\"id\":\"ghIR67niJN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Classification Type\",\"col\":3}},{\"id\":\"FGwvcQNWRo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Classifcation Sizes\",\"col\":3}},{\"id\":\"mPSApK13B2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Wi8FvOaHy3\",\"type\":\"card\",\"data\":{\"card_name\":\"Appointments\",\"col\":4}},{\"id\":\"X2zxjV42S7\",\"type\":\"card\",\"data\":{\"card_name\":\"Empty and Reservation\",\"col\":4}},{\"id\":\"container-20\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet\",\"col\":4}},{\"id\":\"container-21\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"container-10\",\"type\":\"header\",\"data\":{\"text\":\"<b>Quick Actions</b>\",\"col\":12}},{\"id\":\"Yfml2BCbdg\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Late Containers\",\"col\":4}},{\"id\":\"OpZDosALKf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rented Containers\",\"col\":4}},{\"id\":\"pulR3QC-RD\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pull Containers\",\"col\":4}},{\"id\":\"fZFXkYG6ZA\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Empty Containers\",\"col\":4}},{\"id\":\"total-container-card\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Container\",\"col\":4}},{\"id\":\"available-for-rent-card\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Available for Rent\",\"col\":4}},{\"id\":\"EMeBPEDh-t\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ubloAyIUcG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container\",\"col\":3}},{\"id\":\"mQ88QORZTu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Contract\",\"col\":3}},{\"id\":\"kXDKjlRzSa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rent A Container\",\"col\":3}},{\"id\":\"Fk6_n5Cpn5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Commission Entry\",\"col\":3}},{\"id\":\"K7IHYNZJs1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Container Trip\",\"col\":3}},{\"id\":\"mPSApK13B2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Wi8FvOaHy3\",\"type\":\"card\",\"data\":{\"card_name\":\"Appointments\",\"col\":4}},{\"id\":\"X2zxjV42S7\",\"type\":\"card\",\"data\":{\"card_name\":\"Empty and Reservation\",\"col\":4}},{\"id\":\"container-20\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet\",\"col\":4}},{\"id\":\"container-21\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2026-11-02 16:06:07.664313",
  "custom_blocks": [],
  "docstatus": 0,
@@ -310,7 +310,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-15 16:30:00.000000",
+ "modified": "2026-11-22 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Management",
@@ -349,14 +349,6 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Classification",
-   "link_to": "Classification",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
    "label": "Rent A Container",
    "link_to": "Rent A Container",
    "stats_filter": "[]",
@@ -381,32 +373,8 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Container Type",
-   "link_to": "Classification",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Classification Type",
-   "link_to": "Classification Type",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
    "label": "Container Contract",
    "link_to": "Container Contract",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Classifcation Sizes",
-   "link_to": "Classifcation Sizes",
    "stats_filter": "[]",
    "type": "DocType"
   },

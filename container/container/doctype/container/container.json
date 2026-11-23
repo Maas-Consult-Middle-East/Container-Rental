@@ -12,9 +12,16 @@
   "container_size",
   "column_break_uqwj",
   "status",
-  "branch_name"
+  "branch_name",
+  "image"
  ],
  "fields": [
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Container Photo",
+   "no_copy": 1
+  },
   {
    "fieldname": "column_break_uqwj",
    "fieldtype": "Column Break"
@@ -32,9 +39,9 @@
   },
   {
    "fieldname": "classification",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Classification",
-   "options": "Classification"
+   "options": "\n12\n20"
   },
   {
    "fieldname": "branch_name",
@@ -51,9 +58,10 @@
   }
  ],
  "grid_page_length": 50,
+ "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-12 10:28:28.170579",
+ "modified": "2026-11-22 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container",

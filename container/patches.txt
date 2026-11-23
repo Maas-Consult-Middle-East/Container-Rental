@@ -2,7 +2,12 @@
 # Patches added in this section will be executed before doctypes are migrated
 # Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
 container.patches.rename_cotainer_rent
+container.patches.convert_classification_to_select
 
 [post_model_sync]
 container.patches.populate_baladiyya_amount
+container.patches.remove_classification_doctypes
+container.patches.populate_rental_container_names
+container.patches.populate_contract_form
+container.patches.populate_invoice_item_sources
 # Patches added in this section will be executed after doctypes are migrated

@@ -4,6 +4,13 @@ import frappe
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 
+INVOICE_ITEM_SOURCE_FIELDS = [
+    dict(fieldname="container_rent", label="Rent A Container", fieldtype="Link",
+        options="Rent A Container", insert_after="item_name", read_only=1),
+    dict(fieldname="container_contract", label="Container Contract", fieldtype="Link",
+        options="Container Contract", insert_after="container_rent", read_only=1),
+]
+
 def after_migrate():
 	for role in ["Container Manager", "Container Operator", "Container Reports User"]:
 		if not frappe.db.exists("Role", role):
@@ -40,6 +47,7 @@ def after_migrate():
 				no_copy=1,
 			)
 		],
+		"Sales Invoice Item": INVOICE_ITEM_SOURCE_FIELDS,
 		"Vehicle": [
 			dict(
 				fieldname="container_truck_type", label="Truck Type", fieldtype="Data", insert_after="model"

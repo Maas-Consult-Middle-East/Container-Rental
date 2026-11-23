@@ -5,6 +5,7 @@ from frappe import _
 from frappe.utils import add_days, flt, getdate
 
 from container.container.report.container_report.container_report import linked_records
+from container.commissions import commission_amounts, reversed_rentals
 from container.container.report.supervisor_commission_report.supervisor_commission_report import (
 	invoices_by_rental,
 	payments_by_invoice,
@@ -46,6 +47,7 @@ def execute(filters=None):
 	drivers = linked_records("Driver", [op.driver for op in operations], ["full_name"])
 	invoices = invoices_by_rental(sorted({op.rent_a_container for op in operations if op.get("rent_a_container")}))
 	payments = payments_by_invoice([invoice.name for invoice in invoices.values()])
+	reversed = reversed_rentals([op.name for op in operations if op.operation == "Rent A Container"])
 	rows = []
 	for op in operations:
 		invoice = invoices.get(op.get("rent_a_container")) or {}
@@ -58,7 +60,7 @@ def execute(filters=None):
 			"sales_invoice": invoice.get("name"),
 			"invoice_status": _(invoice.get("status") or ""),
 			"payment_entry": payments.get(invoice.get("name")),
-			"commission": flt(op.driver_commission),
+			**commission_amounts(op.driver_commission, op.operation == "Rent A Container" and op.name in reversed),
 		})
 	rows.sort(key=lambda row: (str(row["date"] or ""), row["reference"]), reverse=True)
 	return get_columns(), rows
@@ -74,5 +76,7 @@ def get_columns():
 		{"fieldname": "sales_invoice", "label": _("Sales Invoice"), "fieldtype": "Link", "options": "Sales Invoice", "width": 170},
 		{"fieldname": "invoice_status", "label": _("Invoice Status"), "fieldtype": "Data", "width": 130},
 		{"fieldname": "payment_entry", "label": _("Payment Entry"), "fieldtype": "Data", "width": 200},
-		{"fieldname": "commission", "label": _("Driver Commission"), "fieldtype": "Currency", "width": 160},
+		{"fieldname": "original_commission", "label": _("Original Commission"), "fieldtype": "Currency", "width": 170},
+		{"fieldname": "commission_reversal", "label": _("Commission Reversal"), "fieldtype": "Currency", "width": 170},
+		{"fieldname": "commission", "label": _("Driver Commission"), "fieldtype": "Currency", "width": 180},
 	]

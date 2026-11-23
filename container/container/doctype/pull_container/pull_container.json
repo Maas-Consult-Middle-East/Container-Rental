@@ -151,9 +151,9 @@
   {
    "fetch_from": "rent_a_container.classification",
    "fieldname": "classification",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Classification",
-   "options": "Classification",
+   "options": "\n12\n20",
    "read_only": 1
   },
   {
@@ -219,7 +219,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-11-01 15:11:47.757038",
+ "modified": "2026-11-22 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Pull Container",

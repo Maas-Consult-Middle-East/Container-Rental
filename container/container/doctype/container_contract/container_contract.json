@@ -7,39 +7,169 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_b2nb",
+  "rent_type",
+  "customer",
+  "contact_number",
+  "cr_number",
+  "address",
+  "column_break_umet",
+  "classification",
+  "total",
+  "containers_section",
+  "containers",
+  "container_names",
+  "rent_duration_section",
+  "contract_from",
+  "column_break_dwvt",
+  "contract_to",
+  "section_break_bqfi",
+  "supervisor",
+  "driver",
+  "truck",
+  "column_break_icgk",
+  "supervisor_commission",
+  "driver_commission",
+  "section_break_vvah",
+  "map_location",
+  "latitude",
+  "longitude",
   "amended_from",
   "contract_type",
-  "customer",
   "location",
-  "column_break_nesn",
   "plot_number",
   "plan_number",
-  "section_break_yxkt",
-  "contract_from",
   "contract_duration",
-  "column_break_qjgw",
-  "contract_to",
-  "section_break_kwqe",
-  "column_break_essh",
-  "classification",
-  "container_size",
   "no_of_trips",
-  "trip_duration",
-  "column_break_cxsu",
+  "container_size",
   "price",
-  "total",
   "contract_cost",
-  "tax_details_section",
   "tax_treatment",
   "tax_template",
-  "column_break_rofw",
+  "trip_duration",
   "notes"
  ],
  "fields": [
   {
-   "fieldname": "section_break_b2nb",
+   "fieldname": "container_names",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Containers",
+   "read_only": 1,
+   "in_list_view": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_umet",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "classification",
+   "fieldtype": "Select",
+   "label": "Classification",
+   "options": "\n12\n20"
+  },
+  {
+   "fieldname": "rent_duration_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Duration"
+  },
+  {
+   "fieldname": "contract_from",
+   "fieldtype": "Date",
+   "label": "From"
+  },
+  {
+   "fieldname": "column_break_dwvt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contract_to",
+   "fieldtype": "Date",
+   "label": "To"
+  },
+  {
+   "fieldname": "section_break_bqfi",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fieldname": "column_break_icgk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "truck",
+   "fieldtype": "Link",
+   "label": "Truck",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "supervisor_commission",
+   "fieldtype": "Data",
+   "label": "Commission"
+  },
+  {
+   "fieldname": "driver_commission",
+   "fieldtype": "Data",
+   "label": "Commission"
+  },
+  {
+   "fieldname": "section_break_vvah",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "map_location",
+   "fieldtype": "Geolocation",
+   "label": "Location"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Data",
+   "label": "Latitude"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Data",
+   "label": "Longitude"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "label": "Cost"
+  },
+  {
+   "fieldname": "rent_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Rent Type",
+   "options": "Rent Type",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -52,149 +182,130 @@
    "search_index": 1
   },
   {
-   "fieldname": "contract_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Contract Type",
-   "options": "Contract Type",
+   "fieldname": "cr_number",
+   "fieldtype": "Data",
+   "label": "CR Number"
+  },
+  {
+   "fieldname": "containers_section",
+   "fieldtype": "Section Break",
+   "label": "Containers"
+  },
+  {
+   "fieldname": "containers",
+   "fieldtype": "Table",
+   "label": "Containers",
+   "options": "Contract Container",
    "reqd": 1
   },
   {
-   "fieldname": "customer",
+   "fieldname": "contract_type",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Customer",
-   "options": "Customer",
-   "reqd": 1
+   "in_list_view": 0,
+   "label": "Contract Type",
+   "options": "Contract Type",
+   "reqd": 0,
+   "hidden": 1
   },
   {
    "fieldname": "location",
    "fieldtype": "Data",
-   "label": "Location"
+   "label": "Location",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
    "fieldname": "plot_number",
    "fieldtype": "Data",
-   "label": "Plot Number"
+   "label": "Plot Number",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
    "fieldname": "plan_number",
    "fieldtype": "Data",
-   "label": "Plan Number"
-  },
-  {
-   "fieldname": "section_break_yxkt",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "contract_from",
-   "fieldtype": "Date",
-   "label": "Contract from",
-   "reqd": 1
+   "label": "Plan Number",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
    "fieldname": "contract_duration",
    "fieldtype": "Duration",
-   "label": "Contract Duration"
+   "label": "Contract Duration",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
-   "fieldname": "column_break_qjgw",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "contract_to",
-   "fieldtype": "Date",
-   "label": "Contract To"
-  },
-  {
-   "depends_on": "eval:doc.contract_type != \"Unlimited Contract\";",
-   "fieldname": "section_break_kwqe",
-   "fieldtype": "Section Break"
-  },
-  {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
-   "fieldname": "classification",
-   "fieldtype": "Link",
-   "label": "Classification",
-   "options": "Classification"
-  },
-  {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
    "fieldname": "no_of_trips",
    "fieldtype": "Int",
-   "label": "No. of Trips"
+   "label": "No. of Trips",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
    "fieldname": "container_size",
    "fieldtype": "Data",
-   "label": "Container Size"
+   "label": "Container Size",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
    "fieldname": "price",
    "fieldtype": "Currency",
-   "label": "Price"
+   "label": "Price",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\"",
-   "fieldname": "total",
-   "fieldtype": "Currency",
-   "label": "Total",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\"",
    "fieldname": "contract_cost",
    "fieldtype": "Currency",
    "label": "Contract Cost",
-   "read_only": 1
-  },
-  {
-   "fieldname": "tax_details_section",
-   "fieldtype": "Section Break",
-   "label": "Tax Details"
+   "read_only": 1,
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
    "default": "Price Include Tax",
    "fieldname": "tax_treatment",
    "fieldtype": "Select",
    "label": "Tax Treatment",
-   "options": "Price Include Tax\nPrice Not Include Tax\nExempt from tax"
+   "options": "Price Include Tax\nPrice Not Include Tax\nExempt from tax",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
    "fieldname": "tax_template",
    "fieldtype": "Link",
    "label": "Tax Template",
-   "options": "Item Tax Template"
+   "options": "Item Tax Template",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
-   "depends_on": "eval:doc.contract_type != \"Unlimited Contract\";",
    "fieldname": "trip_duration",
    "fieldtype": "Data",
-   "label": "Trip Duration"
-  },
-  {
-   "depends_on": "eval:doc.contract_type !== \"Unlimited Contract\";",
-   "fieldname": "column_break_essh",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_nesn",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_cxsu",
-   "fieldtype": "Column Break"
+   "label": "Trip Duration",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   },
   {
    "fieldname": "notes",
    "fieldtype": "Small Text",
-   "label": "Notes"
-  },
-  {
-   "fieldname": "column_break_rofw",
-   "fieldtype": "Column Break"
+   "label": "Notes",
+   "hidden": 1,
+   "reqd": 0,
+   "in_list_view": 0
   }
  ],
  "grid_page_length": 50,
@@ -202,11 +313,14 @@
  "is_submittable": 1,
  "links": [
   {
-   "link_doctype": "Rent A Container",
+   "link_doctype": "Sales Invoice Item",
+   "parent_doctype": "Sales Invoice",
+   "table_fieldname": "items",
+   "is_child_table": 1,
    "link_fieldname": "container_contract"
   }
  ],
- "modified": "2026-10-31 15:36:46.071660",
+ "modified": "2026-11-22 23:00:00.000000",
  "modified_by": "Administrator",
  "module": "Container",
  "name": "Container Contract",
