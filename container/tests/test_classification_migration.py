@@ -8,12 +8,12 @@ from container.patches.convert_classification_to_select import execute, normaliz
 
 class TestClassificationMigration(unittest.TestCase):
 	def test_supported_sizes_and_units(self):
-		for value, expected in [("12", "12"), ("20 Yard", "20"), ("20 ياردة", "20"),
+		for value, expected in [("12", "12"), ("20 Yard", "20"), ("20 Yr", "20"), ("20 yr", "20"), ("20 ياردة", "20"),
 			("١٢ ياردة", "12"), (None, ""), ("", "")]:
 			self.assertEqual(normalize_size(value), expected)
 
 	def test_unknown_or_ambiguous_values_are_not_guessed(self):
-		for value in ["Trash", "Rubble", "30 Yard", "12/20", "120", "Container 20"]:
+		for value in ["Trash", "Rubble", "30 Yard", "12/20", "120", "Container 20", "20 years", "30 Yr"]:
 			self.assertIsNone(normalize_size(value))
 
 	def test_unknown_value_prevents_all_updates(self):

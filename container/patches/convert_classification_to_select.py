@@ -21,7 +21,7 @@ def normalize_size(value):
 	text = str(value or "").strip().translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
 	if not text:
 		return ""
-	match = re.fullmatch(r"(12|20)(?:\s*(?:yards?|yd|ياردة|يارد|ياردات))?", text, re.IGNORECASE)
+	match = re.fullmatch(r"(12|20)(?:\s*(?:yards?|yd|yr|ياردة|يارد|ياردات))?", text, re.IGNORECASE)
 	return match.group(1) if match else None
 
 
