@@ -62,6 +62,30 @@ class TestDriverApi(unittest.TestCase):
 		finally:
 			frappe.db.rollback(save_point="driver_api_test")
 
+	def test_driver_user_field_signs_in(self):
+		from container.setup import setup_driver_user_field
+
+		setup_driver_user_field()  # Schema change, as after_migrate does; runs before the savepoint.
+		fieldname = driver_api.driver_user_fields()[0]
+		frappe.db.savepoint("driver_user_test")
+		try:
+			email = f"test-driver-{frappe.generate_hash(length=8)}@example.com"
+			frappe.get_doc({"doctype": "User", "email": email, "first_name": "Test Driver",
+				"send_welcome_email": 0}).insert(ignore_permissions=True)
+			driver = frappe.get_doc({"doctype": "Driver", "full_name": "TEST-DRV-USER", "status": "Active",
+				fieldname: email}).insert()
+			frappe.set_user(email)
+			self.assertEqual(driver_api.session_drivers(), [driver.name])
+			self.assertEqual(driver_api.get_me()["driver"], driver.name)
+			frappe.set_user("Administrator")
+			driver.db_set("status", "Left")
+			frappe.set_user(email)
+			with self.assertRaises(frappe.PermissionError):
+				driver_api.session_drivers()
+		finally:
+			frappe.set_user("Administrator")
+			frappe.db.rollback(save_point="driver_user_test")
+
 	def test_user_without_driver_is_refused(self):
 		frappe.set_user("Guest")
 		try:

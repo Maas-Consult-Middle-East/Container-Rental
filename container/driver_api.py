@@ -12,17 +12,28 @@ from frappe import _
 from container.availability import active_container_operations
 
 
+def driver_user_fields():
+	"""Fields on Driver that link to User, whatever name the site gave them."""
+	return [df.fieldname for df in frappe.get_meta("Driver").fields if df.fieldtype == "Link" and df.options == "User"]
+
+
 def session_drivers():
-	"""Active Driver records whose Employee is linked to the logged-in user."""
-	employees = frappe.get_all("Employee", filters={"user_id": frappe.session.user}, pluck="name")
-	drivers = (
-		frappe.get_all("Driver", filters={"employee": ["in", employees], "status": "Active"}, pluck="name")
-		if employees
-		else []
-	)
+	"""Active Driver records for the logged-in user, via the Driver's User field or its Employee."""
+	user = frappe.session.user
+	drivers = set()
+	for fieldname in driver_user_fields():
+		drivers.update(frappe.get_all("Driver", filters={fieldname: user, "status": "Active"}, pluck="name"))
+	employees = frappe.get_all("Employee", filters={"user_id": user}, pluck="name")
+	if employees:
+		drivers.update(
+			frappe.get_all("Driver", filters={"employee": ["in", employees], "status": "Active"}, pluck="name")
+		)
 	if not drivers:
-		frappe.throw(_("This account is not set up as a driver. Ask your administrator to link your user to an active Driver."), frappe.PermissionError)
-	return drivers
+		frappe.throw(
+			_("This account is not set up as a driver. Ask your administrator to select your user on an active Driver."),
+			frappe.PermissionError,
+		)
+	return sorted(drivers)
 
 
 @frappe.whitelist()

@@ -82,6 +82,7 @@ def after_migrate():
 
 	sync_full_access_permissions()
 	setup_emptying_accounting()
+	setup_driver_user_field()
 
 
 DISPOSAL_ACCOUNT_NAME = "Garbage Disposal Fee"
@@ -120,3 +121,15 @@ def setup_emptying_accounting():
 	}, update=False)
 	for company in frappe.get_all("Company", pluck="name"):
 		ensure_disposal_account(company)
+
+
+def setup_driver_user_field():
+	"""The driver mobile app signs drivers in through a User link on Driver.
+
+	Sites that already added their own User field keep it; only add one when none exists.
+	"""
+	from container.driver_api import driver_user_fields
+
+	if not driver_user_fields():
+		create_custom_fields({"Driver": [{"fieldname": "custom_user", "label": "User", "fieldtype": "Link",
+			"options": "User", "insert_after": "employee"}]}, update=False)
