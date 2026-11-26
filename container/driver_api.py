@@ -63,6 +63,40 @@ def get_pulls():
 	return jobs
 
 
+@frappe.whitelist()
+def get_job_details(doctype: str, name: str):
+	"""Read an assigned document, including all its original container rows.
+
+	This is a driver-scoped API, not a general document reader. Keep the document
+	and field allowlists explicit so unrelated/custom private fields cannot leak.
+	"""
+	if doctype not in ("Rent A Container", "Pull Container"):
+		frappe.throw(_("Unsupported job type."), frappe.ValidationError)
+	drivers = session_drivers()
+	doc = frappe.get_doc(doctype, name)
+	if doc.driver not in drivers or doc.docstatus == 2 or (doctype == "Rent A Container" and doc.docstatus != 1):
+		frappe.throw(_("This document is no longer available to you."), frappe.PermissionError)
+	fields = (
+		"name", "doctype", "docstatus", "creation", "modified", "rent_type", "client",
+		"contact_number", "cr_number", "address", "classification", "cost", "container_contract",
+		"driver", "supervisor", "truck", "driver_commission", "amended_from",
+	)
+	extra = ("client_name", "from", "to", "supervisor_commission") if doctype == "Rent A Container" else (
+		"rent_a_container", "rent_from", "rent_to", "date", "notes",
+	)
+	result = {field: doc.get(field) for field in (*fields, *extra)}
+	if doctype == "Pull Container":
+		result["client_name"] = frappe.db.get_value("Customer", doc.client, "customer_name") if doc.client else None
+	result["driver_name"] = frappe.db.get_value("Driver", doc.driver, "full_name")
+	result["supervisor_name"] = frappe.db.get_value("Employee", doc.supervisor, "employee_name") if doc.supervisor else None
+	result["latitude"], result["longitude"] = _coordinates(doc)
+	result["containers"] = [
+		{field: row.get(field) for field in ("container", "container_size", "classification")}
+		for row in doc.get("containers", [])
+	]
+	return result
+
+
 def _jobs(doctype, operation, extra_fields):
 	drivers = session_drivers()
 	# Same definition as the dashboard cards: pulled/emptied containers are not active.
